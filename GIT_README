@@ -1,2 +1,0 @@
-If you need to add another directory above applications/scrumLite simply add "!dirname" to 
-the .gitignore file
