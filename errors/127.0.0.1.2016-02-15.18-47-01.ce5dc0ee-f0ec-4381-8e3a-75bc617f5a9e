@@ -1,0 +1,21 @@
+(dp1
+S'output'
+p2
+S"<class 'sqlite3.IntegrityError'> foreign key constraint failed"
+p3
+sS'layer'
+p4
+S'/media/Volume2/web2py/applications/scrumLite/controllers/createteam.py'
+p5
+sS'code'
+p6
+S"# -*- coding: utf-8 -*-\n# try something like\n@auth.requires_login()\ndef createteam():\n        form = SQLFORM(db.Team)\n        if form.process().accepted:\n            group_id = auth.add_group(form.vars.Team_Name, form.vars.Product_Description)\n            myid = form.vars.Product_Owner\n            auth.add_membership(myid, group_id)\n        elif form.errors:\n            response.flash = 'form is invalid'\n        return dict(form=form)\n\nresponse._vars=response._caller(createteam)\n"
+p7
+sS'snapshot'
+p8
+(dp9
+sS'traceback'
+p10
+S'Traceback (most recent call last):\n  File "/media/Volume2/web2py/gluon/restricted.py", line 227, in restricted\n    exec ccode in environment\n  File "/media/Volume2/web2py/applications/scrumLite/controllers/createteam.py", line 14, in <module>\n  File "/media/Volume2/web2py/gluon/globals.py", line 412, in <lambda>\n    self._caller = lambda f: f()\n  File "/media/Volume2/web2py/gluon/tools.py", line 4236, in f\n    return action(*a, **b)\n  File "/media/Volume2/web2py/applications/scrumLite/controllers/createteam.py", line 9, in createteam\n    auth.add_membership(myid, group_id)\n  File "/media/Volume2/web2py/gluon/tools.py", line 4394, in add_membership\n    id = membership.insert(group_id=group_id, user_id=user_id)\n  File "/media/Volume2/web2py/gluon/packages/dal/pydal/objects.py", line 731, in insert\n    ret = self._db._adapter.insert(self, self._listify(fields))\n  File "/media/Volume2/web2py/gluon/packages/dal/pydal/adapters/base.py", line 746, in insert\n    raise e\nIntegrityError: foreign key constraint failed\n'
+p11
+s.

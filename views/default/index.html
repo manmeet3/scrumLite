@@ -1,0 +1,20 @@
+{{extend 'layout.html'}}
+
+<a href="http://127.0.0.1:8000/scrumLite/createteam">New Team</a><br>
+<a href="http://127.0.0.1:8000/scrumLite/invitemembers/invitemembers">Invite New Team Member</a><br>
+<a href="http://127.0.0.1:8000/scrumLite/teamform/view_team">View Team</a><br>
+<a href="http://127.0.0.1:8000/scrumLite/newuserstory/scrumboard">Scrum Board</a><br>
+
+<button><a href="http://127.0.0.1:8000/scrumLite/createstory">New Story</a></button>
+
+<h3> Backlog </h3>
+
+{{for story in usrstories:}}
+{{=LI(A(story.User_Story, _href=URL("show_story", args=story.id)))}}
+{{pass}}
+
+
+
+{{block right_sidebar}}
+
+{{end}}

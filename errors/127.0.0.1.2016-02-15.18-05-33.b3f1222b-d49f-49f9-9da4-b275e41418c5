@@ -1,0 +1,21 @@
+(dp1
+S'output'
+p2
+S"<type 'exceptions.AttributeError'> 'DAL' object has no attribute 'userstory'"
+p3
+sS'layer'
+p4
+S'/media/Volume2/web2py/applications/scrumLite/controllers/default.py'
+p5
+sS'code'
+p6
+S"def index():\n    usrstories = db().select(db.userstory.ALL)\n    return dict(usrstories=usrstories)\n\n\ndef user():\n    return dict(form=auth())\n\ndef show_story():\n  this_story = db.userstory(request.args(0,cast=int)) or redirect(URL('index'))\n  db.task.story_id.default = this_story.id\n  form = SQLFORM(db.task).process() if auth.user else 'You need to log in'\n  alltasks = db(db.task.story_id==this_story.id).select()\n  return dict(story = this_story, tasks=alltasks, form=form)\n\nresponse._vars=response._caller(index)\n"
+p7
+sS'snapshot'
+p8
+(dp9
+sS'traceback'
+p10
+S'Traceback (most recent call last):\n  File "/media/Volume2/web2py/gluon/restricted.py", line 227, in restricted\n    exec ccode in environment\n  File "/media/Volume2/web2py/applications/scrumLite/controllers/default.py", line 16, in <module>\n  File "/media/Volume2/web2py/gluon/globals.py", line 412, in <lambda>\n    self._caller = lambda f: f()\n  File "/media/Volume2/web2py/applications/scrumLite/controllers/default.py", line 2, in index\n    usrstories = db().select(db.userstory.ALL)\n  File "/media/Volume2/web2py/gluon/packages/dal/pydal/base.py", line 921, in __getattr__\n    return BasicStorage.__getattribute__(self, key)\nAttributeError: \'DAL\' object has no attribute \'userstory\'\n'
+p11
+s.

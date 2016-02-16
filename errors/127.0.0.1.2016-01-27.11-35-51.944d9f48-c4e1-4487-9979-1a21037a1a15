@@ -1,0 +1,219 @@
+(dp1
+S'output'
+p2
+S'Unable to open included view file: /home/manmeet/web2py/applications/scrumlite/views/../static/js/*'
+p3
+sS'layer'
+p4
+S'ParserContainer'
+p5
+sS'code'
+p6
+S'{{left_sidebar_enabled,right_sidebar_enabled=False,(\'message\' in globals())}}\n{{include \'../static/js/*\'}}\n\n<!DOCTYPE HTML>\n<!--\n\tHorizons by TEMPLATED\n\ttemplated.co @templatedco\n\tReleased for free under the Creative Commons Attribution 3.0 license (templated.co/license)\n-->\n\n<html>\n\t<head>\n\t\t<title>Horizons by TEMPLATED</title>\n\t\t<meta http-equiv="content-type" content="text/html; charset=utf-8" />\n\t\t<meta name="description" content="" />\n\t\t<meta name="keywords" content="" />\n\t\t<!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->\n\t\t<script src="jquery.min.js"></script>\n\t\t<script src="js/jquery.dropotron.min.js"></script>\n\t\t<script src="js/skel.min.js"></script>\n\t\t<script src="js/skel-layers.min.js"></script>\n\t\t<script src="js/init.js"></script>\n\t\t<noscript>\n\t\t\t<link rel="stylesheet" href="css/skel.css" />\n\t\t\t<link rel="stylesheet" href="css/style.css" />\n\t\t</noscript>\n\t\t<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->\n\t</head>\n\t<body class="homepage">\n\n\t\t<!-- Header -->\n\t\t\t<div id="header">\n\t\t\t\t<div class="container">\n\n\t\t\t\t\t<!-- Logo -->\n\t\t\t\t\t\t<h1><a href="#" id="logo">Horizons</a></h1>\n\n\t\t\t\t\t<!-- Nav -->\n\t\t\t\t\t\t<nav id="nav">\n\t\t\t\t\t\t\t<ul>\n\t\t\t\t\t\t\t\t<li><a href="index.html">Home</a></li>\n\t\t\t\t\t\t\t\t<li>\n\t\t\t\t\t\t\t\t\t<a href="">Dropdown</a>\n\t\t\t\t\t\t\t\t\t<ul>\n\t\t\t\t\t\t\t\t\t\t<li><a href="#">Lorem ipsum dolor</a></li>\n\t\t\t\t\t\t\t\t\t\t<li><a href="#">Magna phasellus</a></li>\n\t\t\t\t\t\t\t\t\t\t<li><a href="#">Etiam dolore nisl</a></li>\n\t\t\t\t\t\t\t\t\t\t<li>\n\t\t\t\t\t\t\t\t\t\t\t<a href="">Phasellus consequat</a>\n\t\t\t\t\t\t\t\t\t\t\t<ul>\n\t\t\t\t\t\t\t\t\t\t\t\t<li><a href="#">Lorem ipsum dolor</a></li>\n\t\t\t\t\t\t\t\t\t\t\t\t<li><a href="#">Phasellus consequat</a></li>\n\t\t\t\t\t\t\t\t\t\t\t\t<li><a href="#">Magna phasellus</a></li>\n\t\t\t\t\t\t\t\t\t\t\t\t<li><a href="#">Etiam dolore nisl</a></li>\n\t\t\t\t\t\t\t\t\t\t\t\t<li><a href="#">Veroeros feugiat</a></li>\n\t\t\t\t\t\t\t\t\t\t\t</ul>\n\t\t\t\t\t\t\t\t\t\t</li>\n\t\t\t\t\t\t\t\t\t\t<li><a href="#">Veroeros feugiat</a></li>\n\t\t\t\t\t\t\t\t\t</ul>\n\t\t\t\t\t\t\t\t</li>\n\t\t\t\t\t\t\t\t<li><a href="left-sidebar.html">Left Sidebar</a></li>\n\t\t\t\t\t\t\t\t<li><a href="right-sidebar.html">Right Sidebar</a></li>\n\t\t\t\t\t\t\t\t<li><a href="no-sidebar.html">No Sidebar</a></li>\n\t\t\t\t\t\t\t</ul>\n\t\t\t\t\t\t</nav>\n\n\n\t\t\t\t\t<!-- Banner -->\n\t\t\t\t\t\t<div id="banner">\n\t\t\t\t\t\t\t<div class="container">\n\t\t\t\t\t\t\t\t<section>\n\t\t\t\t\t\t\t\t\t<header class="major">\n\t\t\t\t\t\t\t\t\t\t<h2>Welcome to Horizons!</h2>\n\t\t\t\t\t\t\t\t\t\t<span class="byline">&hellip; a responsive HTML5 site template freebie by <a href="http://templated.co">TEMPLATED</a>. Released for free under the <a href="http://templated.co/license">Creative Commons Attribution</a> license, so use it for whatever (personal or commercial) &ndash; just give us credit!</span>\n\t\t\t\t\t\t\t\t\t</header>\n\t\t\t\t\t\t\t\t\t<a href="#" class="button alt">Sign Up</a>\n\t\t\t\t\t\t\t\t</section>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\n\t\t\t\t</div>\n\t\t\t</div>\n\n\t\t<!-- Featured -->\n\t\t\t<div class="wrapper style2">\n\t\t\t\t<section class="container">\n\t\t\t\t\t<header class="major">\n\t\t\t\t\t\t<h2>Nulla luctus eleifend</h2>\n\t\t\t\t\t\t<span class="byline">Mauris vulputate dolor sit amet nibh</span>\n\t\t\t\t\t</header>\n\t\t\t\t\t<div class="row no-collapse-1">\n\t\t\t\t\t\t<section class="4u">\n\t\t\t\t\t\t\t<a href="#" class="image feature"><img src="images/pic02.jpg" alt=""></a>\n\t\t\t\t\t\t\t<p>Nam in massa. Sed vel tellus. Curabitur sem urna, consequat vel, suscipit in, mattis placerat.</p>\n\t\t\t\t\t\t</section>\n\t\t\t\t\t\t<section class="4u">\n\t\t\t\t\t\t\t<a href="#" class="image feature"><img src="images/pic03.jpg" alt=""></a>\n\t\t\t\t\t\t\t<p>Donec ornare neque ac sem. Mauris aliquet. Aliquam sem leo, vulputate sed, convallis. Donec magna.</p>\n\t\t\t\t\t\t</section>\n\t\t\t\t\t\t<section class="4u">\n\t\t\t\t\t\t\t<a href="#" class="image feature"><img src="images/pic04.jpg" alt=""></a>\n\t\t\t\t\t\t\t<p>Curabitur sem urna, consequat vel, suscipit convallis sem leo, mattis placerat, nulla. Sed ac leo.</p>\n\t\t\t\t\t\t</section>\n\n\t\t\t\t\t</div>\n\t\t\t\t</section>\n\t\t\t</div>\n\n\t\t<!-- Main -->\n\t\t\t<div id="main" class="wrapper style1">\n\t\t\t\t<section class="container">\n\t\t\t\t\t<header class="major">\n\t\t\t\t\t\t<h2>Nulla luctus eleifend</h2>\n\t\t\t\t\t\t<span class="byline">Mauris vulputate dolor sit amet nibh</span>\n\t\t\t\t\t</header>\n\t\t\t\t\t<div class="row">\n\n\t\t\t\t\t\t<!-- Content -->\n\t\t\t\t\t\t\t<div class="6u">\n\t\t\t\t\t\t\t\t<section>\n\t\t\t\t\t\t\t\t\t<ul class="style">\n\t\t\t\t\t\t\t\t\t\t<li>\n\t\t\t\t\t\t\t\t\t\t\t<span class="fa fa-wrench"></span>\n\t\t\t\t\t\t\t\t\t\t\t<h3>Integer ultrices</h3>\n\t\t\t\t\t\t\t\t\t\t\t<span>In posuere eleifend odio. Quisque semper augue mattis wisi. Maecenas ligula. Pellentesque viverra vulputate enim.</span>\n\t\t\t\t\t\t\t\t\t\t</li>\n\t\t\t\t\t\t\t\t\t\t<li>\n\t\t\t\t\t\t\t\t\t\t\t<span class="fa fa-cloud"></span>\n\t\t\t\t\t\t\t\t\t\t\t<h3>Aliquam luctus</h3>\n\t\t\t\t\t\t\t\t\t\t\t<span>Pellentesque viverra vulputate enim. Aliquam erat volutpat. Maecenas condimentum enim tincidunt risus accumsan.</span>\n\t\t\t\t\t\t\t\t\t\t</li>\n\t\t\t\t\t\t\t\t\t</ul>\n\t\t\t\t\t\t\t\t</section>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class="6u">\n\t\t\t\t\t\t\t\t<section>\n\t\t\t\t\t\t\t\t\t<ul class="style">\n\t\t\t\t\t\t\t\t\t\t<li>\n\t\t\t\t\t\t\t\t\t\t\t<span class="fa fa-cogs"></span>\n\t\t\t\t\t\t\t\t\t\t\t<h3>Integer ultrices</h3>\n\t\t\t\t\t\t\t\t\t\t\t<span>In posuere eleifend odio. Quisque semper augue mattis wisi. Maecenas ligula. Pellentesque viverra vulputate enim.</span>\n\t\t\t\t\t\t\t\t\t\t</li>\n\t\t\t\t\t\t\t\t\t\t<li>\n\t\t\t\t\t\t\t\t\t\t\t<span class="fa fa-leaf"></span>\n\t\t\t\t\t\t\t\t\t\t\t<h3>Aliquam luctus</h3>\n\t\t\t\t\t\t\t\t\t\t\t<span>Pellentesque viverra vulputate enim. Aliquam erat volutpat. Maecenas condimentum enim tincidunt risus accumsan.</span>\n\t\t\t\t\t\t\t\t\t\t</li>\n\t\t\t\t\t\t\t\t\t</ul>\n\t\t\t\t\t\t\t\t</section>\n\t\t\t\t\t\t\t</div>\n\n\t\t\t\t\t</div>\n\t\t\t\t</section>\n\t\t\t</div>\n\n\t\t<!-- Footer -->\n\t\t\t<div id="footer">\n\t\t\t\t<div class="container">\n\n\t\t\t\t\t<!-- Lists -->\n\t\t\t\t\t\t<div class="row">\n\t\t\t\t\t\t\t<div class="8u">\n\t\t\t\t\t\t\t\t<section>\n\t\t\t\t\t\t\t\t\t<header class="major">\n\t\t\t\t\t\t\t\t\t\t<h2>Donec dictum metus</h2>\n\t\t\t\t\t\t\t\t\t\t<span class="byline">Quisque semper augue mattis wisi maecenas ligula</span>\n\t\t\t\t\t\t\t\t\t</header>\n\t\t\t\t\t\t\t\t\t<div class="row">\n\t\t\t\t\t\t\t\t\t\t<section class="6u">\n\t\t\t\t\t\t\t\t\t\t\t<ul class="default">\n\t\t\t\t\t\t\t\t\t\t\t\t<li><a href="#">Pellentesque elit non gravida blandit.</a></li>\n\t\t\t\t\t\t\t\t\t\t\t\t<li><a href="#">Lorem ipsum dolor consectetuer elit.</a></li>\n\t\t\t\t\t\t\t\t\t\t\t\t<li><a href="#">Phasellus nibh pellentesque congue.</a></li>\n\t\t\t\t\t\t\t\t\t\t\t\t<li><a href="#">Cras vitae metus aliquam  pharetra.</a></li>\n\t\t\t\t\t\t\t\t\t\t\t</ul>\n\t\t\t\t\t\t\t\t\t\t</section>\n\t\t\t\t\t\t\t\t\t\t<section class="6u">\n\t\t\t\t\t\t\t\t\t\t\t<ul class="default">\n\t\t\t\t\t\t\t\t\t\t\t\t<li><a href="#">Pellentesque elit non gravida blandit.</a></li>\n\t\t\t\t\t\t\t\t\t\t\t\t<li><a href="#">Lorem ipsum dolor consectetuer elit.</a></li>\n\t\t\t\t\t\t\t\t\t\t\t\t<li><a href="#">Phasellus nibh pellentesque congue.</a></li>\n\t\t\t\t\t\t\t\t\t\t\t\t<li><a href="#">Cras vitae metus aliquam  pharetra.</a></li>\n\t\t\t\t\t\t\t\t\t\t\t</ul>\n\t\t\t\t\t\t\t\t\t\t</section>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</section>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class="4u">\n\t\t\t\t\t\t\t\t<section>\n\t\t\t\t\t\t\t\t\t<header class="major">\n\t\t\t\t\t\t\t\t\t\t<h2>Donec dictum metus</h2>\n\t\t\t\t\t\t\t\t\t\t<span class="byline">Mattis wisi maecenas ligula</span>\n\t\t\t\t\t\t\t\t\t</header>\n\t\t\t\t\t\t\t\t\t<ul class="contact">\n\t\t\t\t\t\t\t\t\t\t<li>\n\t\t\t\t\t\t\t\t\t\t\t<span class="address">Address</span>\n\t\t\t\t\t\t\t\t\t\t\t<span>1234 Somewhere Road #4285 <br />Nashville, TN 00000</span>\n\t\t\t\t\t\t\t\t\t\t</li>\n\t\t\t\t\t\t\t\t\t\t<li>\n\t\t\t\t\t\t\t\t\t\t\t<span class="mail">Mail</span>\n\t\t\t\t\t\t\t\t\t\t\t<span><a href="#">someone@untitled.tld</a></span>\n\t\t\t\t\t\t\t\t\t\t</li>\n\t\t\t\t\t\t\t\t\t\t<li>\n\t\t\t\t\t\t\t\t\t\t\t<span class="phone">Phone</span>\n\t\t\t\t\t\t\t\t\t\t\t<span>(000) 000-0000</span>\n\t\t\t\t\t\t\t\t\t\t</li>\n\t\t\t\t\t\t\t\t\t</ul>\n\t\t\t\t\t\t\t\t</section>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\n\t\t\t\t\t<!-- Copyright -->\n\t\t\t\t\t\t<div class="copyright">\n\t\t\t\t\t\t\tDesign: <a href="http://templated.co">TEMPLATED</a> Images: <a href="http://unsplash.com">Unsplash</a> (<a href="http://unsplash.com/cc0">CC0</a>)\n\t\t\t\t\t\t</div>\n\n\t\t\t\t</div>\n\t\t\t</div>\n\n\t</body>\n</html>\n'
+p7
+sS'snapshot'
+p8
+(dp9
+S'exception'
+p10
+(dp11
+S'__getslice__'
+p12
+S"<method-wrapper '__getslice__' of exceptions.IOError object>"
+p13
+sS'__str__'
+p14
+S"<method-wrapper '__str__' of exceptions.IOError object>"
+p15
+sS'__reduce__'
+p16
+S'<built-in method __reduce__ of exceptions.IOError object>'
+p17
+sS'__dict__'
+p18
+S'{}'
+p19
+sS'__sizeof__'
+p20
+S'<built-in method __sizeof__ of exceptions.IOError object>'
+p21
+sS'__init__'
+p22
+S"<method-wrapper '__init__' of exceptions.IOError object>"
+p23
+sS'__setattr__'
+p24
+S"<method-wrapper '__setattr__' of exceptions.IOError object>"
+p25
+sS'__reduce_ex__'
+p26
+S'<built-in method __reduce_ex__ of exceptions.IOError object>'
+p27
+sS'__new__'
+p28
+S'<built-in method __new__ of type object>'
+p29
+sS'errno'
+p30
+S'2'
+sS'__format__'
+p31
+S'<built-in method __format__ of exceptions.IOError object>'
+p32
+sS'__class__'
+p33
+S"<type 'exceptions.IOError'>"
+p34
+sS'filename'
+p35
+S"'/home/manmeet/web2py/applications/scrumlite/views/../static/js/*'"
+p36
+sS'__doc__'
+p37
+S"'I/O operation failed.'"
+p38
+sS'__getitem__'
+p39
+S"<method-wrapper '__getitem__' of exceptions.IOError object>"
+p40
+sS'__setstate__'
+p41
+S'<built-in method __setstate__ of exceptions.IOError object>'
+p42
+sS'__getattribute__'
+p43
+S"<method-wrapper '__getattribute__' of exceptions.IOError object>"
+p44
+sS'args'
+p45
+S"(2, 'No such file or directory')"
+p46
+sS'__subclasshook__'
+p47
+S'<built-in method __subclasshook__ of type object>'
+p48
+sS'__unicode__'
+p49
+S'<built-in method __unicode__ of exceptions.IOError object>'
+p50
+sS'strerror'
+p51
+S"'No such file or directory'"
+p52
+sS'__delattr__'
+p53
+S"<method-wrapper '__delattr__' of exceptions.IOError object>"
+p54
+sS'__repr__'
+p55
+S"<method-wrapper '__repr__' of exceptions.IOError object>"
+p56
+sS'__hash__'
+p57
+S"<method-wrapper '__hash__' of exceptions.IOError object>"
+p58
+ssS'evalue'
+p59
+S"[Errno 2] No such file or directory: '/home/manmeet/web2py/applications/scrumlite/views/../static/js/*'"
+p60
+sS'frames'
+p61
+(lp62
+(dp63
+S'file'
+p64
+S'/home/manmeet/web2py/gluon/template.py'
+p65
+sS'dump'
+p66
+(dp67
+S'builtinopen'
+p68
+S'<built-in function open>'
+p69
+sS'fileobj'
+p70
+S'undefined'
+p71
+sS'filepath'
+p72
+S"'/home/manmeet/web2py/applications/scrumlite/views/../static/js/*'"
+p73
+ssS'lnum'
+p74
+I450
+sS'lines'
+p75
+(dp76
+I448
+S'        # try to read the text.'
+p77
+sI449
+S'        try:'
+p78
+sI450
+S"            fileobj = open(filepath, 'rb')"
+p79
+sI451
+S'            text = fileobj.read()'
+p80
+sI452
+S'            fileobj.close()'
+p81
+sI453
+S'        except IOError:'
+p82
+sI454
+S"            self._raise_error('Unable to open included view file: ' + filepath)"
+p83
+sI445
+S'        # Get the path of the file on the system.'
+p84
+sI446
+S'        filepath = self.path and os.path.join(self.path, filename) or filename'
+p85
+sI447
+S''
+ssS'call'
+p86
+S"(self=<gluon.template.TemplateParser object>, filename='../static/js/*')"
+p87
+sS'func'
+p88
+S'_get_file_text'
+p89
+sasS'pyver'
+p90
+S'Python 2.7.10: /usr/bin/python (prefix: /usr)'
+p91
+sS'etype'
+p92
+S"<type 'exceptions.IOError'>"
+p93
+sS'date'
+p94
+S'Wed Jan 27 11:35:51 2016'
+p95
+sS'locals'
+p96
+(dp97
+S'self'
+p98
+S'<gluon.template.TemplateParser object>'
+p99
+sS'filepath'
+p100
+S"'/home/manmeet/web2py/applications/scrumlite/views/../static/js/*'"
+p101
+sS'context'
+p102
+S"{'A': <class 'gluon.html.A'>, 'ANY_OF': <class 'gluon.validators.ANY_OF'>, 'ASSIGNJS': <function ASSIGNJS>, 'AppConfig': <function AppConfig>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'BUTTON': <class 'gluon.html.BUTTON'>, ...}"
+p103
+sg35
+S"'../static/js/*'"
+p104
+sssS'traceback'
+p105
+S'Traceback (most recent call last):\n  File "/home/manmeet/web2py/gluon/template.py", line 450, in _get_file_text\n    fileobj = open(filepath, \'rb\')\nIOError: [Errno 2] No such file or directory: \'/home/manmeet/web2py/applications/scrumlite/views/../static/js/*\'\n'
+p106
+s.

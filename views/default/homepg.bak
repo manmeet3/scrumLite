@@ -1,0 +1,230 @@
+<!DOCTYPE HTML>
+<!--
+	Horizons by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+	<head>
+		<title>A_Squ4d</title>
+    {{
+    response.files.append(URL('static','js/jquery.min.js'))
+    response.files.append(URL('static','js/jquery.dropotron.min.js'))
+    response.files.append(URL('static','js/skel-layers.min.js'))
+    response.files.append(URL('static','js/init.js'))
+    response.files.append(URL('static','css/style.css'))
+    response.files.append(URL('static','css/skel.css'))
+    response.files.append(URL('static','images/pic02.jpg'))
+    response.files.append(URL('static','images/pic03.jpg'))
+    response.files.append(URL('static','images/pic04.jpg'))
+    response.include_files()
+    response.include_meta()
+    }}
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
+		<script src="jquery.min.js"></script>
+		<script src="jquery.dropotron.min.js"></script>
+		<script src="skel.min.js"></script>
+		<script src="skel-layers.min.js"></script>
+		<script src="init.js"></script>
+		<noscript>
+			<link rel="stylesheet" href="skel.css" />
+			<link rel="stylesheet" href="style.css" />
+		</noscript>
+		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+	</head>
+	<body class="homepage">
+
+		<!-- Header -->
+			<div id="header">
+				<div class="container">
+
+					<!-- Logo -->
+						<h1><a href="#" id="logo"></a></h1>
+
+					<!-- Nav -->
+						<nav id="nav">
+							<ul>
+								<li><a href="index.html">Home</a></li>
+								<li>
+									<a href="">Dropdown</a>
+									<ul>
+										<li><a href="#">Lorem ipsum dolor</a></li>
+										<li><a href="#">Magna phasellus</a></li>
+										<li><a href="#">Etiam dolore nisl</a></li>
+										<li>
+											<a href="">Phasellus consequat</a>
+											<ul>
+												<li><a href="#">Lorem ipsum dolor</a></li>
+												<li><a href="#">Phasellus consequat</a></li>
+												<li><a href="#">Magna phasellus</a></li>
+												<li><a href="#">Etiam dolore nisl</a></li>
+												<li><a href="#">Veroeros feugiat</a></li>
+											</ul>
+										</li>
+										<li><a href="#">Veroeros feugiat</a></li>
+									</ul>
+								</li>
+								<li><a href="left-sidebar.html">Left Sidebar</a></li>
+								<li><a href="right-sidebar.html">Right Sidebar</a></li>
+								<li><a href="no-sidebar.html">No Sidebar</a></li>
+							</ul>
+						</nav>
+
+
+					<!-- Banner -->
+						<div id="banner">
+							<div class="container">
+								<section>
+									<header class="major">
+										<h2>ScrumLite</h2>
+										<span class="byline">&hellip; Scrum of Scrums</span>
+									</header>
+									<a href="#" class="button alt">Sign Up</a>
+								</section>
+							</div>
+						</div>
+
+				</div>
+			</div>
+
+		<!-- Featured -->
+			<div class="wrapper style2">
+				<section class="container">
+					<header class="major">
+						<h2>Progress Overview</h2>
+						<span class="byline">Check out where ya team is at</span>
+					</header>
+					<div class="row no-collapse-1">
+						<section class="4u">
+							<a href="#" class="image feature"><img src="images/pic02.jpg" alt=""></a>
+							<p>ASDF1</p>
+						</section>
+						<section class="4u">
+							<a href="#" class="image feature"><img src="images/pic03.jpg" alt=""></a>
+							<p>ASDF2</p>
+						</section>
+						<section class="4u">
+							<a href="#" class="image feature"><img src="images/pic04.jpg" alt=""></a>
+							<p>ASDF3</p>
+						</section>
+
+					</div>
+				</section>
+			</div>
+
+		<!-- Main -->
+			<div id="main" class="wrapper style1">
+				<section class="container">
+					<header class="major">
+						<h2>Contact Teammates</h2>
+						<span class="byline">Send/receive updates regarding anything team-related</span>
+					</header>
+					<div class="row">
+
+						<!-- Content -->
+							<div class="6u">
+								<section>
+									<ul class="style">
+										<li>
+											<span class="fa fa-wrench"></span>
+											<h3>Utilities</h3>
+											<span></span>
+										</li>
+										<li>
+											<span class="fa fa-cloud"></span>
+											<h3>Upload</h3>
+											<span></span>
+										</li>
+									</ul>
+								</section>
+							</div>
+							<div class="6u">
+								<section>
+									<ul class="style">
+										<li>
+											<span class="fa fa-cogs"></span>
+											<h3>Settings</h3>
+											<span></span>
+										</li>
+										<li>
+											<span class="fa fa-leaf"></span>
+											<h3>One more thing</h3>
+											<span></span>
+										</li>
+									</ul>
+								</section>
+							</div>
+
+					</div>
+				</section>
+			</div>
+
+		<!-- Footer -->
+			<div id="footer">
+				<div class="container">
+
+					<!-- Lists -->
+						<div class="row">
+							<div class="8u">
+								<section>
+									<header class="major">
+										<h2>About Us</h2>
+										<span class="byline"></span>
+									</header>
+									<div class="row">
+										<section class="6u">
+											<ul class="default">
+												<li><a href="#">1</a></li>
+												<li><a href="#">2</a></li>
+												<li><a href="#">3</a></li>
+												<li><a href="#">4</a></li>
+											</ul>
+										</section>
+										<section class="6u">
+											<ul class="default">
+												<li><a href="#">5</a></li>
+												<li><a href="#">6</a></li>
+												<li><a href="#">7</a></li>
+												<li><a href="#">8</a></li>
+											</ul>
+										</section>
+									</div>
+								</section>
+							</div>
+							<div class="4u">
+								<section>
+									<header class="major">
+										<h2>CMPS 183 Term Project</h2>
+										<span class="byline">Group 20: A_Squad</span>
+									</header>
+									<ul class="contact">
+										<li>
+											<span class="address">Field 1</span>
+											<span>Something <br />Something</span>
+										</li>
+										<li>
+											<span class="mail">Contact</span>
+											<span><a href="#">msingh11@ucsc.edu, ..., </a></span>
+										</li>
+										<li>
+											<span class="phone">Phone</span>
+											<span>(000) 000-0000</span>
+										</li>
+									</ul>
+								</section>
+							</div>
+						</div>
+
+					<!-- Copyright -->
+						<div class="copyright">
+							Design: Yours Truly, A_Squad
+						</div>
+
+				</div>
+			</div>
+
+	</body>
+</html>
