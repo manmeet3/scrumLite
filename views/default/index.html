@@ -9,12 +9,14 @@
 
 <h3> Backlog </h3>
 
-{{for story in usrstories:}}
+{{for story in stories:}}
 {{=LI(A(story.User_Story, _href=URL("show_story", args=story.id)))}}
 {{pass}}
 
-
-
+<h3> Tasks </h3>
+{{for task in tasks:}}
+{{=LI(A(task.name, _href=URL("show_story", args=story.id)))}}
+{{pass}}
 {{block right_sidebar}}
 
 {{end}}

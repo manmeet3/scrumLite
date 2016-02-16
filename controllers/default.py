@@ -1,7 +1,7 @@
 def index():
-    usrstories = db().select(db.story.ALL) #change to view team specific stories
-    return dict(usrstories=usrstories)
-
+    stories = db(db.story.Team == auth.user_group(auth.user.id)).select()
+    tasks = db().select(db.task.ALL)
+    return dict(stories=stories, tasks=tasks)
 
 def user():
     return dict(form=auth())
