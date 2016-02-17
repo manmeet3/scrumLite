@@ -1,0 +1,3 @@
+{{extend 'layout.html'}}
+<h2>Task:</h2> {{=task.name}}
+<h3> from story: </h3>   {{=LI(A(story.User_Story, _href=URL("show_story", args=story.id)))}}

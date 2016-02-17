@@ -39,49 +39,9 @@ I00
 sg10
 S'boolean'
 p15
-ssS'belongs_to'
+ssS'created_on'
 p16
 (dp17
-S'sortable'
-p18
-I8
-sS'sql'
-p19
-S'INTEGER REFERENCES Team (id) ON DELETE CASCADE  '
-p20
-sS'length'
-p21
-I512
-sS'notnull'
-p22
-I00
-sS'unique'
-p23
-I00
-sS'type'
-p24
-S'reference Team'
-p25
-ssS'created_by'
-p26
-(dp27
-g4
-I512
-sg5
-I00
-sg6
-I7
-sg7
-S'INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  '
-p28
-sg9
-I00
-sg10
-S'reference auth_user'
-p29
-ssS'created_on'
-p30
-(dp31
 g4
 I512
 sg5
@@ -90,11 +50,51 @@ sg6
 I6
 sg7
 S'TIMESTAMP'
-p32
+p18
 sg9
 I00
 sg10
 S'datetime'
+p19
+ssS'created_by'
+p20
+(dp21
+g4
+I512
+sg5
+I00
+sg6
+I7
+sg7
+S'INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  '
+p22
+sg9
+I00
+sg10
+S'reference auth_user'
+p23
+ssS'belongs_to'
+p24
+(dp25
+S'sortable'
+p26
+I8
+sS'sql'
+p27
+S'INTEGER REFERENCES Team (id) ON DELETE CASCADE  '
+p28
+sS'length'
+p29
+I512
+sS'notnull'
+p30
+I00
+sS'unique'
+p31
+I00
+sS'type'
+p32
+S'reference Team'
 p33
 ssS'team'
 p34

@@ -12,3 +12,8 @@ def show_story():
   form = SQLFORM(db.task).process() if auth.user else 'You need to log in'
   alltasks = db(db.task.story_id==this_story.id).select()
   return dict(story = this_story, tasks=alltasks, form=form)
+
+def show_task():
+    this_task = db.task(request.args(0,cast=int)) or redirect(URL('index'))
+    task_story = db.story(this_task.story_id)
+    return dict(task=this_task, story=task_story)

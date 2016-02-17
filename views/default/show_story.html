@@ -5,10 +5,9 @@
 
 <h2> Tasks </h2>
 {{for task in tasks:}}
-<p> {{task.story_id}}
-{{=task.name}}
-{{task}}
-</p>
+<ul>
+{{=LI(A(task.name, _href=URL("show_task", args=task.id)))}}
+</ul>
 {{pass}}
 <h3>Add a task </h3>
 {{=form}}
