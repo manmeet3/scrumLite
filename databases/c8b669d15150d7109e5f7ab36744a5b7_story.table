@@ -73,32 +73,9 @@ I00
 sg10
 S'reference auth_user'
 p23
-ssS'belongs_to'
+ssS'team_id'
 p24
 (dp25
-S'sortable'
-p26
-I8
-sS'sql'
-p27
-S'INTEGER REFERENCES Team (id) ON DELETE CASCADE  '
-p28
-sS'length'
-p29
-I512
-sS'notnull'
-p30
-I00
-sS'unique'
-p31
-I00
-sS'type'
-p32
-S'reference Team'
-p33
-ssS'team'
-p34
-(dp35
 g4
 I512
 sg5
@@ -107,15 +84,15 @@ sg6
 I2
 sg7
 S'INTEGER REFERENCES Team (id) ON DELETE CASCADE  '
-p36
+p26
 sg9
 I00
 sg10
 S'reference Team'
-p37
+p27
 ssS'id'
-p38
-(dp39
+p28
+(dp29
 g4
 I512
 sg5
@@ -124,15 +101,14 @@ sg6
 I1
 sg7
 S'INTEGER PRIMARY KEY AUTOINCREMENT'
-p40
+p30
 sg9
 I00
 sg10
-S'id'
-p41
+g28
 ssS'story_points'
-p42
-(dp43
+p31
+(dp32
 g4
 I512
 sg5
@@ -141,10 +117,10 @@ sg6
 I4
 sg7
 S'INTEGER'
-p44
+p33
 sg9
 I00
 sg10
 S'integer'
-p45
+p34
 ss.

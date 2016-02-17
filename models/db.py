@@ -23,13 +23,6 @@ mail.settings.server = 'logging' if request.is_local else myconf.take('smtp.serv
 mail.settings.sender = myconf.take('smtp.sender')
 mail.settings.login = myconf.take('smtp.login')
 
-db.define_table('Team',
-    Field('Product_Owner', 'reference auth_user', default=auth.user_id, writable = False),
-    Field('Product_Name', requires = IS_NOT_EMPTY()),
-    Field('Team_Name', requires = IS_NOT_EMPTY()),
-    Field('Team_Leader', 'reference auth_user'), #readable/writable status handled in controller
-    Field('Team_Members', 'reference auth_membership'), #readable/writable status handled in controller
-    Field('Product_Description', 'text', requires = IS_NOT_EMPTY()))
 
 ## configure auth policy
 auth.settings.registration_requires_verification = False
@@ -49,16 +42,25 @@ elif auth.user_id is None:
 #elif row is None:
 #    setUser="None"
 #default=setUser,
+
+db.define_table('Team',
+    Field('Product_Owner', 'reference auth_user', default=auth.user_id, writable = False),
+    Field('Product_Name', requires = IS_NOT_EMPTY()),
+    Field('Team_Name', requires = IS_NOT_EMPTY()),
+    Field('Team_Leader', 'reference auth_user'), #readable/writable status handled in controller
+    Field('Team_Group', 'reference auth_group'), #readable/writable status handled in controller
+    Field('Product_Description', 'text', requires = IS_NOT_EMPTY()))
+
 db.define_table('story',
-  Field('Team', 'reference Team'),
-  Field('User_Story','text', requires = IS_NOT_EMPTY()),
-  Field('Story_Points','integer',requires=IS_IN_SET(['0','1','2','3','5','8','13','21'])),
+  Field('team_id', 'reference Team'),
+  Field('user_story','text', requires = IS_NOT_EMPTY()),
+  Field('story_points','integer',requires=IS_IN_SET(['0','1','2','3','5','8','13','21'])),
   Field('completed', type = 'boolean', default = 'False', readable=False),
   Field('created_on', 'datetime', default=request.now, writable = False),
   Field('created_by', 'reference auth_user', default=auth.user_id),
   )
 
-db.story.Team.readable = False
+db.story.team_id.readable = False
 db.story.completed.readable = False
 db.story.created_by.writable = False
 

@@ -1,5 +1,6 @@
 def index():
-    stories = db(db.story.Team == auth.user_group(auth.user.id)).select()
+    stories = db().select(db.story.ALL) #(db.auth_membership.user_id == db.auth_user.id)&
+    #(db.auth_membership.group_id==db.Team.Team_Group)&(db.story.team_id==db.Team.id)
     tasks = db().select(db.task.ALL)
     return dict(stories=stories, tasks=tasks)
 
@@ -16,4 +17,8 @@ def show_story():
 def show_task():
     this_task = db.task(request.args(0,cast=int)) or redirect(URL('index'))
     task_story = db.story(this_task.story_id)
-    return dict(task=this_task, story=task_story)
+    form = SQLFORM(db.task, this_task, fields=['Status'])
+    if form.process().accepted:
+        response.flash = 'task changed'
+        redirect(URL('index'))
+    return dict(task=this_task, story=task_story, form=form)

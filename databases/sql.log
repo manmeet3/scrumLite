@@ -1,4 +1,4 @@
-timestamp: 2016-02-16T09:51:53.024787
+timestamp: 2016-02-17T09:31:50.271882
 CREATE TABLE auth_user(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     first_name CHAR(128),
@@ -10,21 +10,21 @@ CREATE TABLE auth_user(
     registration_id CHAR(512)
 );
 success!
-timestamp: 2016-02-16T09:51:53.032716
+timestamp: 2016-02-17T09:31:50.279092
 CREATE TABLE auth_group(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     role CHAR(512),
     description TEXT
 );
 success!
-timestamp: 2016-02-16T09:51:53.034372
+timestamp: 2016-02-17T09:31:50.280708
 CREATE TABLE auth_membership(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
     group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE  
 );
 success!
-timestamp: 2016-02-16T09:51:53.036535
+timestamp: 2016-02-17T09:31:50.282426
 CREATE TABLE auth_permission(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE  ,
@@ -33,7 +33,7 @@ CREATE TABLE auth_permission(
     record_id INTEGER
 );
 success!
-timestamp: 2016-02-16T09:51:53.039593
+timestamp: 2016-02-17T09:31:50.284167
 CREATE TABLE auth_event(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     time_stamp TIMESTAMP,
@@ -43,7 +43,7 @@ CREATE TABLE auth_event(
     description TEXT
 );
 success!
-timestamp: 2016-02-16T09:51:53.041802
+timestamp: 2016-02-17T09:31:50.286225
 CREATE TABLE auth_cas(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
@@ -53,29 +53,29 @@ CREATE TABLE auth_cas(
     renew CHAR(1)
 );
 success!
-timestamp: 2016-02-16T09:51:53.043846
+timestamp: 2016-02-17T09:31:50.289700
 CREATE TABLE Team(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     Product_Owner INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
     Product_Name CHAR(512),
     Team_Name CHAR(512),
     Team_Leader INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
-    Team_Members INTEGER REFERENCES auth_membership (id) ON DELETE CASCADE  ,
+    Team_Group INTEGER REFERENCES auth_group (id) ON DELETE CASCADE  ,
     Product_Description TEXT
 );
 success!
-timestamp: 2016-02-16T09:51:53.045762
+timestamp: 2016-02-17T09:31:50.292504
 CREATE TABLE story(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    Team INTEGER REFERENCES Team (id) ON DELETE CASCADE  ,
-    User_Story TEXT,
-    Story_Points INTEGER,
+    team_id INTEGER REFERENCES Team (id) ON DELETE CASCADE  ,
+    user_story TEXT,
+    story_points INTEGER,
     completed CHAR(1),
     created_on TIMESTAMP,
     created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  
 );
 success!
-timestamp: 2016-02-16T09:51:53.047761
+timestamp: 2016-02-17T09:31:50.294966
 CREATE TABLE task(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name CHAR(512),
@@ -85,7 +85,7 @@ CREATE TABLE task(
     story_id INTEGER REFERENCES story (id) ON DELETE CASCADE  
 );
 success!
-timestamp: 2016-02-16T09:51:53.050990
+timestamp: 2016-02-17T09:31:50.299298
 CREATE TABLE sprint_plan(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     Heading CHAR(512),
@@ -94,7 +94,7 @@ CREATE TABLE sprint_plan(
     created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  
 );
 success!
-timestamp: 2016-02-16T09:51:53.052997
+timestamp: 2016-02-17T09:31:50.301380
 CREATE TABLE sprint_review(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     Things_that_did_not_work TEXT,
@@ -103,236 +103,4 @@ CREATE TABLE sprint_review(
     Unfinished_work TEXT,
     Work_completion_rate TEXT
 );
-success!
-timestamp: 2016-02-16T11:39:54.194986
-ALTER TABLE story ADD belongs_to INTEGER REFERENCES Team (id) ON DELETE CASCADE  ;
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
 success!

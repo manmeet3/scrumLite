@@ -1,54 +1,128 @@
 {{extend 'layout.html'}}
 
-<a href="http://127.0.0.1:8000/scrumLite/createteam">New Team</a><br>
-<a href="http://127.0.0.1:8000/scrumLite/invitemembers/invitemembers">Invite New Team Member</a><br>
-<a href="http://127.0.0.1:8000/scrumLite/teamform/view_team">View Team</a><br>
-<a href="http://127.0.0.1:8000/scrumLite/newuserstory/scrumboard">Scrum Board</a><br>
-<a href="http://127.0.0.1:8000/scrumLite/createstory">New Story</a><br>
 
-{{block right_sidebar}}
-{{end}}
 
-<table>
+{{ if auth.is_logged_in(): }}
+  <div class="jumbotron">
+    <h2>Welcome back, {{=auth.user.first_name}} </h2>
+  </div>
 
-<col width="280">
-<tr>
 
-  <col width="280">
-	<td>
-    <h3> BackLog </h3>
-  {{for story in stories:}}
-  {{=LI(A(story.User_Story, _href=URL("show_story", args=story.id)))}}
-  {{pass}}
- </td>
 
- <col width="280">
-  <td>
-    <h3> To Do </h3>
-  {{for task in tasks:}}
-  {{if task.Status == "To do":}}
-  {{=LI(A(task.name, _href=URL("show_task", args=task.id)))}}
-  {{pass}}
-  {{pass}}
-  </td>
+    <div class="panel panel-default">
+      <div class="panel-heading">Scrumboard</div>
+      <div class="panel-body">
+        <div class="row">
+        <div class="col-lg-3">
+          <div class="panel panel-default">
+            <div class="panel-heading">Backlog</div>
+            <div class="panel-body">
+              {{for story in stories:}}
+              {{=LI(A(story.user_story, _href=URL("show_story", args=story.id)))}}
+              {{pass}}
+            </div>
+          </div>
+        </div>
 
-  <td>
-    <h3> In Progress </h3>
-  {{for task in tasks:}}
-  {{if task.Status == "In progress":}}
-  {{=LI(A(task.name, _href=URL("show_task", args=task.id)))}}
-  {{pass}}
-  {{pass}}
-  </td>
+        <div class="col-lg-3">
+          <div class="panel panel-default">
+            <div class="panel-heading">To do</div>
+            <div class="panel-body">
+              {{for task in tasks:}}
+              {{if task.Status == "To do":}}
+              {{=LI(A(task.name, _href=URL("show_task", args=task.id)))}}
+              {{pass}}
+              {{pass}}
+            </div>
+          </div>
+        </div>
 
-  <td>
-    <h3> Completed </h3>
-  {{for task in tasks:}}
-  {{if task.Status == "Done":}}
-  {{=LI(A(task.name, _href=URL("show_task", args=task.id)))}}
-  {{pass}}
-  {{pass}}
-  </td>
+        <div class="col-lg-3">
+          <div class="panel panel-default">
+            <div class="panel-heading">In Progress</div>
+            <div class="panel-body">
+              {{for task in tasks:}}
+              {{if task.Status == "In progress":}}
+              {{=LI(A(task.name, _href=URL("show_task", args=task.id)))}}
+              {{pass}}
+              {{pass}}
+            </div>
+          </div>
+        </div>
 
-</tr>
-</table>
+        <div class="col-lg-3">
+          <div class="panel panel-default">
+            <div class="panel-heading">Completed</div>
+            <div class="panel-body">
+              {{for task in tasks:}}
+              {{if task.Status == "Done":}}
+              {{=LI(A(task.name, _href=URL("show_task", args=task.id)))}}
+              {{pass}}
+              {{pass}}
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+
+  <div class="row">
+  <div class="col-lg-12">
+    <div class="btn-group">
+      <button type="button" class="btn btn-default">
+        <a href="http://127.0.0.1:8000/scrumLite/createteam">New Team</a>
+      </button>
+      <button type="button" class="btn btn-default">
+        <a href="http://127.0.0.1:8000/scrumLite/invitemembers/invitemembers">Invite New Team Member</a>
+      </button>
+      <button type="button" class="btn btn-default">
+        <a href="http://127.0.0.1:8000/scrumLite/viewteam">View Team</a>
+      </button>
+      <button type="button" class="btn btn-default">
+        <a href="http://127.0.0.1:8000/scrumLite/newuserstory/scrumboard">Scrum Board</a>
+      </button>
+      <button type="button" class="btn btn-default">
+        <a href="http://127.0.0.1:8000/scrumLite/createstory">New Story</a>
+      </button>
+    </div>
+  </div>
+  </div>
+
+  <div class="row">
+  <div class="col-lg-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">Upcoming Deadlines</div>
+      <div class="panel-body">
+
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">Calendar</div>
+      <div class="panel-body">
+      </div>
+    </div>
+  </div>
+  </div>
+
+{{ else: }}
+  <div class="jumbotron">
+    <h1>Welcome to scrumLite!</h1>
+    <p>An organizational tool for small to medium sized software development
+    teams.</p>
+  </div>
+  <div class="row">
+  <div class="col-lg-12">
+    <p>
+      This site was made using web2py.
+    </p>
+  </div>
+  </div>
+
+  <!-- <a href="http://127.0.0.1:8000/scrumLite/teamform/form">New Team</a><br>
+  <a href="http://127.0.0.1:8000/scrumLite/newuserstory/New_User_Story">New User Story</a><br>
+  <a href="http://127.0.0.1:8000/scrumLite/chooseteam/selectTeam">Set Current Team (Broken)</a><br>
+  <a href="http://127.0.0.1:8000/scrumLite/teamform/view_team">View Team</a><br>
+  <a href="http://127.0.0.1:8000/scrumLite/newuserstory/scrumboard">Scrum Board</a><br> -->
+{{ pass }}
