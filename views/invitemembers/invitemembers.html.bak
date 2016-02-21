@@ -1,3 +1,0 @@
-{{extend 'layout.html'}}
-<h1>This is the invitemembers/invitemembers.html template</h1>
-{{=BEAUTIFY(response._vars)}}

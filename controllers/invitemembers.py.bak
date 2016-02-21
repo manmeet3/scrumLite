@@ -1,0 +1,20 @@
+# -*- coding: utf-8 -*-
+# try something like
+def validateuser(form):
+    fullname = form.vars.name.split()
+    fname = fullname[0]
+    lname = fullname[1]
+    rows = db((db.auth_user.first_name == fname)&(db.auth_user.last_name == lname)).select()
+    if len(rows) < 1:
+        form.errors = True
+        form.errors.name = 'user does not exist'
+        response.flash = 'user does not exist'
+
+def invitemembers():
+    form=FORM('User name:', INPUT(_name='name', requires=IS_NOT_EMPTY()), INPUT(_type='submit'))
+    #form = SQLFORM(db.auth_membership)
+    if form.process(onvalidation=validateuser).accepted:
+        response.flash = 'form accepted'
+    elif form.errors:
+        response.flash = 'form is invalid'
+    return dict(form=form)

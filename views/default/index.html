@@ -7,7 +7,14 @@
     <h2>Welcome back, {{=auth.user.first_name}} </h2>
   </div>
 
+  
 
+  {{for sprint in sprints:}}
+  <p> Sprint name: {{=A(sprint.sprint_name, _href=URL('sprint', 'show_sprint', args=sprint.id))}} </p>
+  <!-- <p> Start Date: {{=(sprint.start_date)}}</p>
+  <p> End date: {{=(sprint.end_date)}} </p> -->
+  <p> --------------------- </p>
+  {{pass}}
 
     <div class="panel panel-default">
       <div class="panel-heading">Scrumboard</div>
@@ -18,7 +25,7 @@
             <div class="panel-heading">Backlog</div>
             <div class="panel-body">
               {{for story in stories:}}
-              {{=LI(A(story.user_story, _href=URL("show_story", args=story.id)))}}
+              {{=LI(A(story.user_story, _href=URL('story', 'show_story', args=story.id)))}}
               {{pass}}
             </div>
           </div>
@@ -29,8 +36,8 @@
             <div class="panel-heading">To do</div>
             <div class="panel-body">
               {{for task in tasks:}}
-              {{if task.Status == "To do":}}
-              {{=LI(A(task.name, _href=URL("show_task", args=task.id)))}}
+              {{if task.status == "To do":}}
+              {{=LI(A(task.name, _href=URL('story', 'show_task', args=task.id)))}}
               {{pass}}
               {{pass}}
             </div>
@@ -42,8 +49,8 @@
             <div class="panel-heading">In Progress</div>
             <div class="panel-body">
               {{for task in tasks:}}
-              {{if task.Status == "In progress":}}
-              {{=LI(A(task.name, _href=URL("show_task", args=task.id)))}}
+              {{if task.status == "In progress":}}
+              {{=LI(A(task.name, _href=URL('story', 'show_task', args=task.id)))}}
               {{pass}}
               {{pass}}
             </div>
@@ -55,8 +62,8 @@
             <div class="panel-heading">Completed</div>
             <div class="panel-body">
               {{for task in tasks:}}
-              {{if task.Status == "Done":}}
-              {{=LI(A(task.name, _href=URL("show_task", args=task.id)))}}
+              {{if task.status == "Done":}}
+              {{=LI(A(task.name, _href=URL('story', 'show_task', args=task.id)))}}
               {{pass}}
               {{pass}}
             </div>
@@ -70,19 +77,28 @@
   <div class="col-lg-12">
     <div class="btn-group">
       <button type="button" class="btn btn-default">
-        <a href="http://127.0.0.1:8000/scrumLite/createteam">New Team</a>
+        <a href="http://127.0.0.1:8000/scrumLite/team/createteam">New Team</a>
       </button>
       <button type="button" class="btn btn-default">
-        <a href="http://127.0.0.1:8000/scrumLite/invitemembers/invitemembers">Invite New Team Member</a>
+        <a href="http://127.0.0.1:8000/scrumLite/team/invitemembers">Invite New Team Member</a>
       </button>
       <button type="button" class="btn btn-default">
-        <a href="http://127.0.0.1:8000/scrumLite/viewteam">View Team</a>
+        <a href="http://127.0.0.1:8000/scrumLite/team/acceptinvite">Accept Invites</a>
+      </button>
+      <button type="button" class="btn btn-default">
+        <a href="http://127.0.0.1:8000/scrumLite/team/viewteam">View Team</a>
+      </button>
+      <button type="button" class="btn btn-default">
+        <a href="http://127.0.0.1:8000/scrumLite/sprint/create_sprint">New Sprint</a>
       </button>
       <button type="button" class="btn btn-default">
         <a href="http://127.0.0.1:8000/scrumLite/newuserstory/scrumboard">Scrum Board</a>
       </button>
       <button type="button" class="btn btn-default">
-        <a href="http://127.0.0.1:8000/scrumLite/createstory">New Story</a>
+        <a href="http://127.0.0.1:8000/scrumLite/story/new_story">New Story</a>
+      </button>
+      <button type="button" class="btn btn-default">
+        <a href="http://127.0.0.1:8000/scrumLite/team/manageteam">Manage Team</a>
       </button>
     </div>
   </div>

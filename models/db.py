@@ -17,6 +17,9 @@ auth.settings.registration_requires_verification = False
 auth.settings.registration_requires_approval = False
 auth.settings.reset_password_requires_verification = True
 
+# modify default policy on creating unique groups for each user
+auth.settings.create_user_groups = None
+
 ## configure email
 mail = auth.settings.mailer
 mail.settings.server = 'logging' if request.is_local else myconf.take('smtp.server')
@@ -33,25 +36,24 @@ if auth.user_id != None:
     setGroup=auth.user_groups.copy()
 elif auth.user_id is None:
     setGroup=["None","You Need to Log In"]
-#default=auth.user.id
-
-#row=db((db.currentgroup.userNum==auth.user.id) & (auth.user_id != None)).select().first()
-#if row != None:
-#    setUser=row.curteam
-
-#elif row is None:
-#    setUser="None"
-#default=setUser,
 
 db.define_table('Team',
-    Field('Product_Owner', 'reference auth_user', default=auth.user_id, writable = False),
-    Field('Product_Name', requires = IS_NOT_EMPTY()),
-    Field('Team_Name', requires = IS_NOT_EMPTY()),
-    Field('Team_Leader', 'reference auth_user'), #readable/writable status handled in controller
-    Field('Team_Group', 'reference auth_group'), #readable/writable status handled in controller
-    Field('Product_Description', 'text', requires = IS_NOT_EMPTY()))
+  Field('product_owner', 'reference auth_user', default=auth.user_id, writable = False),
+  Field('product_name', requires = IS_NOT_EMPTY()),
+  Field('team_name', requires = IS_NOT_EMPTY()),
+  Field('team_leader', 'reference auth_user'),
+  Field('team_group', 'reference auth_group'),
+  Field('product_description', 'text', requires = IS_NOT_EMPTY()))
 
-db.define_table('story',
+db.define_table('Sprint',
+  Field('sprint_name'),
+  Field('start_date', 'datetime'),
+  Field('end_date', 'datetime'),
+  Field('team_id', 'reference Team')
+)
+
+db.define_table('Story',
+  Field('sprint_id', 'reference Sprint'),
   Field('team_id', 'reference Team'),
   Field('user_story','text', requires = IS_NOT_EMPTY()),
   Field('story_points','integer',requires=IS_IN_SET(['0','1','2','3','5','8','13','21'])),
@@ -60,16 +62,22 @@ db.define_table('story',
   Field('created_by', 'reference auth_user', default=auth.user_id),
   )
 
-db.story.team_id.readable = False
-db.story.completed.readable = False
-db.story.created_by.writable = False
+db.Team.id.readable = False
+db.Story.sprint_id.readable = False
+db.Story.completed.readable = False
+db.Story.created_by.writable = False
 
-db.define_table('task',
+db.define_table('Task',
   Field('name', requires = IS_NOT_EMPTY()),
-  Field('Status','string', requires=IS_IN_SET(["To do", "In progress", "Done"]), default="To do"),
-  Field('Assigned', 'reference auth_user', default=auth.user_id),
-  Field('Estimated_Completion_Time', 'datetime', requires = IS_DATETIME()),
-  Field('story_id', 'reference story')
+  Field('status','string', requires=IS_IN_SET(["To do", "In progress", "Done"]), default="To do"),
+  Field('assigned', 'reference auth_user', default=auth.user_id),
+  Field('estimated_completion_time', 'datetime', requires = IS_DATETIME()),
+  Field('story_id', 'reference Story')
   )
 
-db.task.story_id.writable = db.task.story_id.readable = False
+db.Task.story_id.writable = db.Task.story_id.readable = False
+
+db.define_table('Invitations',
+    Field('to_user', 'reference auth_user'),
+    Field('from_user', 'reference auth_user', default=auth.user_id),
+    Field('from_group', 'reference auth_group'))

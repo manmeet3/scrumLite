@@ -1,0 +1,18 @@
+# -*- coding: utf-8 -*-
+# try something like
+
+def write_group(form):
+    group_id = auth.add_group(form.vars.product_name, form.vars.product_description)
+    auth.add_membership(group_id, auth.user.id)
+    db.Team.team_group.default = group_id
+
+@auth.requires_login()
+def index():
+        form = SQLFORM(db.Team, fields = ['product_owner', 'product_name', 'team_name', 'team_leader',
+                                          'product_description'])
+        if form.process(onvalidation=write_group).accepted:
+            response.flash = 'team created'
+            #db.Team.team_group.default = group_id
+        elif form.errors:
+            response.flash = 'form is invalid'
+        return dict(form=form)

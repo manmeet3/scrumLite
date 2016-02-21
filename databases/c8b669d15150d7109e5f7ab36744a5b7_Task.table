@@ -1,5 +1,5 @@
 (dp1
-S'Status'
+S'status'
 p2
 (dp3
 S'length'
@@ -22,7 +22,7 @@ sS'type'
 p10
 S'string'
 p11
-ssS'Estimated_Completion_Time'
+ssS'estimated_completion_time'
 p12
 (dp13
 g4
@@ -65,14 +65,14 @@ I00
 sg6
 I6
 sg7
-S'INTEGER REFERENCES story (id) ON DELETE CASCADE  '
+S'INTEGER REFERENCES Story (id) ON DELETE CASCADE  '
 p21
 sg9
 I00
 sg10
-S'reference story'
+S'reference Story'
 p22
-ssS'Assigned'
+ssS'assigned'
 p23
 (dp24
 g4

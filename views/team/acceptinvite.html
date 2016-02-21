@@ -1,0 +1,8 @@
+{{extend 'layout.html'}}
+
+<h3> All Invitations </h3>
+
+{{=rows}}
+<!--<a href="http://127.0.0.1:8000/scrumLite/team/accept">Accept</a><br>-->
+{{=A('accept', callback=URL('accept'))}}
+{{pass}}

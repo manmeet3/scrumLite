@@ -10,7 +10,7 @@ p5
 I00
 sS'sortable'
 p6
-I3
+I4
 sS'sql'
 p7
 S'TEXT'
@@ -30,7 +30,7 @@ I512
 sg5
 I00
 sg6
-I5
+I6
 sg7
 S'CHAR(1)'
 p14
@@ -47,7 +47,7 @@ I512
 sg5
 I00
 sg6
-I6
+I7
 sg7
 S'TIMESTAMP'
 p18
@@ -64,7 +64,7 @@ I512
 sg5
 I00
 sg6
-I7
+I8
 sg7
 S'INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  '
 p22
@@ -81,7 +81,7 @@ I512
 sg5
 I00
 sg6
-I2
+I3
 sg7
 S'INTEGER REFERENCES Team (id) ON DELETE CASCADE  '
 p26
@@ -90,9 +90,26 @@ I00
 sg10
 S'reference Team'
 p27
-ssS'id'
+ssS'sprint_id'
 p28
 (dp29
+g4
+I512
+sg5
+I00
+sg6
+I2
+sg7
+S'INTEGER REFERENCES Sprint (id) ON DELETE CASCADE  '
+p30
+sg9
+I00
+sg10
+S'reference Sprint'
+p31
+ssS'id'
+p32
+(dp33
 g4
 I512
 sg5
@@ -101,26 +118,26 @@ sg6
 I1
 sg7
 S'INTEGER PRIMARY KEY AUTOINCREMENT'
-p30
+p34
 sg9
 I00
 sg10
-g28
+g32
 ssS'story_points'
-p31
-(dp32
+p35
+(dp36
 g4
 I512
 sg5
 I00
 sg6
-I4
+I5
 sg7
 S'INTEGER'
-p33
+p37
 sg9
 I00
 sg10
 S'integer'
-p34
+p38
 ss.
