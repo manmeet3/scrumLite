@@ -7,14 +7,10 @@
     <h2>Welcome back, {{=auth.user.first_name}} </h2>
   </div>
 
-  
+<h3> Sprint Info: </h3>
+  <p> Name: {{=A(sprint.sprint_name, _href=URL('sprint', 'show_sprint', args=sprint.id))}}</p>
+  <p> End Date: {{=sprint.end_date}}
 
-  {{for sprint in sprints:}}
-  <p> Sprint name: {{=A(sprint.sprint_name, _href=URL('sprint', 'show_sprint', args=sprint.id))}} </p>
-  <!-- <p> Start Date: {{=(sprint.start_date)}}</p>
-  <p> End date: {{=(sprint.end_date)}} </p> -->
-  <p> --------------------- </p>
-  {{pass}}
 
     <div class="panel panel-default">
       <div class="panel-heading">Scrumboard</div>
@@ -92,11 +88,12 @@
         <a href="http://127.0.0.1:8000/scrumLite/sprint/create_sprint">New Sprint</a>
       </button>
       <button type="button" class="btn btn-default">
-        <a href="http://127.0.0.1:8000/scrumLite/newuserstory/scrumboard">Scrum Board</a>
+        <a href="http://127.0.0.1:8000/scrumLite/sprint/view_all">View all Sprints</a>
       </button>
       <button type="button" class="btn btn-default">
-        <a href="http://127.0.0.1:8000/scrumLite/story/new_story">New Story</a>
+        <a href="http://127.0.0.1:8000/scrumLite/newuserstory/scrumboard">Scrum Board</a>
       </button>
+
       <button type="button" class="btn btn-default">
         <a href="http://127.0.0.1:8000/scrumLite/team/manageteam">Manage Team</a>
       </button>

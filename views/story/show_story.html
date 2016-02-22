@@ -1,4 +1,6 @@
 {{extend 'layout.html'}}
+
+{{=A('View Sprint Page', _href=URL('sprint', 'show_sprint', args=story.sprint_id))}}
 <h1>User Story</h1>
 <p>{{=story.user_story}}</p>
 

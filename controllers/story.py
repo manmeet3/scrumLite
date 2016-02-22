@@ -1,10 +1,17 @@
 @auth.requires_login()
 def new_story():
-    db.Story.team_id.default = auth.user_group(auth.user.id)
+    if auth.user_groups.keys():
+      db.Story.team_id.default = auth.user_groups.keys()[0]
+      print auth.user_groups.keys()[0]
+    else:
+      response.flash = 'NULL USER GROUP, story will NOT save'
+    db.Story.sprint_id.default = request.args(0,cast=int)
     form = SQLFORM(db.Story, fields=['user_story','story_points', 'created_on', 'created_by'])
     form['_style']='border:1px solid black'
     if form.process().accepted:
         response.flash = 'story added'
+        redirect(URL('sprint', 'show_sprint', args=request.args(0,cast=int)))
+        print request.env.http_referer
     elif form.errors:
         response.flash = 'the form is invalid'
     return dict(form=form)
@@ -24,4 +31,3 @@ def show_task():
         response.flash = 'task changed'
         redirect(URL('index'))
     return dict(task=this_task, story=task_story, form=form)
-

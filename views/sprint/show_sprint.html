@@ -1,5 +1,11 @@
 {{extend 'layout.html'}}
-<h3>Showing Sprint:</h3>
-<p>{{=sprint.sprint_name}}</p>
+<h3>Showing Sprint: {{=sprint.sprint_name}}</h3>
 <p>Start Date: {{=sprint.start_date}}</p>
 <p>End Date: {{=sprint.end_date}}</p>
+
+<button>{{=A('Add Story', _href=URL('story', 'new_story', args=sprint.id))}}</button>
+
+<h3>Related User Stories: </h3>
+{{for story in stories:}}
+{{=LI(A(story.user_story, _href=URL('story', 'show_story', args=story.id)))}}
+{{pass}}
