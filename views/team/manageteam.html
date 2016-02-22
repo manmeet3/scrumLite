@@ -1,3 +1,10 @@
 {{extend 'layout.html'}}
 <h1>Manage Team</h1>
 {{=form}}
+{{for row in rows:}}
+<button onclick=Redirect(URL('removemember',id=row.id))>Remove</button>
+{{=row.first_name}}
+{{=row.last_name}}
+{{=row.email}}
+<br>
+{{pass}}
