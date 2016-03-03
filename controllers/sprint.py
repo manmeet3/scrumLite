@@ -2,7 +2,7 @@
 def create_sprint():
     if auth.user_groups.keys():
       db.Sprint.team_id.default = auth.user_groups.keys()[0]
-      print auth.user_groups.keys()[0]
+      #print auth.user_groups.keys()[0]
     else:
       response.flash = 'null user group, sprint will NOT save'
       #redirect(URL('default', 'index'))
