@@ -113,3 +113,11 @@ def removemember(id):
         response.flash = db.auth_user[id].first_name+db.auth_user[id].first_name+'Has been removed from team:'+team.team_name
     else:
         response.flash='error'
+
+def backlog():
+  if auth.user_groups.keys():
+    backlogs = db((db.Story.team_id==auth.user_groups.keys()[0]) & (db.Story.backlogged==True)).select(db.Story.ALL)
+    return dict(backlogs=backlogs)
+  else:
+    backlogs = 'You do not belong to a team'
+    return dict(backlogs=backlogs)

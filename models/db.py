@@ -53,7 +53,8 @@ db.define_table('Sprint',
 )
 
 db.define_table('Story',
-  Field('sprint_id', 'reference Sprint'),
+  Field('backlogged', type = 'boolean', default = 'True'),
+  Field('sprint_id', 'reference Sprint', default=None),
   Field('team_id', 'reference Team'),
   Field('user_story','text', requires = IS_NOT_EMPTY()),
   Field('story_points','integer', default=0),

@@ -1,8 +1,5 @@
 
-
-
 {{extend 'layout.html'}}
-
 
 
 {{ if auth.is_logged_in(): }}
@@ -16,12 +13,14 @@
   <div class="col-lg-12">
     <div class="btn-group">
       <button type="button" class="btn btn-default">{{=A('Current Sprint', _href=URL('default', 'show_sprint'))}}</button>
+      <button type="button" class="btn btn-default">{{=A('New Sprint', _href=URL('sprint', 'create_sprint'))}}</button>
+      <button type="button" class="btn btn-default">{{=A('View Sprints', _href=URL('sprint', 'view_all'))}}</button>
+      <button type="button" class="btn btn-default">{{=A('New Story', _href=URL('story', 'new_story'))}}</button>
+      <button type="button" class="btn btn-default">{{=A('Prod. Backlog', _href=URL('team', 'backlog'))}}</button><br><br><br>
+      <button type="button" class="btn btn-default">{{=A('View Team', _href=URL('team', 'viewteam'))}}</button>
       <button type="button" class="btn btn-default">{{=A('New Team', _href=URL('team', 'createteam'))}}</button>
       <button type="button" class="btn btn-default">{{=A('Invite Members', _href=URL('team', 'invitemembers'))}}</button>
       <button type="button" class="btn btn-default">{{=A('Accept Invites', _href=URL('team', 'acceptinvite'))}}</button>
-      <button type="button" class="btn btn-default">{{=A('View Team', _href=URL('team', 'viewteam'))}}</button>
-      <button type="button" class="btn btn-default">{{=A('New Sprint', _href=URL('sprint', 'create_sprint'))}}</button>
-      <button type="button" class="btn btn-default">{{=A('View Sprints', _href=URL('sprint', 'view_all'))}}</button>
       <button type="button" class="btn btn-default">{{=A('Manage Team', _href=URL('team', 'manageteam'))}}</button>
     </div>
   </div>
