@@ -58,6 +58,7 @@ def createteam():
                                           'product_description'])
         if form.process(onvalidation=write_group).accepted:
             response.flash = 'team created'
+            redirect(URL('index'))
         elif form.errors:
             response.flash = 'form is invalid'
         return dict(form=form)

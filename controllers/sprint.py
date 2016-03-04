@@ -18,5 +18,5 @@ def show_sprint():
     return dict(sprint=this_sprint, stories=stories)
 
 def view_all():
-    stories = db((db.Sprint.team_id==db.Team.id) & (db.Team.team_group==auth.user_groups.keys()[0])).select(db.Sprint.ALL)
-    return dict(stories=stories)
+    sprints = db((db.Sprint.team_id==db.Team.id) & (db.Team.team_group==auth.user_groups.keys()[0])).select(db.Sprint.ALL)
+    return dict(sprints=sprints)

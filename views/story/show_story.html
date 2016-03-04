@@ -3,7 +3,7 @@
 {{=A('View Sprint Page', _href=URL('sprint', 'show_sprint', args=story.sprint_id))}}
 <h1>User Story</h1>
 <p>{{=story.user_story}}</p>
-
+<p> Story points: {{=story.story_points}}</p>
 
 <h2> Tasks </h2>
 {{for task in tasks:}}
