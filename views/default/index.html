@@ -1,3 +1,6 @@
+
+
+
 {{extend 'layout.html'}}
 
 
@@ -7,123 +10,24 @@
     <h2>Welcome back, {{=auth.user.first_name}} </h2>
   </div>
 
-<h3> Sprint Info: </h3>
-{{if sprint is not None:}}
-  <p> Name: {{=A(sprint.sprint_name, _href=URL('sprint', 'show_sprint', args=sprint.id))}}</p>
-  <p> End Date: {{=sprint.end_date}}
-{{pass}}
 
-
-    <div class="panel panel-default">
-      <div class="panel-heading">Scrumboard</div>
-      <div class="panel-body">
-        <div class="row">
-        <div class="col-lg-3">
-          <div class="panel panel-default">
-            <div class="panel-heading">Backlog</div>
-            <div class="panel-body">
-            {{if story is not None:}}
-              {{for story in stories:}}
-              {{=LI(A(story.user_story, _href=URL('story', 'show_story', args=story.id)))}}
-               {{pass}}
-              {{pass}}
-            </div>
-          </div>
-        </div>
-
-        {{if tasks is not None:}}
-        <div class="col-lg-3">
-          <div class="panel panel-default">
-            <div class="panel-heading">To do</div>
-            <div class="panel-body">
-              {{for task in tasks:}}
-              {{if task.status == "To do":}}
-              {{=LI(A(task.name, _href=URL('story', 'show_task', args=task.id)))}}
-              {{pass}}
-              {{pass}}
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3">
-          <div class="panel panel-default">
-            <div class="panel-heading">In Progress</div>
-            <div class="panel-body">
-              {{for task in tasks:}}
-              {{if task.status == "In progress":}}
-              {{=LI(A(task.name, _href=URL('story', 'show_task', args=task.id)))}}
-              {{pass}}
-              {{pass}}
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3">
-          <div class="panel panel-default">
-            <div class="panel-heading">Completed</div>
-            <div class="panel-body">
-              {{for task in tasks:}}
-              {{if task.status == "Done":}}
-              {{=LI(A(task.name, _href=URL('story', 'show_task', args=task.id)))}}
-              {{pass}}
-              {{pass}}
-            </div>
-          </div>
-        </div>
-        </div>
-      </div>
-    </div>
-    {{pass}}
 
   <div class="row">
   <div class="col-lg-12">
     <div class="btn-group">
-      <button type="button" class="btn btn-default">
-        <a href="http://127.0.0.1:8000/scrumLite/team/createteam">New Team</a>
-      </button>
-      <button type="button" class="btn btn-default">
-        <a href="http://127.0.0.1:8000/scrumLite/team/invitemembers">Invite New Team Member</a>
-      </button>
-      <button type="button" class="btn btn-default">
-        <a href="http://127.0.0.1:8000/scrumLite/team/acceptinvite">Accept Invites</a>
-      </button>
-      <button type="button" class="btn btn-default">
-        <a href="http://127.0.0.1:8000/scrumLite/team/viewteam">View Team</a>
-      </button>
-      <button type="button" class="btn btn-default">
-        <a href="http://127.0.0.1:8000/scrumLite/sprint/create_sprint">New Sprint</a>
-      </button>
-      <button type="button" class="btn btn-default">
-        <a href="http://127.0.0.1:8000/scrumLite/sprint/view_all">View all Sprints</a>
-      </button>
-      <button type="button" class="btn btn-default">
-        <a href="http://127.0.0.1:8000/scrumLite/newuserstory/scrumboard">Scrum Board</a>
-      </button>
-
-      <button type="button" class="btn btn-default">
-        <a href="http://127.0.0.1:8000/scrumLite/team/manageteam">Manage Team</a>
-      </button>
+      <button type="button" class="btn btn-default">{{=A('Current Sprint', _href=URL('default', 'show_sprint'))}}</button>
+      <button type="button" class="btn btn-default">{{=A('New Team', _href=URL('team', 'createteam'))}}</button>
+      <button type="button" class="btn btn-default">{{=A('Invite Members', _href=URL('team', 'invitemembers'))}}</button>
+      <button type="button" class="btn btn-default">{{=A('Accept Invites', _href=URL('team', 'acceptinvite'))}}</button>
+      <button type="button" class="btn btn-default">{{=A('View Team', _href=URL('team', 'viewteam'))}}</button>
+      <button type="button" class="btn btn-default">{{=A('New Sprint', _href=URL('sprint', 'create_sprint'))}}</button>
+      <button type="button" class="btn btn-default">{{=A('View Sprints', _href=URL('sprint', 'view_all'))}}</button>
+      <button type="button" class="btn btn-default">{{=A('Manage Team', _href=URL('team', 'manageteam'))}}</button>
     </div>
   </div>
   </div>
 
-  <div class="row">
-  <div class="col-lg-6">
-    <div class="panel panel-default">
-      <div class="panel-heading">Upcoming Deadlines</div>
-      <div class="panel-body">
 
-      </div>
-    </div>
-  </div>
-  <div class="col-lg-6">
-    <div class="panel panel-default">
-      <div class="panel-heading">Calendar</div>
-      <div class="panel-body">
-      </div>
-    </div>
-  </div>
-  </div>
 
 {{ else: }}
   <div class="jumbotron">

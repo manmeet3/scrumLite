@@ -1,0 +1,83 @@
+{{extend 'layout.html'}}
+
+
+<h3> Sprint Info: </h3>
+  <p> Name: {{=A(sprint.sprint_name, _href=URL('sprint', 'show_sprint', args=sprint.id))}}</p>
+  <p> End Date: {{=sprint.end_date}}
+
+
+    <div class="panel panel-default">
+      <div class="panel-heading">Scrumboard</div>
+      <div class="panel-body">
+        <div class="row">
+        <div class="col-lg-3">
+          <div class="panel panel-default">
+            <div class="panel-heading">User Stories</div>
+            <div class="panel-body">
+              {{for story in stories:}}
+              {{=LI(A(story.user_story, _href=URL('story', 'show_story', args=story.id)))}}
+              {{pass}}
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3">
+          <div class="panel panel-default">
+            <div class="panel-heading">To do</div>
+            <div class="panel-body">
+              {{for task in tasks:}}
+              {{if task.status == "To do":}}
+              {{=LI(A(task.name, _href=URL('story', 'show_task', args=task.id)))}}
+              {{pass}}
+              {{pass}}
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3">
+          <div class="panel panel-default">
+            <div class="panel-heading">In Progress</div>
+            <div class="panel-body">
+              {{for task in tasks:}}
+              {{if task.status == "In progress":}}
+              {{=LI(A(task.name, _href=URL('story', 'show_task', args=task.id)))}}
+              {{pass}}
+              {{pass}}
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3">
+          <div class="panel panel-default">
+            <div class="panel-heading">Completed</div>
+            <div class="panel-body">
+              {{for task in tasks:}}
+              {{if task.status == "Done":}}
+              {{=LI(A(task.name, _href=URL('story', 'show_task', args=task.id)))}}
+              {{pass}}
+              {{pass}}
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+
+
+      <div class="row">
+  <div class="col-lg-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">Upcoming Deadlines</div>
+      <div class="panel-body">
+
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">Calendar</div>
+      <div class="panel-body">
+      </div>
+    </div>
+  </div>
+  </div>

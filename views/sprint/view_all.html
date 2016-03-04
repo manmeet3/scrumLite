@@ -1,0 +1,4 @@
+{{extend 'layout.html'}}
+{{for sprint in sprints:}}
+{{=LI(A(sprint.sprint_name, _href=URL('sprint', 'show_sprint', args=sprint.id)))}}
+{{pass}}

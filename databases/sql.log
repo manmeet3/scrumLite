@@ -1,4 +1,4 @@
-timestamp: 2016-02-20T21:59:32.231610
+timestamp: 2016-03-03T19:23:03.380665
 CREATE TABLE auth_user(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     first_name CHAR(128),
@@ -10,21 +10,21 @@ CREATE TABLE auth_user(
     registration_id CHAR(512)
 );
 success!
-timestamp: 2016-02-20T21:59:32.239591
+timestamp: 2016-03-03T19:23:03.388566
 CREATE TABLE auth_group(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     role CHAR(512),
     description TEXT
 );
 success!
-timestamp: 2016-02-20T21:59:32.244377
+timestamp: 2016-03-03T19:23:03.391975
 CREATE TABLE auth_membership(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
     group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE  
 );
 success!
-timestamp: 2016-02-20T21:59:32.247463
+timestamp: 2016-03-03T19:23:03.394337
 CREATE TABLE auth_permission(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE  ,
@@ -33,7 +33,7 @@ CREATE TABLE auth_permission(
     record_id INTEGER
 );
 success!
-timestamp: 2016-02-20T21:59:32.251608
+timestamp: 2016-03-03T19:23:03.396315
 CREATE TABLE auth_event(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     time_stamp TIMESTAMP,
@@ -43,7 +43,7 @@ CREATE TABLE auth_event(
     description TEXT
 );
 success!
-timestamp: 2016-02-20T21:59:32.255152
+timestamp: 2016-03-03T19:23:03.398499
 CREATE TABLE auth_cas(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
@@ -53,7 +53,7 @@ CREATE TABLE auth_cas(
     renew CHAR(1)
 );
 success!
-timestamp: 2016-02-20T21:59:32.259722
+timestamp: 2016-03-03T19:23:03.400916
 CREATE TABLE Team(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     product_owner INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
@@ -64,7 +64,7 @@ CREATE TABLE Team(
     product_description TEXT
 );
 success!
-timestamp: 2016-02-20T21:59:32.263828
+timestamp: 2016-03-03T19:23:03.402772
 CREATE TABLE Sprint(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     sprint_name CHAR(512),
@@ -73,7 +73,7 @@ CREATE TABLE Sprint(
     team_id INTEGER REFERENCES Team (id) ON DELETE CASCADE  
 );
 success!
-timestamp: 2016-02-20T21:59:32.267253
+timestamp: 2016-03-03T19:23:03.405385
 CREATE TABLE Story(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     sprint_id INTEGER REFERENCES Sprint (id) ON DELETE CASCADE  ,
@@ -85,17 +85,18 @@ CREATE TABLE Story(
     created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  
 );
 success!
-timestamp: 2016-02-20T21:59:32.270922
+timestamp: 2016-03-03T19:23:03.408883
 CREATE TABLE Task(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name CHAR(512),
     status CHAR(512),
     assigned INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
     estimated_completion_time TIMESTAMP,
+    task_points INTEGER,
     story_id INTEGER REFERENCES Story (id) ON DELETE CASCADE  
 );
 success!
-timestamp: 2016-02-20T21:59:32.276219
+timestamp: 2016-03-03T19:23:03.410740
 CREATE TABLE Invitations(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     to_user INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
@@ -103,7 +104,7 @@ CREATE TABLE Invitations(
     from_group INTEGER REFERENCES auth_group (id) ON DELETE CASCADE  
 );
 success!
-timestamp: 2016-02-20T21:59:32.279822
+timestamp: 2016-03-03T19:23:03.414197
 CREATE TABLE sprint_plan(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     Heading CHAR(512),
@@ -112,7 +113,7 @@ CREATE TABLE sprint_plan(
     created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  
 );
 success!
-timestamp: 2016-02-20T21:59:32.283763
+timestamp: 2016-03-03T19:23:03.415904
 CREATE TABLE sprint_review(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     Things_that_did_not_work TEXT,

@@ -63,7 +63,7 @@ I512
 sg5
 I00
 sg6
-I6
+I7
 sg7
 S'INTEGER REFERENCES Story (id) ON DELETE CASCADE  '
 p21
@@ -89,9 +89,26 @@ I00
 sg10
 S'reference auth_user'
 p26
-ssS'id'
+ssS'task_points'
 p27
 (dp28
+g4
+I512
+sg5
+I00
+sg6
+I6
+sg7
+S'INTEGER'
+p29
+sg9
+I00
+sg10
+S'integer'
+p30
+ssS'id'
+p31
+(dp32
 g4
 I512
 sg5
@@ -100,9 +117,9 @@ sg6
 I1
 sg7
 S'INTEGER PRIMARY KEY AUTOINCREMENT'
-p29
+p33
 sg9
 I00
 sg10
-g27
+g31
 ss.

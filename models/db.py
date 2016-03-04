@@ -56,7 +56,7 @@ db.define_table('Story',
   Field('sprint_id', 'reference Sprint'),
   Field('team_id', 'reference Team'),
   Field('user_story','text', requires = IS_NOT_EMPTY()),
-  Field('story_points','integer',requires=IS_IN_SET(['0','1','2','3','5','8','13','21'])),
+  Field('story_points','integer', default=0),
   Field('completed', type = 'boolean', default = 'False', readable=False),
   Field('created_on', 'datetime', default=request.now, writable = False),
   Field('created_by', 'reference auth_user', default=auth.user_id),
@@ -72,6 +72,7 @@ db.define_table('Task',
   Field('status','string', requires=IS_IN_SET(["To do", "In progress", "Done"]), default="To do"),
   Field('assigned', 'reference auth_user', default=auth.user_id),
   Field('estimated_completion_time', 'datetime', requires = IS_DATETIME()),
+  Field('task_points', 'integer', requires=IS_IN_SET(['0','1','2','3','5','8','13','21'])),
   Field('story_id', 'reference Story')
   )
 
