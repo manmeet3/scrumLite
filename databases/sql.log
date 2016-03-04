@@ -123,3 +123,6 @@ CREATE TABLE sprint_review(
     Work_completion_rate TEXT
 );
 success!
+timestamp: 2016-03-04T10:54:54.723981
+ALTER TABLE Story ADD backlogged CHAR(1);
+success!

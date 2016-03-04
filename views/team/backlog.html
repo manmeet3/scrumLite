@@ -1,0 +1,4 @@
+{{extend 'layout.html'}}
+{{for story in backlogs:}}
+{{=LI(A(story.user_story, _href=URL('story', 'show_story', args=story.id)))}}
+{{pass}}

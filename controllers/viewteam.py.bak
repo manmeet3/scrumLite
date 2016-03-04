@@ -1,9 +1,0 @@
-# -*- coding: utf-8 -*-
-# try something like
-@auth.requires_login()
-def viewteam():
-    group_id = auth.user_groups.keys()[0]
-    tname = db(db.Team.team_group == group_id).select().first().team_name
-    rows = db((db.auth_membership.user_id == db.auth_user.id)&(db.auth_group.id == db.auth_membership.group_id)).select(db.auth_user.ALL)
-    return dict(rows=rows, tname=tname)
-    #return dict(grid=SQLFORM.grid(db.auth_membership.user_id == db.auth_user.id)&(db.auth_group.id == db.auth_membership.group_id))

@@ -20,3 +20,4 @@ def show_sprint():
 def view_all():
     sprints = db((db.Sprint.team_id==db.Team.id) & (db.Team.team_group==auth.user_groups.keys()[0])).select(db.Sprint.ALL)
     return dict(sprints=sprints)
+
