@@ -40,7 +40,7 @@ def show_story():
 def show_task():
     this_task = db.Task(request.args(0,cast=int)) or redirect(URL('index'))
     task_story = db.Story(this_task.story_id)
-    form = SQLFORM(db.Task, this_task, showid=False, fields=['status', 'task_points'])
+    form = SQLFORM(db.Task, this_task, showid=False, fields=['status', 'task_points', 'assigned'])
     if form.process().accepted:
         response.flash = 'task changed'
         redirect(URL('index'))
