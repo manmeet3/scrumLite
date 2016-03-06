@@ -1,4 +1,8 @@
 {{extend 'layout.html'}}
+{{if sprints is not None:}}
 {{for sprint in sprints:}}
 {{=LI(A(sprint.sprint_name, _href=URL('sprint', 'show_sprint', args=sprint.id)))}}
+{{pass}}
+{{else:}}
+<p> You don't belong to a team</p>
 {{pass}}

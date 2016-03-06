@@ -45,8 +45,10 @@ db.define_table('Team',
   Field('team_group', 'reference auth_group'),
   Field('product_description', 'text', requires = IS_NOT_EMPTY()))
 
+db.Team.id.readable = False
+
 db.define_table('Sprint',
-  Field('sprint_name'),
+  Field('sprint_goal'),
   Field('start_date', 'datetime'),
   Field('end_date', 'datetime'),
   Field('team_id', 'reference Team')
@@ -62,8 +64,9 @@ db.define_table('Story',
   Field('created_on', 'datetime', default=request.now, writable = False),
   Field('created_by', 'reference auth_user', default=auth.user_id),
   )
-
-db.Team.id.readable = False
+if auth.user_groups.keys():
+  this_team_sprints = ((auth.user_groups.keys()[0]==db.Team.team_group) & (db.Sprint.team_id==db.Team.id))
+  db.Story.sprint_id.requires=IS_EMPTY_OR(IS_IN_DB(db(this_team_sprints), 'Sprint.id', '%(sprint_name)s'))
 db.Story.sprint_id.readable = False
 db.Story.completed.readable = False
 db.Story.created_by.writable = False
