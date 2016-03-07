@@ -3,11 +3,39 @@
 
 
 {{ if auth.is_logged_in(): }}
-  <div class="jumbotron">
-    <h2>Welcome back, {{=auth.user.first_name}} </h2>
+<div class="container">
+<div class="panel panel-default">
+<div class="panel-body">
+  <div class="row">
+
+    <div class="col-md-3">
+      <a href="#" class="thumbnail">
+        <img src="..." alt="...">
+      </a>
+      <div class="panel panel-default">
+      <div class="panel-body">
+        Team: <!-- Insert code here to display team name--> <br>
+        Role: <!-- Insert code here to display role name-->
+      </div>
+      </div>
+    </div>
+
+    <div class="col-md-9">
+    <div class="jumbotron">
+      <h2>Welcome back, {{=auth.user.first_name}} </h2>
+    </div>
+    </div>
   </div>
 
-  <div class="container">
+
+
+
+
+
+
+
+
+
     <div class="row">
 
       <div class="col-md-3">
@@ -82,7 +110,9 @@
         </div>
       </div>
     </div>
-  </div>
+</div>
+</div>
+</div>
 
 
   <div class="row">
