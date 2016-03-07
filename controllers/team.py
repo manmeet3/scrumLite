@@ -76,9 +76,11 @@ def manageteam():
         if rows2 is None:
             people=db(db.auth_user.id==row.user_id).select()
             rows2={people.first().id}
+            rows3=[row.user_id-1]
         else:
-            people.union(db(db.auth_user.id==row.user_id).select())
-            rows2.union(db(db.auth_user.id==row.user_id).select().first().id)
+            #people.union(db(db.auth_user.id==row.user_id).select())
+            #rows2.union(db(db.auth_user.id==row.user_id).select().first().id)
+            rows3.append(row.user_id-1)
     db.Team.team_leader.requires = IS_IN_SET(rows2)
     form = SQLFORM(db.Team, record=team, fields = ['product_name', 'team_name', 'team_leader',
                                                     'product_description'])
@@ -86,7 +88,8 @@ def manageteam():
         response.flash = 'team modified'
     elif form.errors:
         response.flash = 'error modifying team'
-    return dict(form=form, rows=people)
+    person=db(db.auth_user).select()
+    return dict(form=form, rows=rows3,person=person)
 
 @auth.requires_login()
 def viewteam():
@@ -105,7 +108,8 @@ def viewteam():
     return dict(rows=rows3, tname=tname, people=people)
 
 @auth.requires(lambda: validate_product_owner())
-def removemember(id):
+def removemember():
+    id=request.vars.id
     group_id = auth.user_groups.keys()[0]
     team = db(db.Team.team_group == group_id).select().first()
     member=db(db.auth_membership.user_id==id).select().first()
