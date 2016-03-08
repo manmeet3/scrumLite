@@ -61,5 +61,5 @@ def show_task():
     form = SQLFORM(db.Task, this_task, showid=False, fields=['status', 'task_points', 'assigned'])
     if form.process().accepted:
         response.flash = 'task changed'
-        redirect(URL('story', 'show_story', args=request.args(0,cast=int)))
+        redirect(URL('story', 'show_story', args=task_story.id))
     return dict(task=this_task, story=task_story, form=form)
