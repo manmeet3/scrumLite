@@ -98,7 +98,7 @@ def viewteam():
         if rows2 is None:
             rows2=db(db.auth_user.id==row.user_id).select()
         else:
-            rows2.union(db(db.auth_user.id==row.user_id).select())
+            rows2=rows2&(db(db.auth_user.id==row.user_id).select())
     return dict(rows=rows2, tname=tname)
 
 @auth.requires(lambda: validate_product_owner())

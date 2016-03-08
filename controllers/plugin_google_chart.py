@@ -35,30 +35,30 @@ def plugin_return_data():
 
     total_pts = 0
     for story in stories:
-        total_pts = total_pts + story.story_pts
-
+        total_pts = total_pts + story.story_points
+    
     pts_compl = 0
     for story in stories:
         if story.completed is True:
-            pts_compl = pts_compl+story.story_pts
-    
+            pts_compl = pts_compl+story.story_points
+
     pts_left = total_pts - pts_compl
     
     total_days = str(end_date-start_date).split(' ')[0]
     days_left = str(end_date-today).split(' ')[0]
     days_in = str(today - start_date).split(' ')[0]
-    
+
     projected_today = 0
     if total_pts != 0:
-      projected_today = ((total_pts/total_days)*days_in)
+      projected_today = ((int(total_pts)/int(total_days))*int(days_in))
 
     required_pace = 0
     if pts_left!=0:
-      required_pace = (pts_left/days_left)*(projected_today-pts_compl)
+      required_pace = (int(pts_left)/int(days_left))*abs((int(projected_today)-int(pts_compl)))
 
     #stories = 
     # ["start date", 0, 0],["today", total pts/2, pts completed]["end date",total pts, *how to calculate pts based on current pace*]
-    data = [['Date','Projected','Accomplished'],[start_date,0,0],["TODAY",projected_today,pts_compl],[end_date,total_pts,required_pace]]
+    data = [['Date','Projected','Current Pace'],[start_date,0,0],["TODAY",projected_today,pts_compl],[end_date,total_pts,required_pace]]
     return dict(data=data)
 
 
