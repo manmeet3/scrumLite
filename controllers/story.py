@@ -48,8 +48,7 @@ def show_story():
     this_story.update_record(completed='True')
   else:
     this_story.update_record(completed='False')
-
-
+  db.Story.backlogged.show_if = (db.Story.backlogged==True)
   movestory=SQLFORM(db.Story, this_story, showid=False, fields=['backlogged','sprint_id'])
   if movestory.process().accepted:
      response.flash = 'Story moved'
@@ -64,4 +63,3 @@ def show_task():
         response.flash = 'task changed'
         redirect(URL('story', 'show_story', args=request.args(0,cast=int)))
     return dict(task=this_task, story=task_story, form=form)
-

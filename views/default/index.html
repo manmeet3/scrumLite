@@ -1,11 +1,90 @@
 
 {{extend 'layout.html'}}
 
-
 {{ if auth.is_logged_in(): }}
-  <div class="jumbotron">
+<div class="jumbotron">
     <h2>Welcome back, {{=auth.user.first_name}} </h2>
   </div>
+
+
+  <div class="container">
+    <div class="row">
+
+      <div class="col-md-3">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Product Backlog</h3>
+          </div>
+          <div class="panel-body">
+            <!--Product Backlogs-->
+            <div class="panel panel-default">
+            <div class="panel-body">
+              Example backlog story
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-9">
+        <div class="panel panel-default">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>User Story</th>
+                <th>To Do</th>
+                <th>In Progress</th>
+                <th>Completed</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <!--Priority Number-->
+                <td>1</td>
+
+                <!--User Stories-->
+                <td>
+                  <div class="panel panel-default">
+                  <div class="panel-body">
+                    Example User Story
+                  </div>
+                  </div>
+                </td>
+                <!--To Do-->
+                <td>
+                  <div class="panel panel-default">
+                  <div class="panel-body">
+                    Example Task 1
+                  </div>
+                  </div>
+                  <div class="panel panel-default">
+                  <div class="panel-body">
+                    Example Task 2
+                  </div>
+                  </div>
+                </td>
+                <!--In Progress-->
+                <td>
+                  <div class="panel panel-default">
+                  <div class="panel-body">
+                    Example Task 3
+                  </div>
+                  </div>
+                </td>
+                <!--Completed-->
+                <td>
+
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 
   <div class="row">
   <div class="col-lg-12">
