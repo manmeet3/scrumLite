@@ -1,3 +1,5 @@
+from gluon.serializers import json
+
 def index():
       return dict(message=T('ScrumLite Index page'))
 
@@ -17,7 +19,9 @@ def show_sprint():
       else:
           stories = db(sprint.id==db.Story.sprint_id).select(db.Story.ALL)
           tasks = db((sprint.id==db.Story.sprint_id) & (db.Task.story_id==db.Story.id)).select(db.Task.ALL)
+
           return dict(stories=stories, tasks=tasks, sprint=sprint)
   else:
       msg = 'you need to CREATE/JOIN a Team'
       return response.render('default/throw_error.html', dict(msg=msg))
+

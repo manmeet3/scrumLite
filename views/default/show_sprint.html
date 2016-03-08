@@ -1,8 +1,10 @@
 {{extend 'layout.html'}}
+<script src="https://www.google.com/jsapi" type="text/javascript"></script>
+
 
 
 <h3> Sprint Info: </h3>
-  <p> Name: {{=A(sprint.sprint_name, _href=URL('sprint', 'show_sprint', args=sprint.id))}}</p>
+  <p> Name: {{=A(sprint.sprint_goal, _href=URL('sprint', 'show_sprint', args=sprint.id))}}</p>
   <p> End Date: {{=sprint.end_date}}
 
 
@@ -82,3 +84,10 @@
   </div>
   </div>
 
+{{ data_url = URL('plugin_google_chart','plugin_return_data.json',user_signature=True)}}
+{{ options ={'title':'Projected vs. Accomplished','width':0,'height':0} }}
+<div class="span6">
+{{=LOAD('plugin_google_chart','plugin_google_chart.load',ajax=True,
+        user_signature=True,vars={'type':'line','data_url':data_url,
+        'options_dict':options})}}
+</div>
