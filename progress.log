@@ -99,3 +99,8 @@
 [2016-02-22 12:56:54] EDIT scrumLite/controllers/default.py: 2
 [2016-02-22 12:57:12] EDIT scrumLite/controllers/default.py: 1
 [2016-02-22 12:59:10] EDIT scrumLite/controllers/default.py: 0
+[2016-03-09 15:19:55] EDIT scrumLite/models/db.py: 1
+[2016-03-09 15:21:01] CREATE team/reviewstr.html: 0
+[2016-03-09 15:21:22] EDIT scrumLite/views/team/reviewstr.html: 2
+[2016-03-09 15:21:55] EDIT scrumLite/controllers/team.py: 15
+[2016-03-09 15:23:17] EDIT scrumLite/controllers/team.py: 2
