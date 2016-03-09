@@ -1,9 +1,13 @@
 {{extend 'layout.html'}}
-
+{{if story.sprint_id is not None:}}
 {{=A('View Sprint Page', _href=URL('sprint', 'show_sprint', args=story.sprint_id))}}
-<h1>User Story</h1>
+{{pass}}
+<h2>User Story:</h2>
 <p>{{=story.user_story}}</p>
+<p> Story points: {{=story.story_points}}</p>
 
+<h2> Move Story:</h2>
+{{=movestory}}
 
 <h2> Tasks </h2>
 {{for task in tasks:}}

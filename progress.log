@@ -90,3 +90,12 @@
 [2016-02-20 11:56:21] EDIT scrumLite/views/default/index.html: 3
 [2016-02-20 11:56:47] EDIT scrumLite/controllers/manageteam.py: 1
 [2016-02-20 12:02:41] EDIT scrumLite/controllers/manageteam.py: 2
+[2016-02-22 12:42:50] EDIT scrumLite/controllers/team.py: 26
+[2016-02-22 12:43:03] EDIT scrumLite/views/team/manageteam.html: 7
+[2016-02-22 12:52:47] EDIT scrumLite/controllers/default.py: 1
+[2016-02-22 12:53:07] EDIT scrumLite/controllers/default.py: 0
+[2016-02-22 12:54:50] EDIT scrumLite/controllers/default.py: 1
+[2016-02-22 12:55:44] EDIT scrumLite/controllers/default.py: 0
+[2016-02-22 12:56:54] EDIT scrumLite/controllers/default.py: 2
+[2016-02-22 12:57:12] EDIT scrumLite/controllers/default.py: 1
+[2016-02-22 12:59:10] EDIT scrumLite/controllers/default.py: 0

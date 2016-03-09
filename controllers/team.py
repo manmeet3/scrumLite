@@ -10,6 +10,10 @@ def validate_product_owner():
 
 # Queries the database to see if the user exists
 def validateuser(form):
+    if len(form.vars.name.split()) <= 1:
+        response.flash = 'first and last name'
+        form.errors = True
+        return
     fullname = form.vars.name.split()
     fname = fullname[0]
     lname = fullname[1]
@@ -41,11 +45,20 @@ def acceptinvite():
     rows = db(db.Invitations.to_user == auth.user.id).select()
     return dict(rows=rows)
 
+
+#######################################################################################
+
+
 def accept():
-    invite = db(db.Invitations.to_user == auth.user.id).select().first().from_group.id
+    invite = db.auth_group(request.args(0,cast=int)) or redirect(URL('index'))
     auth.add_membership(invite,auth.user.id)
-    db(db.Invitations.to_user == auth.user.id).delete()
+    # row = db(db.auth_group.id == auth.user.id).select().first()
+    # row.update_record(group_id=invite)
+    # row = db(db.auth_membership.user_id == auth.user.id).select().first()
+    # row.update_record(group_id=invite)
+    db(db.Invitations.from_group == invite).delete()
     response.flash = 'invites accepted'
+
 
 def write_group(form):
     group_id = auth.add_group(form.vars.product_name, form.vars.product_description)
@@ -58,6 +71,7 @@ def createteam():
                                           'product_description'])
         if form.process(onvalidation=write_group).accepted:
             response.flash = 'team created'
+            redirect(URL('default','index'))
         elif form.errors:
             response.flash = 'form is invalid'
         return dict(form=form)
@@ -66,22 +80,62 @@ def createteam():
 def manageteam():
     group_id = auth.user_groups.keys()[0]
     team = db(db.Team.team_group == group_id).select().first()
+    # Use this query to get a list of all team members
+    #team_members = db((db.auth_membership.user_id == db.auth_user.id)&
+       # (db.auth_group.id == db.auth_membership.group_id)).select(db.auth_user.ALL)
+    rows = db(db.auth_membership.group_id == group_id).select()
+    rows2=None;
+    for row in rows:
+        if rows2 is None:
+            people=db(db.auth_user.id==row.user_id).select()
+            rows2={people.first().id}
+        else:
+            people.union(db(db.auth_user.id==row.user_id).select())
+            rows2.union(db(db.auth_user.id==row.user_id).select().first().id)
+    db.Team.team_leader.requires = IS_IN_SET(rows2)
     form = SQLFORM(db.Team, record=team, fields = ['product_name', 'team_name', 'team_leader',
                                                     'product_description'])
-    # Use this query to get a list of all team members
-    team_members = db((db.auth_membership.user_id == db.auth_user.id)&
-        (db.auth_group.id == db.auth_membership.group_id)).select(db.auth_user.ALL)
-    db.Team.team_leader.requires = IS_IN_SET(team_members)
     if form.process().accepted:
         response.flash = 'team modified'
     elif form.errors:
         response.flash = 'error modifying team'
-    return dict(form=form)
+    return dict(form=form, rows=people)
 
 @auth.requires_login()
 def viewteam():
+    # groupid = auth.user_groups.keys()[0]
+    groupid = db(db.auth_membership.user_id == auth.user_id).select().first().group_id
+    tname = db(db.Team.team_group == groupid).select().first().team_name
+    rows = db(db.auth_membership.group_id == groupid).select()
+    rows2=None; rows3=None;
+    for row in rows:
+        if rows2 is None:
+            rows2=db(db.auth_user.id==row.user_id).select()
+            rows3=[row.user_id-1]
+        else:
+            #rows2.union(db(db.auth_user.id==row.user_id).select())
+            rows3.append(row.user_id-1)
+    people=db(db.auth_user).select()
+    return dict(rows=rows3, tname=tname, people=people)
+
+
+@auth.requires(lambda: validate_product_owner())
+def removemember(id):
     group_id = auth.user_groups.keys()[0]
-    tname = db(db.Team.team_group == group_id).select().first().team_name
-    rows = db((db.auth_membership.user_id == db.auth_user.id)&
-        (db.auth_group.id == db.auth_membership.group_id)).select(db.auth_user.ALL)
-    return dict(rows=rows, tname=tname)
+    team = db(db.Team.team_group == group_id).select().first()
+    member=db(db.auth_membership.user_id==id).select().first()
+    if (team.team_leader==member.user_id):
+        team.update(team_leader=auth.user_id)
+    if (team.product_owner!=id):
+        member.delete()
+        response.flash = db.auth_user[id].first_name+db.auth_user[id].first_name+'Has been removed from team:'+team.team_name
+    else:
+        response.flash='error'
+
+def backlog():
+  if auth.user_groups.keys():
+    backlogs = db((db.Story.team_id==auth.user_groups.keys()[0]) & (db.Story.backlogged==True)).select(db.Story.ALL)
+    return dict(backlogs=backlogs)
+  else:
+    backlogs = 'You do not belong to a team'
+    return dict(backlogs=backlogs)

@@ -1,0 +1,25 @@
+.panel-default{
+   background-color: ;
+   padding-bottom: ;
+}
+.well{
+   background-color: ;
+   padding-bottom: ;
+}
+
+
+
+.panel-default .panel-heading, .panel-default .panel-title, .panel-default .panel-footer {
+    color: ;
+}
+
+.panel-default > .panel-heading {
+    background-color: ;
+    border-color: ;
+}
+
+.table {
+    width: 65%;
+    max-width: 75%;
+    margin-bottom: 15px;
+}

@@ -2,16 +2,22 @@
 def new_story():
     if auth.user_groups.keys():
       db.Story.team_id.default = auth.user_groups.keys()[0]
-      print auth.user_groups.keys()[0]
     else:
       response.flash = 'NULL USER GROUP, story will NOT save'
-    db.Story.sprint_id.default = request.args(0,cast=int)
-    form = SQLFORM(db.Story, fields=['user_story','story_points', 'created_on', 'created_by'])
-    form['_style']='border:1px solid black'
+
+    if request.args(0) is not None:
+      db.Story.sprint_id.default = request.args(0,cast=int)
+      db.Story.backlogged.default = False
+    else:
+      db.Story.backlogged.default = True
+
+    form = SQLFORM(db.Story, fields=['user_story', 'created_on', 'created_by'])
     if form.process().accepted:
         response.flash = 'story added'
-        redirect(URL('sprint', 'show_sprint', args=request.args(0,cast=int)))
-        print request.env.http_referer
+        if request.args(0) is not None:
+          redirect(URL('sprint', 'show_sprint', args=request.args(0,cast=int)))
+        else:
+          redirect(URL('team', 'backlog'))
     elif form.errors:
         response.flash = 'the form is invalid'
     return dict(form=form)
@@ -19,14 +25,22 @@ def new_story():
 def show_story():
   this_story = db.Story(request.args(0,cast=int)) or redirect(URL('index'))
   db.Task.story_id.default = this_story.id
-  form = SQLFORM(db.Task).process() if auth.user else 'You need to log in'
+  form = SQLFORM(db.Task) if auth.user else 'You need to log in'
+  if form.process().accepted:
+    new_pts = this_story.story_points + int(form.vars.task_points)
+    this_story.update_record(story_points = new_pts)
+    response.flash = 'task added'
   alltasks = db(db.Task.story_id==this_story.id).select()
-  return dict(story = this_story, tasks=alltasks, form=form)
+
+  movestory=SQLFORM(db.Story, this_story, showid=False, fields=['backlogged','sprint_id'])
+  if movestory.process().accepted:
+     response.flash = 'Story moved'
+  return dict(story = this_story, tasks=alltasks, form=form, movestory=movestory)
 
 def show_task():
     this_task = db.Task(request.args(0,cast=int)) or redirect(URL('index'))
     task_story = db.Story(this_task.story_id)
-    form = SQLFORM(db.Task, this_task, fields=['status'])
+    form = SQLFORM(db.Task, this_task, showid=False, fields=['status', 'task_points', 'assigned'])
     if form.process().accepted:
         response.flash = 'task changed'
         redirect(URL('index'))

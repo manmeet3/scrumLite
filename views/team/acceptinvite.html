@@ -1,8 +1,36 @@
 {{extend 'layout.html'}}
 
 <h3> All Invitations </h3>
-
-{{=rows}}
 <!--<a href="http://127.0.0.1:8000/scrumLite/team/accept">Accept</a><br>-->
-{{=A('accept', callback=URL('accept'))}}
-{{pass}}
+<!-- {{=A('accept', callback=URL('accept'))}}
+{{pass}} -->
+
+<table class="table table-hover">
+   <thead>
+     <tr>
+       <th>From</th>
+       <th>Group</th>
+     </tr>
+   </thead>
+   <tbody>
+      {{for invite in rows:}}
+     <tr>
+       <td>{{=invite.from_user.first_name}} {{=invite.from_user.last_name}}</td>
+       <td>{{=invite.from_group.team_name}}</td>
+       <td>          <a class="btn btn-default btn-small" href="{{=URL('team', 'accept', args=invite.from_group.team_group.id)}}" aria-label="Accept">
+          <span class="glyphicon glyphicon-check" aria-hidden="true"></span> </td>
+     </tr>
+     {{pass}}
+     <!-- <tr>
+       <th scope="row">2</th>
+       <td>Jacob</td>
+       <td>Thornton</td>
+       <td>@fat</td>
+     </tr>
+     <tr>
+       <th scope="row">3</th>
+       <td colspan="2">Larry the Bird</td>
+       <td>@twitter</td>
+     </tr> -->
+   </tbody>
+ </table>

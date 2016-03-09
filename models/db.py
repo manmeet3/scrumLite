@@ -45,24 +45,28 @@ db.define_table('Team',
   Field('team_group', 'reference auth_group'),
   Field('product_description', 'text', requires = IS_NOT_EMPTY()))
 
+db.Team.id.readable = False
+
 db.define_table('Sprint',
-  Field('sprint_name'),
+  Field('sprint_goal'),
   Field('start_date', 'datetime'),
   Field('end_date', 'datetime'),
   Field('team_id', 'reference Team')
 )
 
 db.define_table('Story',
-  Field('sprint_id', 'reference Sprint'),
+  Field('backlogged', type = 'boolean', default = 'True'),
+  Field('sprint_id', 'reference Sprint', default=None),
   Field('team_id', 'reference Team'),
   Field('user_story','text', requires = IS_NOT_EMPTY()),
-  Field('story_points','integer',requires=IS_IN_SET(['0','1','2','3','5','8','13','21'])),
+  Field('story_points','integer', default=0),
   Field('completed', type = 'boolean', default = 'False', readable=False),
   Field('created_on', 'datetime', default=request.now, writable = False),
   Field('created_by', 'reference auth_user', default=auth.user_id),
   )
-
-db.Team.id.readable = False
+if auth.user_groups.keys():
+  this_team_sprints = ((auth.user_groups.keys()[0]==db.Team.team_group) & (db.Sprint.team_id==db.Team.id))
+  db.Story.sprint_id.requires=IS_EMPTY_OR(IS_IN_DB(db(this_team_sprints), 'Sprint.id', '%(sprint_goal)s'))
 db.Story.sprint_id.readable = False
 db.Story.completed.readable = False
 db.Story.created_by.writable = False
@@ -72,12 +76,21 @@ db.define_table('Task',
   Field('status','string', requires=IS_IN_SET(["To do", "In progress", "Done"]), default="To do"),
   Field('assigned', 'reference auth_user', default=auth.user_id),
   Field('estimated_completion_time', 'datetime', requires = IS_DATETIME()),
+  Field('task_points', 'integer', requires=IS_IN_SET(['0','1','2','3','5','8','13','21'])),
   Field('story_id', 'reference Story')
   )
-
+if auth.user_groups.keys():
+  query = ((db.auth_group.id==auth.user_groups.keys()[0]) & (db.auth_group.id==db.auth_membership.group_id) & (db.auth_membership.user_id==db.auth_user.id))
+  db.Task.assigned.requires=IS_EMPTY_OR(IS_IN_DB(db(query), db.auth_user, '%(first_name)s'))
 db.Task.story_id.writable = db.Task.story_id.readable = False
 
 db.define_table('Invitations',
     Field('to_user', 'reference auth_user'),
     Field('from_user', 'reference auth_user', default=auth.user_id),
-    Field('from_group', 'reference auth_group'))
+    Field('from_group', 'reference Team'))
+
+db.define_table('Events',
+    Field('team', 'reference Team'),
+    Field('user', 'reference auth_user'),
+    Field('action', 'string'),
+    Field('date', default=request.now))

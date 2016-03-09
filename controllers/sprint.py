@@ -2,12 +2,13 @@
 def create_sprint():
     if auth.user_groups.keys():
       db.Sprint.team_id.default = auth.user_groups.keys()[0]
-      print auth.user_groups.keys()[0]
+      #print auth.user_groups.keys()[0]
     else:
       response.flash = 'null user group, sprint will NOT save'
       #redirect(URL('default', 'index'))
-    form = SQLFORM(db.Sprint, fields=['sprint_name', 'start_date', 'end_date'])
+    form = SQLFORM(db.Sprint, fields=['sprint_goal', 'start_date', 'end_date'])
     if form.process().accepted:
+        db.Events.insert(team=auth.user_groups.keys()[0], user=auth.user, action="created sprint")
         response.flash = 'Sprint created'
         redirect(URL('default','index'))
     return dict(form=form)
@@ -18,5 +19,8 @@ def show_sprint():
     return dict(sprint=this_sprint, stories=stories)
 
 def view_all():
-    stories = db((db.Sprint.team_id==db.Team.id) & (db.Team.team_group==auth.user_groups.keys()[0])).select(db.Sprint.ALL)
-    return dict(stories=stories)
+  if auth.user_groups.keys():
+    sprints = db((db.Sprint.team_id==db.Team.id) & (db.Team.team_group==auth.user_groups.keys()[0])).select(db.Sprint.ALL)
+    return dict(sprints=sprints)
+  else:
+   return dict(sprints=None)

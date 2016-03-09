@@ -33,6 +33,9 @@
         <script src="{{=URL('static','js/respond-1.4.2.min.js')}}"></script>
         <![endif]-->
     <!-- Favicons -->
+    <link rel="stylesheet" href="{{=URL('static','css/app.css')}}"/>
+
+
     {{include 'web2py_ajax.html'}} <!-- this includes jquery.js, calendar.js/.css and web2py.js -->
     {{block head}}{{end}}
     {{
@@ -60,9 +63,7 @@
           <!--Manage Teams-->
           <li>
             {{ if auth.is_logged_in(): }}
-              {{ =A('Manage Teams', _href=URL('default', 'manage_teams')) }}
-            {{ else: }}
-              {{ =A('Manage Teams', _href=URL('default', 'user')) }}
+              {{ =A('Profile', _href=URL('default', 'profile')) }}
             {{ pass }}
           </li>
           <!--Login or Signup-->
