@@ -1,91 +1,114 @@
 {{extend 'layout.html'}}
 <script src="https://www.google.com/jsapi" type="text/javascript"></script>
 
-
-
 <h3> Sprint Info: </h3>
   <p> Name: {{=A(sprint.sprint_goal, _href=URL('sprint', 'show_sprint', args=sprint.id))}}</p>
   <p> End Date: {{=sprint.end_date}}
+<div class="container">
+    <div class="row">
 
-
-    <div class="panel panel-default">
-      <div class="panel-heading">Scrumboard</div>
-      <div class="panel-body">
-        <div class="row">
-        <div class="col-lg-3">
-          <div class="panel panel-default">
-            <div class="panel-heading">User Stories</div>
+      <div class="col-md-3">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Product Backlog</h3>
+          </div>
+          <div class="panel-body">
+            <!--Product Backlogs-->
+            <div class="panel panel-default">
             <div class="panel-body">
-              {{for story in stories:}}
-              {{=LI(A(story.user_story, _href=URL('story', 'show_story', args=story.id)))}}
-              {{pass}}
+{{if backlogs != None:}}
+{{for story in backlogs:}}
+{{=LI(A(story.user_story, _href=URL('story', 'show_story', args=story.id)))}}
+{{pass}}
+{{pass}}
+            </div>
             </div>
           </div>
         </div>
+      </div>
 
-        <div class="col-lg-3">
-          <div class="panel panel-default">
-            <div class="panel-heading">To do</div>
-            <div class="panel-body">
-              {{for task in tasks:}}
+      <div class="col-md-9">
+        <div class="panel panel-default">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>User Story</th>
+                <th>To Do</th>
+                <th>In Progress</th>
+                <th>Completed</th>
+              </tr>
+            </thead>
+            {{for story in stories:}}
+            <tbody>
+              <tr>
+                <!--Priority Number-->
+                <td>{{=story.id}}</td>
+
+                <!--User Stories-->
+                <td>
+                  <div class="panel panel-default">
+                  <div class="panel-body">
+              {{=LI(A(story.user_story, _href=URL('story', 'show_story', args=story.id)))}}
+                  </div>
+                  </div>
+                </td>
+                <!--To Do-->
+                <td>
+                  <div class="panel panel-default">
+                  <div class="panel-body">
+                    {{for task in tasks:}}
+              {{if task.story_id==story.id:}}
               {{if task.status == "To do":}}
               {{=LI(A(task.name, _href=URL('story', 'show_task', args=task.id)))}}
               {{pass}}
               {{pass}}
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3">
-          <div class="panel panel-default">
-            <div class="panel-heading">In Progress</div>
-            <div class="panel-body">
-              {{for task in tasks:}}
+              {{pass}}
+                  </div>
+                  </div>
+                </td>
+                <!--In Progress-->
+                <td>
+                  <div class="panel panel-default">
+                  <div class="panel-body">
+                  {{for task in tasks:}}
+              {{if task.story_id==story.id:}}
               {{if task.status == "In progress":}}
               {{=LI(A(task.name, _href=URL('story', 'show_task', args=task.id)))}}
               {{pass}}
               {{pass}}
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3">
-          <div class="panel panel-default">
-            <div class="panel-heading">Completed</div>
-            <div class="panel-body">
-              {{for task in tasks:}}
+              {{pass}}
+                  </div>
+                  </div>
+                </td>
+                <!--Completed-->
+                <td>
+                <div class="panel panel-default">
+                <div class="panel-body">
+                {{for task in tasks:}}
+              {{if task.story_id==story.id:}}
               {{if task.status == "Done":}}
               {{=LI(A(task.name, _href=URL('story', 'show_task', args=task.id)))}}
               {{pass}}
               {{pass}}
-            </div>
-          </div>
+              {{pass}}
+              </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+                          {{pass}}
+
+         </table>
         </div>
-        </div>
-      </div>
-    </div>
-
-
-      <div class="row">
-  <div class="col-lg-6">
-    <div class="panel panel-default">
-      <div class="panel-heading">Upcoming Deadlines</div>
-      <div class="panel-body">
-
       </div>
     </div>
   </div>
-  <div class="col-lg-6">
-    <div class="panel panel-default">
-      <div class="panel-heading">Calendar</div>
-      <div class="panel-body">
-      </div>
-    </div>
-  </div>
-  </div>
+  <!--         !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+
 
 {{ data_url = URL('plugin_google_chart','plugin_return_data.json',user_signature=True)}}
-{{ options ={'title':'Projected vs. Accomplished','width':0,'height':0} }}
+{{ options ={'title':'Days vs. Story Points','width':0,'height':0} }}
 <div class="span6">
 {{=LOAD('plugin_google_chart','plugin_google_chart.load',ajax=True,
         user_signature=True,vars={'type':'line','data_url':data_url,
