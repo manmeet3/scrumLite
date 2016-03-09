@@ -31,14 +31,11 @@
 
 
 
-
-
-
-
-
+<!--Product Backlog-->
     <div class="row">
       <div class="col-md-3">
-        <div class="panel panel-default">
+
+        <div class="panel panel-default" data-toggle="modal" data-target="#example1">
           <div class="panel-heading">
             <h3 class="panel-title">Product Backlog</h3>
           </div>
@@ -51,8 +48,17 @@
             </div>
           </div>
         </div>
+
+        <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id="example1">
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+              blah one
+            </div>
+          </div>
+        </div>
       </div>
 
+<!--Scrumboard-->
       <div class="col-md-9">
         <div class="panel panel-default">
           <table class="table">
@@ -72,32 +78,29 @@
 
                 <!--User Stories-->
                 <td>
-                  <div class="panel panel-default">
+                  <!--data-target and id on the modal must have same nme for animations to work-->
+                  <div class="panel panel-default" data-toggle="modal" data-target="#example2">
                   <div class="panel-body">
                     Example User Story
                   </div>
                   </div>
+
+                  <!--id here must match data-target-->
+                  <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id="example2">
+                    <div class="modal-dialog modal-sm">
+                      <div class="modal-content">
+                        blah two
+                      </div>
+                    </div>
+                  </div>
                 </td>
                 <!--To Do-->
                 <td>
-                  <div class="panel panel-default">
-                  <div class="panel-body">
-                    Example Task 1
-                  </div>
-                  </div>
-                  <div class="panel panel-default">
-                  <div class="panel-body">
-                    Example Task 2
-                  </div>
-                  </div>
+
                 </td>
                 <!--In Progress-->
                 <td>
-                  <div class="panel panel-default">
-                  <div class="panel-body">
-                    Example Task 3
-                  </div>
-                  </div>
+
                 </td>
                 <!--Completed-->
                 <td>
@@ -128,7 +131,7 @@
   </div>
   </div>
 
-  
+
 </div>
 </div>
 </div>
