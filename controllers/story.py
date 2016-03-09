@@ -49,6 +49,10 @@ def show_story():
   else:
     this_story.update_record(completed='False')
   db.Story.backlogged.show_if = (db.Story.backlogged==True)
+
+  if auth.user_groups.keys():
+    this_team_sprints = ((auth.user_groups.keys()[0]==db.Team.team_group) & (db.Sprint.team_id==db.Team.id))
+    db.Story.sprint_id.requires=IS_EMPTY_OR(IS_IN_DB(db(this_team_sprints), 'Sprint.id', '%(sprint_goal)s'))
   movestory=SQLFORM(db.Story, this_story, showid=False, fields=['backlogged','sprint_id'])
   if movestory.process().accepted:
      response.flash = 'Story moved'

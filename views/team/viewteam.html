@@ -1,8 +1,8 @@
 {{extend 'layout.html'}}
-<h1>{{=tname}}</h1>
+<h1>Team: {{=team.team_name}}</h1>
 {{for row in rows:}}
-{{=row.first_name}}<p>||</p>
-{{=row.last_name}}
-{{=row.email}}
+<p>{{if team.product_owner==row.id:}} <h4>Prod. Owner, {{pass}}</h4><b>First</b>: {{=row.first_name}}  </p>
+<p> <b>Last</b>: {{=row.last_name}} </p>
+<p> <b>Email</b>: {{=row.email}} </p>
 <br>
 {{pass}}
