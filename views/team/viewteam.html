@@ -1,8 +1,8 @@
 {{extend 'layout.html'}}
 <h1>{{=tname}}</h1>
 {{for row in rows:}}
-{{=people[row].first_name}}<p>||</p>
-{{=people[row].last_name}}
-{{=people[row].email}}
+{{=row.first_name}}<p>||</p>
+{{=row.last_name}}
+{{=row.email}}
 <br>
 {{pass}}

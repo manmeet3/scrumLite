@@ -124,11 +124,3 @@ CREATE TABLE sprint_review(
     Work_completion_rate TEXT
 );
 success!
-timestamp: 2016-03-09T12:56:09.398000
-CREATE TABLE TSR(
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    Team INTEGER,
-    Time_Period CHAR(512),
-    Weekly_Summarization TEXT
-);
-success!
