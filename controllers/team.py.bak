@@ -102,15 +102,10 @@ def viewteam():
             rows2=db(db.auth_user.id==row.user_id).select()
             rows3=[row.user_id-1]
         else:
-<<<<<<< HEAD
             #rows2.union(db(db.auth_user.id==row.user_id).select())
             rows3.append(row.user_id-1)
     people=db(db.auth_user).select()
     return dict(rows=rows3, tname=tname, people=people)
-=======
-            rows2=rows2&(db(db.auth_user.id==row.user_id).select())
-    return dict(rows=rows2, tname=tname)
->>>>>>> refs/remotes/origin/master
 
 @auth.requires(lambda: validate_product_owner())
 def removemember():
