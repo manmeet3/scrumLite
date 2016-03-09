@@ -97,17 +97,19 @@ def viewteam():
     return dict(rows=rows2, team=team)
 
 @auth.requires(lambda: validate_product_owner())
-def removemember(id):
+def removemember():
+    the_id = request.args(0,cast=int)
     group_id = auth.user_groups.keys()[0]
-    team = db(db.Team.team_group == group_id).select().first()
-    member=db(db.auth_membership.user_id==id).select().first()
+    team = db(db.Team.team_group == group_id).select(db.Team.ALL).first()
+    member=db(db.auth_membership.user_id==the_id).select(db.auth_membership.ALL).first()
     if (team.team_leader==member.user_id):
         team.update(team_leader=auth.user_id)
-    if (team.product_owner!=id):
-        member.delete()
-        response.flash = db.auth_user[id].first_name+db.auth_user[id].first_name+'Has been removed from team:'+team.team_name
+    if (team.product_owner!=the_id):
+        member.delete() ## FIGURE OUT WHY THIS DOESNT WORK
+        response.flash = db.auth_user[the_id].first_name+db.auth_user[the_id].first_name+'Has been removed from team:'+team.team_name
     else:
         response.flash='error'
+    return response.render(URL('team','viewteam'))
 
 def backlog():
   if auth.user_groups.keys():

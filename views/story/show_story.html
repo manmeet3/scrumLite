@@ -4,7 +4,7 @@
 {{pass}}
 <h2>User Story:</h2>
 <p>{{=story.user_story}}</p>
-<p> Story points: {{=story.story_points}}</p>
+<p> <b>Story points</b>: {{=story.story_points}}</p>
 
 <h2> Move Story:</h2>
 {{=movestory}}
@@ -15,5 +15,5 @@
 {{=LI(A(task.name, _href=URL("show_task", args=task.id)))}}
 </ul>
 {{pass}}
-<h3>Add a task </h3>
+<h3>Add a task: </h3>
 {{=form}}
