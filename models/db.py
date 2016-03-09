@@ -49,8 +49,8 @@ db.Team.id.readable = False
 
 db.define_table('Sprint',
   Field('sprint_goal'),
-  Field('start_date', 'datetime'),
-  Field('end_date', 'datetime'),
+  Field('start_date', 'date'),
+  Field('end_date', 'date'),
   Field('team_id', 'reference Team')
 )
 
