@@ -105,11 +105,12 @@ def removemember():
     if (team.team_leader==member.user_id):
         team.update(team_leader=auth.user_id)
     if (team.product_owner!=the_id):
-        member.delete() ## FIGURE OUT WHY THIS DOESNT WORK
-        response.flash = db.auth_user[the_id].first_name+db.auth_user[the_id].first_name+'Has been removed from team:'+team.team_name
+        print type(member)
+        response.flash = db.auth_user[the_id].first_name+' '+db.auth_user[the_id].first_name+' has been removed from team:'+team.team_name
+        return response.render(URL('team','viewteam'))
+
     else:
         response.flash='error'
-    return response.render(URL('team','viewteam'))
 
 def backlog():
   if auth.user_groups.keys():

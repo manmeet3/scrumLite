@@ -78,8 +78,8 @@ db.define_table('Task',
   Field('story_id', 'reference Story')
   )
 if auth.user_groups.keys():
-  query = ((db.auth_group.id==auth.user_groups.keys()[0]) & (db.auth_group.id==db.auth_membership.group_id) & (db.auth_membership.user_id==db.auth_user.id))
-  db.Task.assigned.requires=IS_EMPTY_OR(IS_IN_DB(db(query), db.auth_user, '%(first_name)s'))
+      query = ((db.auth_group.id==auth.user_groups.keys()[0]) & (db.auth_group.id==db.auth_membership.group_id) & (db.auth_membership.user_id==db.auth_user.id))
+      db.Task.assigned.requires=IS_EMPTY_OR(IS_IN_DB(db(query), db.auth_user, '%(first_name)s'))
 db.Task.story_id.writable = db.Task.story_id.readable = False
 
 db.define_table('Invitations',

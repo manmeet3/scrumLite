@@ -54,9 +54,8 @@ def plugin_return_data():
 
     required_pace = 0
     if pts_left!=0:
-      required_pace = (int(pts_left)/int(days_left))*abs((int(projected_today)-int(pts_compl)))
-
-    #stories = 
+      #curr_pace = ((int(total_pts)/int(total_days))*(int(days_left))
+      required_pace = (int(pts_left)/int(days_left))*abs((int(projected_today)-int(pts_compl)))    #stories = 
     # ["start date", 0, 0],["today", total pts/2, pts completed]["end date",total pts, *how to calculate pts based on current pace*]
     data = [['Date','Projected','Current Pace'],[start_date,0,0],["TODAY",projected_today,pts_compl],[end_date,total_pts,required_pace]]
     return dict(data=data)
