@@ -2,7 +2,7 @@
 <h1>Manage Team</h1>
 {{=form}}
 {{for row in rows:}}
-<button onclick=URL('removemember',vars=dict(id=row))>Remove</button>
+<a href={{URL('removemember',vars=dict(id=row))}} class="btn btn-default">Remove</a>
 {{=person[row].first_name}}
 {{=person[row].last_name}}
 {{=person[row].email}}

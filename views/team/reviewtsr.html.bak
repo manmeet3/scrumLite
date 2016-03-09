@@ -1,0 +1,5 @@
+{{extend 'layout.html'}}
+{{for row in rows:}}
+Period: {{=row.Time_Period}}<br>
+Result: {{=row.Weekly_Summarization}}
+{{pass}}

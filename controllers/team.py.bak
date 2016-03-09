@@ -109,17 +109,21 @@ def viewteam():
 
 @auth.requires(lambda: validate_product_owner())
 def removemember():
+    print "here"
     id=request.vars.id
-    group_id = auth.user_groups.keys()[0]
+    group= db(db.auth_membership.user_id==auth.user_id).select().first()
+    group_id=group.group_id
     team = db(db.Team.team_group == group_id).select().first()
-    member=db(db.auth_membership.user_id==id).select().first()
-    if (team.team_leader==member.user_id):
-        team.update(team_leader=auth.user_id)
+    member=db(db.auth_membership.user_id==id)
+    mem=member.select().first()
+    if (team.team_leader != None):
+        if (team.team_leader==mem.user_id):
+            team.update_record(team_leader=auth.user_id)
     if (team.product_owner!=id):
         member.delete()
         response.flash = db.auth_user[id].first_name+db.auth_user[id].first_name+'Has been removed from team:'+team.team_name
     else:
-        response.flash='error'
+        response.flash='Cant Remove Owner'
 
 def backlog():
   if auth.user_groups.keys():
@@ -128,3 +132,20 @@ def backlog():
   else:
     backlogs = 'You do not belong to a team'
     return dict(backlogs=backlogs)
+
+@auth.requires(lambda: validate_product_owner())
+def tsr():
+    form=SQLFORM(db.TSR)
+    you=db(db.auth_membership.user_id==auth.user_id).select().first()
+    form.vars.Team=you.group_id
+    if form.process().accepted:
+        response.flash = 'new tsr made'
+    elif form.errors:
+        response.flash = 'error'
+    return locals()
+
+@auth.requires_login()
+def reviewtsr():
+    you=db(db.auth_membership.user_id==auth.user_id).select().first()
+    tsrs=db(db.TSR.Team==you.group_id).select()
+    return dict(rows=tsrs)
