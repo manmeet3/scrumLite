@@ -70,47 +70,45 @@ def manageteam():
     # Use this query to get a list of all team members
     #team_members = db((db.auth_membership.user_id == db.auth_user.id)&
        # (db.auth_group.id == db.auth_membership.group_id)).select(db.auth_user.ALL)
-    rows = db(db.auth_membership.group_id == group_id).select()
-    rows2=None;
-    for row in rows:
-        if rows2 is None:
-            people=db(db.auth_user.id==row.user_id).select()
-            rows2={people.first().id}
-        else:
-            people.union(db(db.auth_user.id==row.user_id).select())
-            rows2.union(db(db.auth_user.id==row.user_id).select().first().id)
-    db.Team.team_leader.requires = IS_IN_SET(rows2)
+    query = (db.auth_user.id==db.auth_membership.user_id)&(db.auth_membership.group_id == group_id)
+    rows = db(query).select(db.auth_user.ALL)
+
+    db.Team.team_leader.requires = IS_IN_DB(db(query), 'auth_user.id', '%(first_name)s')
+
     form = SQLFORM(db.Team, record=team, fields = ['product_name', 'team_name', 'team_leader',
                                                     'product_description'])
     if form.process().accepted:
         response.flash = 'team modified'
     elif form.errors:
         response.flash = 'error modifying team'
-    return dict(form=form, rows=people)
+    return dict(form=form, rows=rows)
 
 @auth.requires_login()
 def viewteam():
     groupid = auth.user_groups.keys()[0]
-    tname = db(db.Team.team_group == groupid).select().first().team_name
+    team = db(db.Team.team_group == groupid).select().first()
     rows = db(db.auth_membership.group_id == groupid).select()
     rows2=None;
     for row in rows:
         if rows2 is None:
             rows2=db(db.auth_user.id==row.user_id).select()
         else:
-            rows2.union(db(db.auth_user.id==row.user_id).select())
-    return dict(rows=rows2, tname=tname)
+            rows2=rows2&(db(db.auth_user.id==row.user_id).select())
+    return dict(rows=rows2, team=team)
 
 @auth.requires(lambda: validate_product_owner())
-def removemember(id):
+def removemember():
+    the_id = request.args(0,cast=int)
     group_id = auth.user_groups.keys()[0]
-    team = db(db.Team.team_group == group_id).select().first()
-    member=db(db.auth_membership.user_id==id).select().first()
+    team = db(db.Team.team_group == group_id).select(db.Team.ALL).first()
+    member=db(db.auth_membership.user_id==the_id).select(db.auth_membership.ALL).first()
     if (team.team_leader==member.user_id):
         team.update(team_leader=auth.user_id)
-    if (team.product_owner!=id):
-        member.delete()
-        response.flash = db.auth_user[id].first_name+db.auth_user[id].first_name+'Has been removed from team:'+team.team_name
+    if (team.product_owner!=the_id):
+        print type(member)
+        response.flash = db.auth_user[the_id].first_name+' '+db.auth_user[the_id].first_name+' has been removed from team:'+team.team_name
+        return response.render(URL('team','viewteam'))
+
     else:
         response.flash='error'
 
