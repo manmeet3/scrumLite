@@ -1,0 +1,5 @@
+{{extend 'layout.html'}}
+<h1>Your Upcoming Tasks</h1>
+{{for task in tasks:}}
+    {{=db.Task[task].estimated_completion_time}} {{=db.Task[task].name}}
+{{pass}}

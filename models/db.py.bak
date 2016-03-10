@@ -86,3 +86,5 @@ db.define_table('Invitations',
     Field('to_user', 'reference auth_user'),
     Field('from_user', 'reference auth_user', default=auth.user_id),
     Field('from_group', 'reference auth_group'))
+
+db.define_table('TSR',Field('Team','integer', writable=False),Field('Time_Period'),Field('Weekly_Summarization', 'text', requires = IS_NOT_EMPTY()))
