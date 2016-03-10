@@ -1,10 +1,34 @@
 {{extend 'layout.html'}}
-<h1>Manage Team</h1>
-{{=form}}
-{{for row in rows:}}
-<button onclick=Redirect(URL('removemember',id=row.id))>Remove</button>
-{{=row.first_name}}
-{{=row.last_name}}
-{{=row.email}}
-<br>
-{{pass}}
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="jumbotron"><h1>Manage Team</h1></div>
+        </div>
+        <div class="panel-body">
+          {{=form}}
+          <table class="table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+              </tr>
+            </thead>
+            <tbody>
+
+              {{for row in rows:}}
+              <td><a class="btn btn-default" onclick=Redirect(URL('removemember',id=row.id))>Remove</a></td>
+              <td>{{=row.first_name}}</td>
+              <td>{{=row.last_name}}</td>
+              <td>{{=row.email}}</td>
+              <br>
+            </tbody>
+          {{pass}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -117,16 +117,16 @@
   <div class="row">
   <div class="col-md-12">
     <div class="btn-group">
-      <button type="button" class="btn btn-default">{{=A('Current Sprint', _href=URL('default', 'show_sprint'))}}</button>
-      <button type="button" class="btn btn-default">{{=A('New Sprint', _href=URL('sprint', 'create_sprint'))}}</button>
-      <button type="button" class="btn btn-default">{{=A('View Sprints', _href=URL('sprint', 'view_all'))}}</button>
-      <button type="button" class="btn btn-default">{{=A('New Story', _href=URL('story', 'new_story'))}}</button>
-      <button type="button" class="btn btn-default">{{=A('Prod. Backlog', _href=URL('team', 'backlog'))}}</button><br><br><br>
-      <button type="button" class="btn btn-default">{{=A('View Team', _href=URL('team', 'viewteam'))}}</button>
-      <button type="button" class="btn btn-default">{{=A('New Team', _href=URL('team', 'createteam'))}}</button>
-      <button type="button" class="btn btn-default">{{=A('Invite Members', _href=URL('team', 'invitemembers'))}}</button>
-      <button type="button" class="btn btn-default">{{=A('Accept Invites', _href=URL('team', 'acceptinvite'))}}</button>
-      <button type="button" class="btn btn-default">{{=A('Manage Team', _href=URL('team', 'manageteam'))}}</button>
+      <a class="btn btn-default" href="{{=URL('default','show_sprint')}}">Current Sprint</a>
+      <a class="btn btn-default" href="{{=URL('sprint', 'create_sprint')}}">Create Sprint</a>
+      <a class="btn btn-default" href="{{=URL('sprint', 'view_all')}}">View Sprints</a>
+      <a class="btn btn-default" href="{{=URL('story', 'new_story')}}">New Story</a>
+      <a class="btn btn-default" href="{{=URL('team', 'backlog')}}">Prod. Backlog</a>
+      <a class="btn btn-default" href="{{=URL('team', 'viewteam')}}">View Team</a>
+      <a class="btn btn-default" href="{{=URL('team', 'createteam')}}">Create Team</a>
+      <a class="btn btn-default" href="{{=URL('team','invitemembers')}}">Invite Members</a>
+      <a class="btn btn-default" href="{{=URL('team', 'acceptinvite')}}">Accept Invites</a>
+      <a class="btn btn-default" href="{{=URL('team', 'manageteam')}}">Manage Team</a>
     </div>
   </div>
   </div>
