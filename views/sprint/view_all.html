@@ -1,9 +1,48 @@
 {{extend 'layout.html'}}
-<h3> Showing All Sprints </h3>
-{{if sprints is not None:}}
-{{for sprint in sprints:}}
-{{=LI(A(sprint.sprint_goal, _href=URL('sprint', 'show_sprint', args=sprint.id)))}}
-{{pass}}
-{{else:}}
-<p> You don't belong to a team</p>
-{{pass}}
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h1>Sprints</h1>
+        </div>
+        <div class="panel-body">
+          {{if sprints is not None:}}
+            <table class="table">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Sprint Goal</th>
+                  <th>Start Date</th>
+                  <th>End Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{for sprint in sprints:}}
+                <tr>
+                  <td><a class="btn btn-default" onclick=Redirect(URL('sprint', 'show_sprint', args=sprint.id))>View</a></td>
+                  <td>{{=sprint.sprint_goal}}</td>
+                  <td>{{=sprint.start_date}}</td>
+                  <td>{{sprint.end_date}}</td>
+                  <br>
+                </tr>
+                {{pass}}
+              </tbody>
+          {{else:}}
+            <div class="row">
+              <div class="col-md-12">
+                <div class="alert alert-dismissible alert-warning">
+                  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
+                  <h4>Warning!</h4>
+                  <p>No sprints to show. You may not be in a team or your team doesn't have any sprints set up.</p>
+                </div>
+              <div>
+            <div>
+          {{pass}}
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

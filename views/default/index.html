@@ -4,8 +4,6 @@
 
 {{ if auth.is_logged_in(): }}
 <div class="container">
-<div class="panel panel-default">
-<div class="panel-body">
 
   <div class="row">
     <div class="col-md-3">
@@ -22,7 +20,8 @@
 
     <div class="col-md-9">
     <div class="jumbotron">
-      <h2>Welcome back, {{=auth.user.first_name}} </h2>
+      <h1>Hi, {{=auth.user.first_name}} </h1>
+      <p>Welcome back!<p>
     </div>
     </div>
   </div>
@@ -35,16 +34,14 @@
     <div class="row">
       <div class="col-md-3">
 
-        <div class="panel panel-default" data-toggle="modal" data-target="#example1">
+        <div class="panel panel-primary" data-toggle="modal" data-target="#example1">
           <div class="panel-heading">
             <h3 class="panel-title">Product Backlog</h3>
           </div>
           <div class="panel-body">
             <!--Product Backlogs-->
-            <div class="panel panel-default btn">
-            <div class="panel-body">
+            <div class="well btn">
               Example backlog story
-            </div>
             </div>
           </div>
         </div>
@@ -52,7 +49,16 @@
         <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id="example1">
           <div class="modal-dialog modal-sm">
             <div class="modal-content">
-              blah one
+              <div class="modal-footer">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                  <p>One fine body…</p>
+                </div>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
             </div>
           </div>
         </div>
@@ -60,55 +66,67 @@
 
 <!--Scrumboard-->
       <div class="col-md-9">
-        <div class="panel panel-default">
-          <table class="table">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>User Story</th>
-                <th>To Do</th>
-                <th>In Progress</th>
-                <th>Completed</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <!--Priority Number-->
-                <td>1</td>
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">User Stories and Tasks</h3>
+          </div>
+          <div class="panel-body">
+            <table class="table table-striped table-hover">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>User Story</th>
+                  <th>To Do</th>
+                  <th>In Progress</th>
+                  <th>Completed</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <!--Priority Number-->
+                  <td>1</td>
 
-                <!--User Stories-->
-                <td>
-                  <!--data-target and id on the modal must have same nme for animations to work-->
-                  <div class="panel panel-default" data-toggle="modal" data-target="#example2">
-                  <div class="panel-body">
-                    Example User Story
-                  </div>
-                  </div>
+                  <!--User Stories-->
+                  <td>
+                    <!--data-target and id on the modal must have same nme for animations to work-->
+                    <div class="well btn" data-toggle="modal" data-target="#example2">
+                      Example User Story
+                    </div>
 
-                  <!--id here must match data-target-->
-                  <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id="example2">
-                    <div class="modal-dialog modal-sm">
-                      <div class="modal-content">
-                        blah two
+                    <!--id here must match data-target-->
+                    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id="example2">
+                      <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+                          <div class="modal-footer">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span aria-hidden="true">&times;</span></button>
+                              <h4 class="modal-title">Modal title</h4>
+                            </div>
+                            <div class="modal-body">
+                              <p>One fine body…</p>
+                            </div>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </td>
-                <!--To Do-->
-                <td>
+                  </td>
+                  <!--To Do-->
+                  <td>
 
-                </td>
-                <!--In Progress-->
-                <td>
+                  </td>
+                  <!--In Progress-->
+                  <td>
 
-                </td>
-                <!--Completed-->
-                <td>
+                  </td>
+                  <!--Completed-->
+                  <td>
 
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
@@ -131,9 +149,6 @@
   </div>
   </div>
 
-
-</div>
-</div>
 </div>
 
 
