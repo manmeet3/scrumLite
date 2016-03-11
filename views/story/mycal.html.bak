@@ -17,9 +17,15 @@
         $('#calendar').fullCalendar({
             editable: false,
             events: [
-                {title: 'All Day Event',
-					start: '2016-01-01'
-				}
+                {{for i,row in enumerate(rows):}}{{if i!=0:}},{{pass}}
+                {
+                    title: '{{=row.f_title}}',
+                    allDay: false,
+                    start: new Date('{{=row.f_start_time.strftime('%B %d, %Y %H:%M:%S')}}'),
+                    end: new Date('{{=row.f_end_time.strftime('%B %d, %Y %H:%M:%S')}}'),
+                    url: '{{=mytasks[0].estimated_completion_time}}'
+                }
+            {{pass}}
             ]
         });
 

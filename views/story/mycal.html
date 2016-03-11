@@ -17,6 +17,13 @@
         $('#calendar').fullCalendar({
             editable: false,
             events: [
+                {{for i,mytask in enumerate(mytasks):}}{{if i!=0:}},{{pass}}
+                {
+                    title: '{{=mytask.name}}',
+                    allDay: false,
+                    due: new Date('{{=mytask.estimated_completion_time.strftime('%B %d, %Y %H:%M:%S')}}')
+                }
+            {{pass}}
             ]
         });
 
