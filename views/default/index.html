@@ -34,32 +34,36 @@
     <div class="row">
       <div class="col-md-3">
 
-        <div class="panel panel-primary" data-toggle="modal" data-target="#example1">
+        <div class="panel panel-primary">
           <div class="panel-heading">
             <h3 class="panel-title">Product Backlog</h3>
           </div>
+
           <div class="panel-body">
             <!--Product Backlogs-->
-            <div class="well btn">
-              Example backlog story
-            </div>
-          </div>
-        </div>
-
-        <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id="example1">
-          <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-              <div class="modal-footer">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span aria-hidden="true">&times;</span></button>
-                  <h4 class="modal-title">Modal title</h4>
+            <div class="list-group">
+              <a href="#" class="list-group-item" data-toggle="modal" data-target="#example1">
+                Cras justo odio
+              </a>
+              <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id="example1">
+                <div class="modal-dialog modal-sm">
+                  <div class="modal-content">
+                    <div class="modal-footer">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Modal title</h4>
+                      </div>
+                      <div class="modal-body">
+                        <p>One fine body…</p>
+                      </div>
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
                 </div>
-                <div class="modal-body">
-                  <p>One fine body…</p>
-                </div>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
               </div>
+
             </div>
+
           </div>
         </div>
       </div>
@@ -92,7 +96,6 @@
                     <div class="well btn" data-toggle="modal" data-target="#example2">
                       Example User Story
                     </div>
-
                     <!--id here must match data-target-->
                     <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id="example2">
                       <div class="modal-dialog modal-sm">
