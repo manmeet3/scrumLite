@@ -1,110 +1,59 @@
+
 {{extend 'layout.html'}}
 
 
 {{ if auth.is_logged_in(): }}
-  <div class="jumbotron">
-    <h2>Welcome back, {{=auth.user.first_name}} </h2>
-  </div>
+<div class="container">
 
-<<<<<<< HEAD
-
-  
-=======
-  <div class="container">
-    <div class="row">
-
-      <div class="col-md-3">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">Product Backlog</h3>
-          </div>
-          <div class="panel-body">
-            <!--Product Backlogs-->
-            <div class="panel panel-default">
-            <div class="panel-body">
-              Example backlog story
-            </div>
-            </div>
-          </div>
-        </div>
+  <div class="row">
+    <div class="col-md-3">
+      <a href="#" class="thumbnail">
+        <img src="../static/images/usr.png" alt="...">
+      </a>
+      <div class="panel panel-default">
+      <div class="panel-body">
+        Team: <!-- Insert code here to display team name--> <br>
+        Role: <!-- Insert code here to display role name-->
       </div>
-
-      <div class="col-md-9">
-        <div class="panel panel-default">
-          <table class="table">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>User Story</th>
-                <th>To Do</th>
-                <th>In Progress</th>
-                <th>Completed</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <!--Priority Number-->
-                <td>1</td>
-
-                <!--User Stories-->
-                <td>
-                  <div class="panel panel-default">
-                  <div class="panel-body">
-                    Example User Story
-                  </div>
-                  </div>
-                </td>
-                <!--To Do-->
-                <td>
-                  <div class="panel panel-default">
-                  <div class="panel-body">
-                    Example Task 1
-                  </div>
-                  </div>
-                  <div class="panel panel-default">
-                  <div class="panel-body">
-                    Example Task 2
-                  </div>
-                  </div>
-                </td>
-                <!--In Progress-->
-                <td>
-                  <div class="panel panel-default">
-                  <div class="panel-body">
-                    Example Task 3
-                  </div>
-                  </div>
-                </td>
-                <!--Completed-->
-                <td>
-
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
       </div>
     </div>
+
+    <div class="col-md-9">
+    <div class="jumbotron">
+      <h1>Hi, {{=auth.user.first_name}} </h1>
+      <p>Welcome back!<p>
+    </div>
+    </div>
   </div>
->>>>>>> master
+
+
+
+
+
+
 
 
   <div class="row">
-  <div class="col-lg-12">
+  <div class="col-md-12">
     <div class="btn-group">
-      <button type="button" class="btn btn-default">{{=A('Current Sprint', _href=URL('default', 'show_sprint'))}}</button>
-      <button type="button" class="btn btn-default">{{=A('New Sprint', _href=URL('sprint', 'create_sprint'))}}</button>
-      <button type="button" class="btn btn-default">{{=A('View Sprints', _href=URL('sprint', 'view_all'))}}</button>
-      <button type="button" class="btn btn-default">{{=A('New Story', _href=URL('story', 'new_story'))}}</button>
-      <button type="button" class="btn btn-default">{{=A('Prod. Backlog', _href=URL('team', 'backlog'))}}</button><br><br><br>
-      <button type="button" class="btn btn-default">{{=A('View Team', _href=URL('team', 'viewteam'))}}</button>
-      <button type="button" class="btn btn-default">{{=A('New Team', _href=URL('team', 'createteam'))}}</button>
-      <button type="button" class="btn btn-default">{{=A('Invite Members', _href=URL('team', 'invitemembers'))}}</button>
-      <button type="button" class="btn btn-default">{{=A('Accept Invites', _href=URL('team', 'acceptinvite'))}}</button>
-      <button type="button" class="btn btn-default">{{=A('Manage Team', _href=URL('team', 'manageteam'))}}</button>
+      <a class="btn btn-default" href="{{=URL('default','show_sprint')}}">Current Sprint</a>
+      <a class="btn btn-default" href="{{=URL('sprint', 'create_sprint')}}">Create Sprint</a>
+      <a class="btn btn-default" href="{{=URL('sprint', 'view_all')}}">View Sprints</a>
+      <a class="btn btn-default" href="{{=URL('story', 'new_story')}}">New Story</a>
+      <a class="btn btn-default" href="{{=URL('team', 'backlog')}}">Prod. Backlog</a>
+      <a class="btn btn-default" href="{{=URL('team', 'viewteam')}}">View Team</a>
+      <a class="btn btn-default" href="{{=URL('team', 'createteam')}}">Create Team</a>
+      <a class="btn btn-default" href="{{=URL('team','invitemembers')}}">Invite Members</a>
+      <a class="btn btn-default" href="{{=URL('team', 'acceptinvite')}}">Accept Invites</a>
+      <a class="btn btn-default" href="{{=URL('team', 'manageteam')}}">Manage Team</a>
     </div>
   </div>
   </div>
+
+</div>
+
+
+
 
 
 
