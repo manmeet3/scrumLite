@@ -82,3 +82,23 @@ def upcoming_tasks():
             else:
                 upcoming.append(task.id)
     return dict(tasks=upcoming)
+
+@auth.requires_login()
+def appointment_read():
+    me=auth.user_id
+    group=db(db.membership.user_id==me).select().first()
+    groupid=group.group_id
+    myteam=db(db.Team.team_group==groupid).select().first()
+    mytasks=db(db.Task.assigned==me).select()
+    mysprints=db(db.Sprint.team_id==myteam).select()
+    return dict(mytasks=mytasks,mysprints=mysprints)
+
+@auth.requires_login()
+def mycal():
+    me=auth.user_id
+    group=db(db.membership.user_id==me).select().first()
+    groupid=group.group_id
+    myteam=db(db.Team.team_group==groupid).select().first()
+    mytasks=db(db.Task.assigned==me).select()
+    mysprints=db(db.Sprint.team_id==myteam).select()
+    return dict(mytasks=mytasks,mysprints=mysprints)
