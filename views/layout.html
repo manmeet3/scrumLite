@@ -45,6 +45,7 @@
     middle_column = {0: mc0, 1: mc1, 2: mc2}[
     (left_sidebar_enabled and 1 or 0)+(right_sidebar_enabled and 1 or 0)]
     }}
+
   </head>
   <body>
     <!--[if lt IE 8]><p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p><![endif]-->
@@ -70,7 +71,7 @@
             <ul class="dropdown-menu" role="menu">
               <li>{{ =A('Create Sprint', _href=URL('sprint', 'create_sprint')) }}</li>
               <li>{{ =A('View All', _href=URL('sprint', 'view_all')) }}</li>
-              <li>{{ =A('View Current', _href=URL('sprint', 'show_sprint')) }}</li>
+              <li>{{ =A('View Current', _href=URL('default', 'show_sprint')) }}</li>
             </ul>
           </li>
 

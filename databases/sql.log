@@ -124,3 +124,11 @@ CREATE TABLE sprint_review(
     Work_completion_rate TEXT
 );
 success!
+timestamp: 2016-03-14T22:16:47.963086
+CREATE TABLE chat(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    me_from CHAR(512),
+    me_body TEXT,
+    me_html TEXT
+);
+success!

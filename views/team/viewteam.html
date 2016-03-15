@@ -1,8 +1,12 @@
 {{extend 'layout.html'}}
+{{if team is None:}}
+<p> You don't belong to a team </p>
+{{else:}}
 <h1>Team: {{=team.team_name}}</h1>
 {{for row in rows:}}
 <p>{{if team.product_owner==row.id:}} <h4>Prod. Owner, {{pass}}</h4><b>First</b>: {{=row.first_name}}  </p>
 <p> <b>Last</b>: {{=row.last_name}} </p>
 <p> <b>Email</b>: {{=row.email}} </p>
 <br>
+{{pass}}
 {{pass}}
