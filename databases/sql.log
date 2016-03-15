@@ -1,0 +1,134 @@
+timestamp: 2016-03-08T10:06:56.378567
+CREATE TABLE auth_user(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    first_name CHAR(128),
+    last_name CHAR(128),
+    email CHAR(512),
+    password CHAR(512),
+    registration_key CHAR(512),
+    reset_password_key CHAR(512),
+    registration_id CHAR(512)
+);
+success!
+timestamp: 2016-03-08T10:06:56.380866
+CREATE TABLE auth_group(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    role CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2016-03-08T10:06:56.383230
+CREATE TABLE auth_membership(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE  
+);
+success!
+timestamp: 2016-03-08T10:06:56.385643
+CREATE TABLE auth_permission(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE  ,
+    name CHAR(512),
+    table_name CHAR(512),
+    record_id INTEGER
+);
+success!
+timestamp: 2016-03-08T10:06:56.388031
+CREATE TABLE auth_event(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    time_stamp TIMESTAMP,
+    client_ip CHAR(512),
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    origin CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2016-03-08T10:06:56.389918
+CREATE TABLE auth_cas(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    created_on TIMESTAMP,
+    service CHAR(512),
+    ticket CHAR(512),
+    renew CHAR(1)
+);
+success!
+timestamp: 2016-03-08T10:06:56.393271
+CREATE TABLE Team(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    product_owner INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    product_name CHAR(512),
+    team_name CHAR(512),
+    team_leader INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    team_group INTEGER REFERENCES auth_group (id) ON DELETE CASCADE  ,
+    product_description TEXT
+);
+success!
+timestamp: 2016-03-08T10:06:56.395384
+CREATE TABLE Sprint(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    sprint_goal CHAR(512),
+    start_date DATE,
+    end_date DATE,
+    team_id INTEGER REFERENCES Team (id) ON DELETE CASCADE  
+);
+success!
+timestamp: 2016-03-08T10:06:56.397799
+CREATE TABLE Story(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    backlogged CHAR(1),
+    sprint_id INTEGER REFERENCES Sprint (id) ON DELETE CASCADE  ,
+    team_id INTEGER REFERENCES Team (id) ON DELETE CASCADE  ,
+    user_story TEXT,
+    story_points INTEGER,
+    completed CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  
+);
+success!
+timestamp: 2016-03-08T10:06:56.399659
+CREATE TABLE Task(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name CHAR(512),
+    status CHAR(512),
+    assigned INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    estimated_completion_time TIMESTAMP,
+    task_points INTEGER,
+    story_id INTEGER REFERENCES Story (id) ON DELETE CASCADE  
+);
+success!
+timestamp: 2016-03-08T10:06:56.401660
+CREATE TABLE Invitations(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    to_user INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    from_user INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    from_group INTEGER REFERENCES auth_group (id) ON DELETE CASCADE  
+);
+success!
+timestamp: 2016-03-08T10:06:56.406076
+CREATE TABLE sprint_plan(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    Heading CHAR(512),
+    Goal TEXT,
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  
+);
+success!
+timestamp: 2016-03-08T10:06:56.407760
+CREATE TABLE sprint_review(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    Things_that_did_not_work TEXT,
+    Things_that_worked TEXT,
+    Things_to_keep_doing TEXT,
+    Unfinished_work TEXT,
+    Work_completion_rate TEXT
+);
+success!
+timestamp: 2016-03-14T22:16:47.963086
+CREATE TABLE chat(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    me_from CHAR(512),
+    me_body TEXT,
+    me_html TEXT
+);
+success!

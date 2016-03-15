@@ -85,7 +85,12 @@ def manageteam():
 
 @auth.requires_login()
 def viewteam():
-    groupid = auth.user_groups.keys()[0]
+    groupid = 0
+    if auth.user_groups.keys():
+      print 'now'
+      groupid = auth.user_groups.keys()[0]
+    else:
+      return dict(team=None)
     team = db(db.Team.team_group == groupid).select().first()
     rows = db(db.auth_membership.group_id == groupid).select()
     rows2=None;
