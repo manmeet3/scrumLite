@@ -90,12 +90,11 @@ db.define_table('Invitations',
     Field('from_user', 'reference auth_user', default=auth.user_id),
     Field('from_group', 'reference auth_group'))
 
-<<<<<<< HEAD
+
 db.define_table('TSR',Field('Team','integer', writable=False),Field('Time_Period'),Field('Weekly_Summarization', 'text', requires = IS_NOT_EMPTY()))
-=======
+
 db.define_table('chat',
         Field('me_from'),
         Field('me_body', 'text'),
         Field('me_html', 'text'),
         )
->>>>>>> manmeet

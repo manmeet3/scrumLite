@@ -67,38 +67,3 @@ def show_task():
         response.flash = 'task changed'
         redirect(URL('story', 'show_story', args=task_story.id))
     return dict(task=this_task, story=task_story, form=form)
-
-@auth.requires_login()
-def upcoming_tasks():
-    import datetime
-    today = datetime.date.today()
-    margin = datetime.timedelta(days = 5)
-    tasks=db(db.Task.assigned==auth.user_id).select()
-    upcoming=None
-    for task in tasks:
-        if (today <= task.estimated_completion_time.date() <= today + margin):
-            if upcoming is None:
-                upcoming=[task.id]
-            else:
-                upcoming.append(task.id)
-    return dict(tasks=upcoming)
-
-@auth.requires_login()
-def appointment_read():
-    me=auth.user_id
-    group=db(db.membership.user_id==me).select().first()
-    groupid=group.group_id
-    myteam=db(db.Team.team_group==groupid).select().first()
-    mytasks=db(db.Task.assigned==me).select()
-    mysprints=db(db.Sprint.team_id==myteam).select()
-    return dict(mytasks=mytasks,mysprints=mysprints)
-
-@auth.requires_login()
-def mycal():
-    me=auth.user_id
-    group=db(db.auth_membership.user_id==me).select().first()
-    groupid=group.group_id
-    myteam=db(db.Team.team_group==groupid).select().first()
-    mytasks=db(db.Task.assigned==me).select()
-    mysprints=db(db.Sprint.team_id==myteam).select()
-    return dict(mytasks=mytasks,mysprints=mysprints)

@@ -1,0 +1,26 @@
+{{extend 'layout.html'}}
+<h1>My calendar</h1>
+<script type='text/javascript'>
+  jQuery(document).ready(function() {
+
+        var date = new Date();
+        var d = date.getDate();
+        var m = date.getMonth();
+        var y = date.getFullYear();
+
+        $('#calendar').fullCalendar({
+            editable: false,
+            events: [
+                {{for i,mytask in enumerate(mytasks):}}{{if i!=0:}},{{pass}}
+                {
+                    title: '{{=mytask.name}}',
+                    allDay: false,
+                    due: new Date('{{=mytask.estimated_completion_time.strftime('%B %d, %Y %H:%M:%S')}}')
+                }
+            {{pass}}
+            ]
+        });
+
+    });
+</script>
+<div id='calendar'></div>

@@ -1,0 +1,12 @@
+{{extend 'layout.html'}}
+<h1>Your Upcoming Tasks</h1>
+{{for task in tasks:}}
+    {{=db.Task[task].estimated_completion_time}} {{=db.Task[task].name}}<br><br>
+{{pass}
+
+{{response.files.append(URL(r=request,c='static',f='js/ui.core.js'))}}
+{{response.files.append(URL(r=request,c='static',f='js/ui.draggable.js'))}}
+{{response.files.append(URL(r=request,c='static',f='js/ui.resizable.js'))}}
+{{response.files.append(URL(r=request,c='static',f='js/fullcalendar.min.js'))}}
+{{response.files.append(URL(r=request,c='static',f='css/fullcalendar.css'))}}
+{{extend 'layout.html'}}

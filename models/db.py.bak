@@ -11,6 +11,8 @@ plugins = PluginManager()
 
 ## create all tables needed by auth if not custom tables
 auth.define_tables(username=False, signature=False)
+auth.settings.extra_fields['auth_user']= [Field('Pic','upload'),Field('About_Me','text')]
+
 
 ## configure auth policy
 auth.settings.registration_requires_verification = False
@@ -36,6 +38,7 @@ if auth.user_id != None:
     setGroup=auth.user_groups.copy()
 elif auth.user_id is None:
     setGroup=["None","You Need to Log In"]
+
 
 db.define_table('Team',
   Field('product_owner', 'reference auth_user', default=auth.user_id, writable = False),
@@ -86,3 +89,12 @@ db.define_table('Invitations',
     Field('to_user', 'reference auth_user'),
     Field('from_user', 'reference auth_user', default=auth.user_id),
     Field('from_group', 'reference auth_group'))
+
+
+db.define_table('TSR',Field('Team','integer', writable=False),Field('Time_Period'),Field('Weekly_Summarization', 'text', requires = IS_NOT_EMPTY()))
+
+db.define_table('chat',
+        Field('me_from'),
+        Field('me_body', 'text'),
+        Field('me_html', 'text'),
+        )
