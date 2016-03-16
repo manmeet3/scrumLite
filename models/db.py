@@ -85,6 +85,14 @@ db.define_table('Task',
   Field('task_points', 'integer', requires=IS_IN_SET(['0','1','2','3','5','8','13','21'])),
   Field('story_id', 'reference Story')
   )
+
+db.define_table('Comments',
+  Field('task_id', 'reference Task'),
+  Field('date', 'datetime', default=request.now),
+  Field('from_user', 'reference auth_user', default=auth.user_id),
+  Field('comment', 'text', requires=IS_NOT_EMPTY())
+  )
+
 if auth.user_groups.keys():
       query = ((db.auth_group.id==auth.user_groups.keys()[0]) & (db.auth_group.id==db.auth_membership.group_id) & (db.auth_membership.user_id==db.auth_user.id))
       db.Task.assigned.requires=IS_EMPTY_OR(IS_IN_DB(db(query), db.auth_user, '%(first_name)s'))
@@ -102,4 +110,3 @@ db.define_table('chat',
         Field('me_body', 'text'),
         Field('me_html', 'text')
         )
-

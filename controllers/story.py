@@ -65,10 +65,15 @@ def show_task():
     this_task = db.Task(request.args(0,cast=int)) or redirect(URL('index'))
     task_story = db.Story(this_task.story_id)
     form = SQLFORM(db.Task, this_task, showid=False, fields=['status', 'description', 'task_points', 'assigned'])
+    this_comments = db(db.Comments.task_id == this_task).select()
+    comments_form = SQLFORM(db.Comments, fields=['comment'])
+    comments_form.vars.task_id = this_task
+    if comments_form.process().accepted:
+        response.flash = 'added comment'
     if form.process().accepted:
         response.flash = 'task changed'
         redirect(URL('story', 'show_story', args=task_story.id))
-    return dict(task=this_task, story=task_story, form=form)
+    return dict(task=this_task, story=task_story, form=form, this_comments=this_comments, comments_form=comments_form)
 
 def move_to_backlog():
     this_story = db.Story(request.args(0,cast=int)) or redirect(URL('index'))
