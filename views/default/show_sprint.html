@@ -28,6 +28,15 @@
                     url: '{{=URL('appointment_read',args=task.id)}}'
                 }
             {{pass}}
+                ,
+                {
+                    title: 'Sprint: {{=sprint.sprint_name}}',
+                    allDay: false,
+                    start: new Date('{{=sprint.start_date.strftime('%B %d, %Y %H:%M:%S')}}'),
+                    end: new Date('{{=sprint.end_date.strftime('%B %d, %Y %H:%M:%S')}}'),
+                    url: '{{=URL('appointment_read',args=sprint.id)}}'
+                }
+            {{pass}}
             ]
         });
 
@@ -181,7 +190,6 @@
 {{=LOAD('plugin_google_chart','plugin_google_chart.load',ajax=False,
         user_signature=True, vars={'type':'line','data_url':data_url,
         'options_dict':options})}}
-{{print "load returned"}}
 </div>
 
 
