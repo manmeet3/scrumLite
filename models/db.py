@@ -1,9 +1,12 @@
+from gluon.tools import Auth, Service, PluginManager
+
 from gluon.contrib.appconfig import AppConfig
+import gevent
 myconf = AppConfig(reload=True)
 
 db = DAL("sqlite://storage.sqlite")
 
-from gluon.tools import Auth, Service, PluginManager
+
 
 auth = Auth(db)
 service = Service()
@@ -76,6 +79,7 @@ db.define_table('Task',
   Field('name', requires = IS_NOT_EMPTY()),
   Field('status','string', requires=IS_IN_SET(["To do", "In progress", "Done"]), default="To do"),
   Field('assigned', 'reference auth_user', default=None),
+  Field('task_creation_time', 'datetime', default=request.now, writable = False),
   Field('estimated_completion_time', 'datetime', requires = IS_DATETIME()),
   Field('task_points', 'integer', requires=IS_IN_SET(['0','1','2','3','5','8','13','21'])),
   Field('story_id', 'reference Story')
@@ -90,12 +94,11 @@ db.define_table('Invitations',
     Field('from_user', 'reference auth_user', default=auth.user_id),
     Field('from_group', 'reference auth_group'))
 
-<<<<<<< HEAD
-db.define_table('TSR',Field('Team','integer', writable=False),Field('Time_Period'),Field('Weekly_Summarization', 'text', requires = IS_NOT_EMPTY()))
-=======
+#db.define_table('TSR',Field('Team','integer', writable=False),Field('Time_Period'),Field('Weekly_Summarization', 'text', requires = IS_NOT_EMPTY()))
+
 db.define_table('chat',
         Field('me_from'),
         Field('me_body', 'text'),
-        Field('me_html', 'text'),
+        Field('me_html', 'text')
         )
->>>>>>> manmeet
+

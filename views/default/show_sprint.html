@@ -23,6 +23,7 @@
                 {
                     title: '{{=task.name}}',
                     allDay: false,
+                    start: new Date('{{=task.task_creation_time.strftime('%B %d, %Y %H:%M:%S')}}'),
                     end: new Date('{{=task.estimated_completion_time.strftime('%B %d, %Y %H:%M:%S')}}'),
                     url: '{{=URL('appointment_read',args=task.id)}}'
                 }
@@ -192,9 +193,9 @@
 
 
 
-<!--  UNCOMMENT THE DIV BELOW TO SHOW CALENDAR
+<!--  UNCOMMENT THE DIV BELOW TO SHOW CALENDAR -->
 
 <div id='calendar'></div> 
 
--->
+
 
