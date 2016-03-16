@@ -2,7 +2,7 @@
 <h3> Showing All Sprints </h3>
 {{if sprints is not None:}}
 {{for sprint in sprints:}}
-{{=LI(A(sprint.sprint_goal, _href=URL('sprint', 'show_sprint', args=sprint.id)))}} <b>{{=sprint.start_date}}</b>  to <b>{{=sprint.end_date}}</b>
+{{=LI(A(sprint.sprint_name, _href=URL('sprint', 'show_sprint', args=sprint.id)))}} <b>{{=sprint.start_date}}</b>  to <b>{{=sprint.end_date}}</b>
 {{pass}}
 {{else:}}
 <p> You don't belong to a team</p>

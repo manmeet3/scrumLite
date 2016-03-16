@@ -6,11 +6,12 @@
 <p>{{=story.user_story}}</p>
 <p> <b>Story points</b>: {{=story.story_points}}</p>
 
+{{if story.backlogged == False:}}
 <h2>{{=LI(A("Move this story to the backlog", _href=URL("move_to_backlog", args=story.id)))}}</h2>
-
+{{else:}}
 <h2> Assign Story to Sprint:</h2>
 {{=movestory}}
-
+{{pass}}
 <h2> Tasks </h2>
 {{for task in tasks:}}
 <ul>

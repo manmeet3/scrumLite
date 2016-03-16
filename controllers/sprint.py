@@ -6,7 +6,7 @@ def create_sprint():
     else:
       response.flash = 'null user group, sprint will NOT save'
       #redirect(URL('default', 'index'))
-    form = SQLFORM(db.Sprint, fields=['sprint_goal', 'start_date', 'end_date'])
+    form = SQLFORM(db.Sprint, fields=['sprint_name', 'start_date', 'end_date'])
     if form.process().accepted:
         response.flash = 'Sprint created'
         redirect(URL('default','index'))

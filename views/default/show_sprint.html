@@ -36,7 +36,7 @@
 
 </head>
 <h4> Sprint Info: </h4>
-  <p> <b>Name</b>: {{=A(sprint.sprint_goal, _href=URL('sprint', 'show_sprint', args=sprint.id))}}</p>
+  <p> <b>Name</b>: {{=A(sprint.sprint_name, _href=URL('sprint', 'show_sprint', args=sprint.id))}}</p>
   <p> <b>End Date</b>: {{=sprint.end_date}}
 <!--Product Backlog-->
     <div class="row">
@@ -191,7 +191,4 @@
 
 <!--  UNCOMMENT THE DIV BELOW TO SHOW CALENDAR -->
 
-<div id='calendar'></div> 
-
-
-
+<div id='calendar'></div>

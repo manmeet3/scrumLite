@@ -53,7 +53,7 @@ def show_story():
 
   if auth.user_groups.keys():
     this_team_sprints = ((auth.user_groups.keys()[0]==db.Team.team_group) & (db.Sprint.team_id==db.Team.id))
-    db.Story.sprint_id.requires=IS_EMPTY_OR(IS_IN_DB(db(this_team_sprints), 'Sprint.id', '%(sprint_goal)s'))
+    db.Story.sprint_id.requires=IS_EMPTY_OR(IS_IN_DB(db(this_team_sprints), 'Sprint.id', '%(sprint_name)s'))
   movestory=SQLFORM(db.Story, this_story, showid=False, fields=['sprint_id'])
   if movestory.process().accepted:
      this_story.update_record(backlogged='False')
@@ -79,3 +79,4 @@ def move_to_backlog():
     this_story = db.Story(request.args(0,cast=int)) or redirect(URL('index'))
     this_story.update_record(backlogged='True')
     this_story.update_record(sprint_id=None)
+    redirect(URL('story', 'show_story', args=request.args(0,cast=int)))
