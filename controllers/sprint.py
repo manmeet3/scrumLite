@@ -1,4 +1,10 @@
-@auth.requires_login()
+def validate_team_member():
+    if len(auth.user_groups.keys()) < 1:
+        return False
+    else:
+        return True
+
+@auth.requires(lambda: validate_team_member())
 def create_sprint():
     if auth.user_groups.keys():
       db.Sprint.team_id.default = auth.user_groups.keys()[0]

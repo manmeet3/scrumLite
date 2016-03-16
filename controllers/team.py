@@ -1,6 +1,8 @@
 # helper function to be called by the @auth.requires() decorator
 def validate_product_owner():
     # Use this query to get the group id of caller
+    if len(auth.user_groups.keys()) < 1:
+        return False
     group_id = auth.user_groups.keys()[0]
     team = db(db.Team.team_group == group_id).select().first()
     if team.product_owner == auth.user.id:
@@ -11,6 +13,10 @@ def validate_product_owner():
 # Queries the database to see if the user exists
 def validateuser(form):
     fullname = form.vars.name.split()
+    if len(fullname) < 2:
+        form.errors = True
+        response.flash = 'Please enter the first and last name of the user'
+        return
     fname = fullname[0]
     lname = fullname[1]
     rows = db((db.auth_user.first_name == fname)&

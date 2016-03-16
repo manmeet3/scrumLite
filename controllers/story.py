@@ -1,6 +1,11 @@
-@auth.requires_login()
+def validate_team_member():
+    if len(auth.user_groups.keys()) < 1:
+        return False
+    else:
+        return True
+
+@auth.requires(lambda: validate_team_member())
 def new_story():
-    print "new_story called"
     if auth.user_groups.keys():
       db.Story.team_id.default = auth.user_groups.keys()[0]
     else:
