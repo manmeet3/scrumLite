@@ -87,7 +87,7 @@ db.define_table('Comments',
   Field('task_id', 'reference Task'),
   Field('date', 'datetime', default=request.now),
   Field('from_user', 'reference auth_user', default=auth.user_id),
-  Field('comment', 'text', requires=IS_NOT_EMPTY())
+  Field('comment', 'string', requires=IS_NOT_EMPTY())
   )
 
 if auth.user_groups.keys():

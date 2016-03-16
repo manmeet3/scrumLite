@@ -1,11 +1,13 @@
 {{extend 'layout.html'}}
-<h2>Task:</h2> 
+<h2>Task:</h2>
 <p> Name: <b>{{=task.name}}</b></p>
 <p> Description: <b>{{=task.description}}</b></p>
 <p> Task points assigned: <b>{{=task.task_points}}</b></p>
+<p> Status: <b>{{=task.status}}</b></p>
+<p> Assigned: <b>{{=task.assigned.first_name}} {{=task.assigned.last_name}}</b></p>
+<button>{{=A('Edit', _href=URL("edit_task", args=task.id))}}</button>
+<br>
 <h2> Associated Story: </h2>   {{=LI(A(story.user_story, _href=URL("show_story", args=story.id)))}}
-<h4> Edit Task </h4>
-{{=form}}
 <br><h2>Comments:</h2>
 {{for comment in this_comments:}}
 <p><b>Name: </b> {{=comment.from_user.first_name}} {{=comment.from_user.last_name}}<br>
