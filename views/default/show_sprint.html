@@ -55,7 +55,7 @@
               <a href="#" class="list-group-item" data-toggle="modal" data-target="#example1">
             {{=story.user_story}}
           </a>
-              <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id="example1">
+             <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id="example1">
                 <div class="modal-dialog modal-sm">
                   <div class="modal-content">
                     <div class="modal-footer">
@@ -72,10 +72,9 @@
                   </div>
                 </div>
               </div>
-            {{pass}}
-            {{pass}}
             </div>
-
+            {{pass}}
+            {{pass}}
           </div>
         </div>
       </div>
@@ -142,8 +141,7 @@
 
               {{pass}}
                   </td>
-
-                   
+                    
                   <!--In Progress-->
                   <td>
                     {{for task in tasks:}}
@@ -177,14 +175,13 @@
       </div>
     </div>
 
-
 {{ data_url = URL('plugin_google_chart','plugin_return_data.json',user_signature=True)}}
 {{ options ={'title':'Days vs. Story Points','width':800,'height':0, 'backgroundColor': '#FFFFFF'} }}
 <div class="span6">
-{{=LOAD('plugin_google_chart','plugin_google_chart.load',ajax=True,
-        user_signature=True,vars={'type':'line','data_url':data_url,
+{{=LOAD('plugin_google_chart','plugin_google_chart.load',ajax=False,
+        user_signature=True, vars={'type':'line','data_url':data_url,
         'options_dict':options})}}
-
+{{print "load returned"}}
 </div>
 
 

@@ -1,12 +1,9 @@
-from gluon.tools import Auth, Service, PluginManager
-
 from gluon.contrib.appconfig import AppConfig
-import gevent
 myconf = AppConfig(reload=True)
 
 db = DAL("sqlite://storage.sqlite")
 
-
+from gluon.tools import Auth, Service, PluginManager
 
 auth = Auth(db)
 service = Service()
