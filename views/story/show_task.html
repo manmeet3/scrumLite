@@ -1,6 +1,7 @@
 {{extend 'layout.html'}}
 <h2>Task:</h2> 
 <p> Name: <b>{{=task.name}}</b></p>
+<p> Description: <b>{{=task.description}}</b></p>
 <p> Task points assigned: <b>{{=task.task_points}}</b></p>
 <h3> from story: </h3>   {{=LI(A(story.user_story, _href=URL("show_story", args=story.id)))}}
 <h4> Re-categorize Task </h4>

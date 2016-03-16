@@ -6,7 +6,9 @@
 <p>{{=story.user_story}}</p>
 <p> <b>Story points</b>: {{=story.story_points}}</p>
 
-<h2> Move Story:</h2>
+<h2>{{=LI(A("Move this story to the backlog", _href=URL("move_to_backlog", args=story.id)))}}</h2>
+
+<h2> Assign Story to Sprint:</h2>
 {{=movestory}}
 
 <h2> Tasks </h2>

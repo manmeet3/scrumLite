@@ -77,6 +77,7 @@ db.Story.created_by.writable = False
 
 db.define_table('Task',
   Field('name', requires = IS_NOT_EMPTY()),
+  Field('description', 'text', requires = IS_NOT_EMPTY()),
   Field('status','string', requires=IS_IN_SET(["To do", "In progress", "Done"]), default="To do"),
   Field('assigned', 'reference auth_user', default=None),
   Field('task_creation_time', 'datetime', default=request.now, writable = False),
