@@ -99,7 +99,11 @@ def viewteam():
             rows2=db(db.auth_user.id==row.user_id).select()
         else:
             rows2=rows2&(db(db.auth_user.id==row.user_id).select())
-    return dict(rows=rows2, team=team)
+    images = db(db.images.user==auth.user_id).select()
+    print images
+    if images:
+        images = db(db.images.user==auth.user_id).select()[0]
+    return dict(rows=rows2, team=team,images=images)
 
 @auth.requires(lambda: validate_product_owner())
 def removemember():
@@ -142,3 +146,6 @@ def reviewtsr():
     you=db(db.auth_membership.user_id==auth.user_id).select().first()
     tsrs=db(db.TSR.Team==you.group_id).select()
     return dict(rows=tsrs)
+
+def download():
+    return response.download(request, db)

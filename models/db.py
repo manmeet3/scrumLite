@@ -1,12 +1,10 @@
 from gluon.tools import Auth, Service, PluginManager
-
+import os
 from gluon.contrib.appconfig import AppConfig
 import gevent
 myconf = AppConfig(reload=True)
 
 db = DAL("sqlite://storage.sqlite")
-
-
 
 auth = Auth(db)
 service = Service()
@@ -14,7 +12,7 @@ plugins = PluginManager()
 
 ## create all tables needed by auth if not custom tables
 auth.define_tables(username=False, signature=False)
-auth.settings.extra_fields['auth_user']= [Field('Pic','upload'),Field('About_Me','text')]
+#auth.settings.extra_fields['auth_user']= [Field('Pic','upload'),Field('About_Me','text')]
 
 
 ## configure auth policy
@@ -31,17 +29,23 @@ mail.settings.server = 'logging' if request.is_local else myconf.take('smtp.serv
 mail.settings.sender = myconf.take('smtp.sender')
 mail.settings.login = myconf.take('smtp.login')
 
-
-## configure auth policy
-auth.settings.registration_requires_verification = False
-auth.settings.registration_requires_approval = False
-auth.settings.reset_password_requires_verification = True
-
 if auth.user_id != None:
     setGroup=auth.user_groups.copy()
 elif auth.user_id is None:
     setGroup=["None","You Need to Log In"]
+    
+from gluon.contrib.login_methods.rpx_account import RPXAccount
+auth.settings.actions_disabled=['register', 'change_password','request_reset_password']
+auth.settings.login_form = RPXAccount(request,
+    api_key='73dab71b7fdfc0f49c10f8e64ee6a5adcf66b2c3',
+    domain='ScrumLite',
+    url = "http://scrumlite.rpxnow.com/%s/default/user/login" % request.application)
 
+db.define_table('images',
+    Field('image', 'upload', uploadfolder=os.path.join(request.folder,'uploads')),
+    Field('user',db.auth_user))
+
+db.images.user.writable = db.images.user.readable = False
 
 db.define_table('Team',
   Field('product_owner', 'reference auth_user', default=auth.user_id, writable = False),
@@ -99,6 +103,4 @@ db.define_table('Invitations',
 db.define_table('chat',
         Field('me_from'),
         Field('me_body', 'text'),
-        Field('me_html', 'text')
-        )
-
+        Field('me_html', 'text'))

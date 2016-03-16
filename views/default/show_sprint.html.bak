@@ -1,0 +1,197 @@
+{{response.files.append(URL(r=request,c='static',f='js/ui.core.js'))}}
+{{response.files.append(URL(r=request,c='static',f='js/ui.draggable.js'))}}
+{{response.files.append(URL(r=request,c='static',f='js/ui.resizable.js'))}}
+{{response.files.append(URL(r=request,c='static',f='js/fullcalendar.min.js'))}}
+{{response.files.append(URL(r=request,c='static',f='css/fullcalendar.css'))}}
+{{extend 'layout.html'}}
+<head>
+
+<script src="https://www.google.com/jsapi" type="text/javascript"></script>
+
+<script type='text/javascript'>
+  jQuery(document).ready(function() {
+
+        var date = new Date();
+        var d = date.getDate();
+        var m = date.getMonth();
+        var y = date.getFullYear();
+
+        $('#calendar').fullCalendar({
+            editable: true,
+            events: [
+            {{for i,task in enumerate(tasks):}}{{if i!=0:}},{{pass}}
+                {
+                    title: '{{=task.name}}',
+                    allDay: false,
+                    start: new Date('{{=task.task_creation_time.strftime('%B %d, %Y %H:%M:%S')}}'),
+                    end: new Date('{{=task.estimated_completion_time.strftime('%B %d, %Y %H:%M:%S')}}'),
+                    url: '{{=URL('appointment_read',args=task.id)}}'
+                }
+            {{pass}}
+            ]
+        });
+
+    });
+</script>
+
+</head>
+<h4> Sprint Info: </h4>
+  <p> <b>Name</b>: {{=A(sprint.sprint_goal, _href=URL('sprint', 'show_sprint', args=sprint.id))}}</p>
+  <p> <b>End Date</b>: {{=sprint.end_date}}
+<!--Product Backlog-->
+    <div class="row">
+      <div class="col-md-3">
+
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">Product Backlog</h3>
+          </div>
+
+          <div class="panel-body">
+            <!--Product Backlogs-->
+            <div class="list-group">
+            {{if len(backlogs) != 0:}}
+            {{for story in backlogs:}}
+              <a href="#" class="list-group-item" data-toggle="modal" data-target="#example1">
+            {{=story.user_story}}
+          </a>
+              <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id="example1">
+                <div class="modal-dialog modal-sm">
+                  <div class="modal-content">
+                    <div class="modal-footer">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">{{=story.user_story}}</h4>
+                      </div>
+                      <div class="modal-body">
+                        <p>Team: {{=story.team_id}}</p>
+                        <p>Created By: {{=story.created_by}}</p>
+                      </div>
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {{pass}}
+            {{pass}}
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+<!--Scrumboard-->
+      <div class="col-md-9">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">User Stories and Tasks</h3>
+          </div>
+          <div class="panel-body">
+            <table class="table table-striped table-hover">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>User Story</th>
+                  <th>To Do</th>
+                  <th>In Progress</th>
+                  <th>Completed</th>
+                </tr>
+              </thead>
+               {{for story in stories:}}
+
+              <tbody>
+                <tr>
+                  <!--Priority Number-->
+                  <td>{{=story.id}}</td>
+
+                  <!--User Stories-->
+                  <td>
+                    <!--data-target and id on the modal must have same nme for animations to work-->
+                    <div class="well btn" data-toggle="modal" data-target="#example2">
+              {{=A(story.user_story, _href=URL('story', 'show_story', args=story.id))}}
+                    </div>
+                    <!--id here must match data-target-->
+                    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id="example2">
+                      <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+                          <div class="modal-footer">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span aria-hidden="true">&times;</span></button>
+                              <h4 class="modal-title">{{=story.user_story}}</h4>
+                            </div>
+                            <div class="modal-body">
+                              <p>One fine body…</p>
+                            </div>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                   <!--To Do-->
+                  <td>
+                    {{for task in tasks:}}
+              {{if task.story_id==story.id:}}
+              {{if task.status == "To do":}}
+              <div class="well btn" data-toggle="modal" data-target="#todo">
+              {{=A(task.name, _href=URL('story', 'show_task', args=task.id))}} 
+              </div><br>
+
+              {{pass}}
+              {{pass}}
+
+              {{pass}}
+                  </td>
+
+                   
+                  <!--In Progress-->
+                  <td>
+                    {{for task in tasks:}}
+              {{if task.story_id==story.id:}}
+              {{if task.status == "In progress":}}
+              <div class="well btn" data-toggle="modal" data-target="#todo">
+              {{=A(task.name, _href=URL('story', 'show_task', args=task.id))}} 
+              </div><br>
+              {{pass}}
+              {{pass}}
+              {{pass}}
+                  </td>
+                  <!--Completed-->
+                  <td>
+                {{for task in tasks:}}
+              {{if task.story_id==story.id:}}
+              {{if task.status == "Done":}}
+              <div class="well btn" data-toggle="modal" data-target="#todo">
+              {{=A(task.name, _href=URL('story', 'show_task', args=task.id))}} 
+              </div><br>
+              {{pass}}
+              {{pass}}
+              {{pass}}
+                  </td>
+                </tr>
+              </tbody>
+              {{pass}}
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+{{ data_url = URL('plugin_google_chart','plugin_return_data.json',user_signature=True)}}
+{{ options ={'title':'Days vs. Story Points','width':800,'height':0, 'backgroundColor': '#FFFFFF'} }}
+<div class="span6">
+{{=LOAD('plugin_google_chart','plugin_google_chart.load',ajax=True,
+        user_signature=True,vars={'type':'line','data_url':data_url,
+        'options_dict':options})}}
+
+</div>
+
+
+
+<!--  UNCOMMENT THE DIV BELOW TO SHOW CALENDAR -->
+
+<div id='calendar'></div> 
+
+
+

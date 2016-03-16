@@ -1,111 +1,73 @@
 {{extend 'layout.html'}}
 
-
-
 {{ if auth.is_logged_in(): }}
-  <div class="jumbotron">
-    <h2>Welcome back, {{=auth.user.first_name}} </h2>
-  </div>
-
-
-
-    <div class="panel panel-default">
-      <div class="panel-heading">Scrumboard</div>
-      <div class="panel-body">
-        <div class="row">
-        <div class="col-lg-3">
-          <div class="panel panel-default">
-            <div class="panel-heading">Backlog</div>
-            <div class="panel-body">
-              {{for story in stories:}}
-              {{=LI(A(story.user_story, _href=URL("show_story", args=story.id)))}}
-              {{pass}}
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3">
-          <div class="panel panel-default">
-            <div class="panel-heading">To do</div>
-            <div class="panel-body">
-              {{for task in tasks:}}
-              {{if task.status == "To do":}}
-              {{=LI(A(task.name, _href=URL("show_task", args=task.id)))}}
-              {{pass}}
-              {{pass}}
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3">
-          <div class="panel panel-default">
-            <div class="panel-heading">In Progress</div>
-            <div class="panel-body">
-              {{for task in tasks:}}
-              {{if task.status == "In progress":}}
-              {{=LI(A(task.name, _href=URL("show_task", args=task.id)))}}
-              {{pass}}
-              {{pass}}
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3">
-          <div class="panel panel-default">
-            <div class="panel-heading">Completed</div>
-            <div class="panel-body">
-              {{for task in tasks:}}
-              {{if task.status == "Done":}}
-              {{=LI(A(task.name, _href=URL("show_task", args=task.id)))}}
-              {{pass}}
-              {{pass}}
-            </div>
-          </div>
-        </div>
-        </div>
-      </div>
-    </div>
+<div class="container">
 
   <div class="row">
-  <div class="col-lg-12">
-    <div class="btn-group">
-      <button type="button" class="btn btn-default">
-        <a href="http://127.0.0.1:8000/scrumLite/createteam">New Team</a>
-      </button>
-      <button type="button" class="btn btn-default">
-        <a href="http://127.0.0.1:8000/scrumLite/invitemembers/invitemembers">Invite New Team Member</a>
-      </button>
-      <button type="button" class="btn btn-default">
-        <a href="http://127.0.0.1:8000/scrumLite/viewteam/viewteam">View Team</a>
-      </button>
-      <button type="button" class="btn btn-default">
-        <a href="http://127.0.0.1:8000/scrumLite/newuserstory/scrumboard">Scrum Board</a>
-      </button>
-      <button type="button" class="btn btn-default">
-        <a href="http://127.0.0.1:8000/scrumLite/createstory">New Story</a>
-      </button>
-    </div>
-  </div>
-  </div>
-
-  <div class="row">
-  <div class="col-lg-6">
-    <div class="panel panel-default">
-      <div class="panel-heading">Upcoming Deadlines</div>
+    <div class="col-md-3">
+      {{if not form:}}
+          <img width="200px" src="{{=URL('download', args=images.image)}}" />
+      {{else:}}
+          {{=form}}
+      {{pass}}
+      </a>
+      <div class="panel panel-default">
       <div class="panel-body">
-
+        Team: {{if groups:}}
+              {{=groups.role}}
+              {{pass}}
+          <br>
+        Role: {{if teams:}}
+                  {{if teams.team_leader==auth.user_id:}}
+                  Leader
+                  {{pass}}
+                  {{else:}}
+                  Developer
+              {{pass}}
+      </div>
       </div>
     </div>
-  </div>
-  <div class="col-lg-6">
-    <div class="panel panel-default">
-      <div class="panel-heading">Calendar</div>
-      <div class="panel-body">
-      </div>
+
+    <div class="col-md-9">
+    <div class="jumbotron">
+      <h1>Hi, {{=auth.user.first_name}} </h1>
+      <p>Welcome back!<p>
+    </div>
     </div>
   </div>
-  </div>
 
+{{ block content }}
+
+ <div id="body">
+    <div id="inbox">
+      {{ for message in messages: }}
+      <pre>{{ =XML(message.me_html) }}</pre>
+      {{ pass }}
+    </div>
+    <div id="input">
+    <form action="{{ =URL('message_new') }}" method="post" id="messageform">
+    <table>
+      <tr>
+        <!--td><input type="text" name="body" id="message" style="width:500px"/></td-->
+    <td><textarea name="body" id="message" style="width:500px;height:100px"></textarea></td>
+        <td style="padding-left:5px" valign="top"><input type="submit" value="Post"/></td>
+      </tr>
+    </table>
+    </form>
+    </div>
+  </div>
+    <!--script src="{{ =URL('static', 'jquery-1.6.2.min.js') }}" type="text/javascript"></script-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
+  <script>
+        var url_new_message = "{{ =URL('message_new', extension='json', user_signature=True) }}";
+        var url_update_messages = "{{ =URL('message_updates', extension='json', user_signature=True) }}";
+        var url_failed_authorization = "{{ =auth.settings.on_failed_authorization }}";
+  </script>
+  <script src="{{ =URL('static', 'chat.js') }}" type="text/javascript"></script>
+
+{{ end }}
+
+</div>
 {{ else: }}
   <div class="jumbotron">
     <h1>Welcome to scrumLite!</h1>

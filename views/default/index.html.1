@@ -1,0 +1,84 @@
+{{extend 'layout.html'}}
+
+{{ if auth.is_logged_in(): }}
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-3">
+      <a href="#" class="thumbnail">
+        <img src="/scrumLite/static/images/usr.png"/>
+      </a>
+      <div class="panel panel-default">
+      <div class="panel-body">
+        Team: {{=groups}} <br>
+        Role: <!-- Insert code here to display role name-->
+      </div>
+      </div>
+    </div>
+
+    <div class="col-md-9">
+    <div class="jumbotron">
+      <h1>Hi, {{=auth.user.first_name}} </h1>
+      <p>Welcome back!<p>
+    </div>
+    </div>
+  </div>
+
+{{ block content }}
+
+ <div id="body">
+    <div id="inbox">
+      {{ for message in messages: }}
+      <pre>{{ =XML(message.me_html) }}</pre>
+      {{ pass }}
+    </div>
+    <div id="input">
+    <form action="{{ =URL('message_new') }}" method="post" id="messageform">
+    <table>
+      <tr>
+        <!--td><input type="text" name="body" id="message" style="width:500px"/></td-->
+    <td><textarea name="body" id="message" style="width:500px;height:100px"></textarea></td>
+        <td style="padding-left:5px" valign="top"><input type="submit" value="Post"/></td>
+      </tr>
+    </table>
+    </form>
+    </div>
+  </div>
+    <!--script src="{{ =URL('static', 'jquery-1.6.2.min.js') }}" type="text/javascript"></script-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
+  <script>
+        var url_new_message = "{{ =URL('message_new', extension='json', user_signature=True) }}";
+        var url_update_messages = "{{ =URL('message_updates', extension='json', user_signature=True) }}";
+        var url_failed_authorization = "{{ =auth.settings.on_failed_authorization }}";
+  </script>
+  <script src="{{ =URL('static', 'chat.js') }}" type="text/javascript"></script>
+{{ end }}
+
+
+</div>
+
+
+
+
+
+
+{{ else: }}
+  <div class="jumbotron">
+    <h1>Welcome to scrumLite!</h1>
+    <p>An organizational tool for small to medium sized software development
+    teams.</p>
+  </div>
+  <div class="row">
+  <div class="col-lg-12">
+    <p>
+      This site was made using web2py.
+    </p>
+  </div>
+  </div>
+
+  <!-- <a href="http://127.0.0.1:8000/scrumLite/teamform/form">New Team</a><br>
+  <a href="http://127.0.0.1:8000/scrumLite/newuserstory/New_User_Story">New User Story</a><br>
+  <a href="http://127.0.0.1:8000/scrumLite/chooseteam/selectTeam">Set Current Team (Broken)</a><br>
+  <a href="http://127.0.0.1:8000/scrumLite/teamform/view_team">View Team</a><br>
+  <a href="http://127.0.0.1:8000/scrumLite/newuserstory/scrumboard">Scrum Board</a><br> -->
+{{ pass }}

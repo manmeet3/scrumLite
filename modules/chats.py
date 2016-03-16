@@ -11,7 +11,6 @@ MESSAGE_TEMPLATE = ("""<div class="message" id="m{{ =message['id'] }}">"""
 """<b>{{ =message['me_from'] }}: </b>"""
 """<pre>{{ =message['me_body'] }}</pre></div>""")
 
-
 def _create_message(db, from_, body):
     data = {'me_from': from_, 'me_body': body}
     mid = db.chat.insert(**data)
@@ -20,7 +19,6 @@ def _create_message(db, from_, body):
     data['me_html'] = render(MESSAGE_TEMPLATE, context={'message': data})
     db(db.chat.id == mid).update(me_html=data['me_html'])
     return data
-
 
 # main page that renders the chat
 def index(db):
@@ -32,7 +30,6 @@ def index(db):
     # save in session the last seen message id
     current.session.cursor = rows.last().id if rows else 0
     return dict(messages=rows)
-
 
 # Ajax call bellow.
 # When the index above is rendered it will display
@@ -51,7 +48,6 @@ def message_new(db):
     new_message_event.set()
     new_message_event.clear()
     return json(msg)
-
 
 # this will hold the request if there is no new messages
 # as soon as a there is a new message the request is finished
