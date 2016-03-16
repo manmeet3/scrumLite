@@ -46,16 +46,17 @@ db.define_table('Team',
   Field('team_name', requires = IS_NOT_EMPTY()),
   Field('team_leader', 'reference auth_user'),
   Field('team_group', 'reference auth_group'),
-  Field('product_description', 'text', requires = IS_NOT_EMPTY()))
+  Field('product_description', 'text', requires = IS_NOT_EMPTY()),
+               format='%(team_name)s')
 
 db.Team.id.readable = False
 
 db.define_table('Sprint',
-  Field('sprint_goal'),
+  Field('sprint_name'),
   Field('start_date', 'date'),
   Field('end_date', 'date'),
-  Field('team_id', 'reference Team')
-)
+  Field('team_id', 'reference Team'),
+                format='%(sprint_name)s')
 
 db.define_table('Story',
   Field('backlogged', type = 'boolean', default = 'True'),
