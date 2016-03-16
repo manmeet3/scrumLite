@@ -85,7 +85,12 @@ def manageteam():
 
 @auth.requires_login()
 def viewteam():
-    groupid = auth.user_groups.keys()[0]
+    groupid = 0
+    if auth.user_groups.keys():
+      print 'now'
+      groupid = auth.user_groups.keys()[0]
+    else:
+      return dict(team=None)
     team = db(db.Team.team_group == groupid).select().first()
     rows = db(db.auth_membership.group_id == groupid).select()
     rows2=None;
@@ -98,19 +103,21 @@ def viewteam():
 
 @auth.requires(lambda: validate_product_owner())
 def removemember():
-    the_id = request.args(0,cast=int)
-    group_id = auth.user_groups.keys()[0]
-    team = db(db.Team.team_group == group_id).select(db.Team.ALL).first()
-    member=db(db.auth_membership.user_id==the_id).select(db.auth_membership.ALL).first()
-    if (team.team_leader==member.user_id):
-        team.update(team_leader=auth.user_id)
-    if (team.product_owner!=the_id):
-        print type(member)
-        response.flash = db.auth_user[the_id].first_name+' '+db.auth_user[the_id].first_name+' has been removed from team:'+team.team_name
-        return response.render(URL('team','viewteam'))
-
+    id=request.vars.id
+    group= db(db.auth_membership.user_id==auth.user_id).select().first()
+    group_id=group.group_id
+    team = db(db.Team.team_group == group_id).select().first()
+    member=db(db.auth_membership.user_id==id)
+    mem=member.select().first()
+    if (team.team_leader != None):
+        if (team.team_leader==mem.user_id):
+            team.update_record(team_leader=auth.user_id)
+    if (team.product_owner!=id):
+        member.delete()
+        response.flash = db.auth_user[id].first_name+db.auth_user[id].first_name+'Has been removed from team:'+team.team_name
+        redirect(URL('team','manageteam'))
     else:
-        response.flash='error'
+        response.flash='Cant Remove Owner'
 
 def backlog():
   if auth.user_groups.keys():

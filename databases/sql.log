@@ -1,4 +1,4 @@
-timestamp: 2016-03-08T10:06:56.378567
+timestamp: 2016-03-15T22:29:29.892000
 CREATE TABLE auth_user(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     first_name CHAR(128),
@@ -10,21 +10,21 @@ CREATE TABLE auth_user(
     registration_id CHAR(512)
 );
 success!
-timestamp: 2016-03-08T10:06:56.380866
+timestamp: 2016-03-15T22:29:29.924000
 CREATE TABLE auth_group(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     role CHAR(512),
     description TEXT
 );
 success!
-timestamp: 2016-03-08T10:06:56.383230
+timestamp: 2016-03-15T22:29:29.964000
 CREATE TABLE auth_membership(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
     group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE  
 );
 success!
-timestamp: 2016-03-08T10:06:56.385643
+timestamp: 2016-03-15T22:29:29.991000
 CREATE TABLE auth_permission(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE  ,
@@ -33,7 +33,7 @@ CREATE TABLE auth_permission(
     record_id INTEGER
 );
 success!
-timestamp: 2016-03-08T10:06:56.388031
+timestamp: 2016-03-15T22:29:30.029000
 CREATE TABLE auth_event(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     time_stamp TIMESTAMP,
@@ -43,7 +43,7 @@ CREATE TABLE auth_event(
     description TEXT
 );
 success!
-timestamp: 2016-03-08T10:06:56.389918
+timestamp: 2016-03-15T22:29:30.055000
 CREATE TABLE auth_cas(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
@@ -53,7 +53,7 @@ CREATE TABLE auth_cas(
     renew CHAR(1)
 );
 success!
-timestamp: 2016-03-08T10:06:56.393271
+timestamp: 2016-03-15T22:29:30.082000
 CREATE TABLE Team(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     product_owner INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
@@ -64,7 +64,7 @@ CREATE TABLE Team(
     product_description TEXT
 );
 success!
-timestamp: 2016-03-08T10:06:56.395384
+timestamp: 2016-03-15T22:29:30.108000
 CREATE TABLE Sprint(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     sprint_goal CHAR(512),
@@ -73,7 +73,7 @@ CREATE TABLE Sprint(
     team_id INTEGER REFERENCES Team (id) ON DELETE CASCADE  
 );
 success!
-timestamp: 2016-03-08T10:06:56.397799
+timestamp: 2016-03-15T22:29:30.136000
 CREATE TABLE Story(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     backlogged CHAR(1),
@@ -86,18 +86,29 @@ CREATE TABLE Story(
     created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  
 );
 success!
-timestamp: 2016-03-08T10:06:56.399659
+timestamp: 2016-03-15T22:29:30.163000
 CREATE TABLE Task(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name CHAR(512),
+    description TEXT,
     status CHAR(512),
     assigned INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    task_creation_time TIMESTAMP,
     estimated_completion_time TIMESTAMP,
     task_points INTEGER,
     story_id INTEGER REFERENCES Story (id) ON DELETE CASCADE  
 );
 success!
-timestamp: 2016-03-08T10:06:56.401660
+timestamp: 2016-03-15T22:29:30.190000
+CREATE TABLE Comments(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    task_id INTEGER REFERENCES Task (id) ON DELETE CASCADE  ,
+    date TIMESTAMP,
+    from_user INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    comment TEXT
+);
+success!
+timestamp: 2016-03-15T22:29:30.217000
 CREATE TABLE Invitations(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     to_user INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
@@ -105,7 +116,15 @@ CREATE TABLE Invitations(
     from_group INTEGER REFERENCES auth_group (id) ON DELETE CASCADE  
 );
 success!
-timestamp: 2016-03-08T10:06:56.406076
+timestamp: 2016-03-15T22:29:30.247000
+CREATE TABLE chat(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    me_from CHAR(512),
+    me_body TEXT,
+    me_html TEXT
+);
+success!
+timestamp: 2016-03-15T22:29:30.278000
 CREATE TABLE sprint_plan(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     Heading CHAR(512),
@@ -114,7 +133,7 @@ CREATE TABLE sprint_plan(
     created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  
 );
 success!
-timestamp: 2016-03-08T10:06:56.407760
+timestamp: 2016-03-15T22:29:30.304000
 CREATE TABLE sprint_review(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     Things_that_did_not_work TEXT,
@@ -124,11 +143,4 @@ CREATE TABLE sprint_review(
     Work_completion_rate TEXT
 );
 success!
-timestamp: 2016-03-14T22:16:47.963086
-CREATE TABLE chat(
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    me_from CHAR(512),
-    me_body TEXT,
-    me_html TEXT
-);
 success!

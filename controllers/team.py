@@ -112,9 +112,10 @@ def removemember():
     if (team.team_leader != None):
         if (team.team_leader==mem.user_id):
             team.update_record(team_leader=auth.user_id)
-    if (team.product_owner!=id):
+    if (auth.user_id!=id):
         member.delete()
         response.flash = db.auth_user[id].first_name+db.auth_user[id].first_name+'Has been removed from team:'+team.team_name
+        redirect(URL('team','manageteam'))
     else:
         response.flash='Cant Remove Owner'
 
