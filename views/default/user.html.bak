@@ -4,7 +4,7 @@
     if (typeof window.janrain !== 'object') window.janrain = {};
     if (typeof window.janrain.settings !== 'object') window.janrain.settings = {};
 
-    janrain.settings.tokenUrl = 'http://localhost:8000/scrumLite/default/user.html';
+    janrain.settings.tokenUrl = 'http://localhost:8000/scrum/default/user.html';
 
     function isReady() { janrain.ready = true; };
     if (document.addEventListener) {

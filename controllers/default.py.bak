@@ -6,7 +6,6 @@ import json
 import chats
 
 def index():
-    team = 0
     form = 0
     forms = 0
     images = 0

@@ -93,10 +93,9 @@ def manageteam():
 def viewteam():
     groupid = 0
     if auth.user_groups.keys():
-      print 'now'
-      groupid = auth.user_groups.keys()[0]
+        groupid = auth.user_groups.keys()[0]
     else:
-      return dict(team=None)
+        return dict(team=None)
     team = db(db.Team.team_group == groupid).select().first()
     rows = db(db.auth_membership.group_id == groupid).select()
     rows2=None;
@@ -105,7 +104,10 @@ def viewteam():
             rows2=db(db.auth_user.id==row.user_id).select()
         else:
             rows2=rows2&(db(db.auth_user.id==row.user_id).select())
-    return dict(rows=rows2, team=team)
+    images = db(db.images.user==auth.user_id).select()
+    if images:
+        images = db(db.images.user==auth.user_id).select()[0]
+    return dict(rows=rows2, team=team,images=images)
 
 @auth.requires(lambda: validate_product_owner())
 def removemember():
@@ -149,3 +151,6 @@ def reviewtsr():
     you=db(db.auth_membership.user_id==auth.user_id).select().first()
     tsrs=db(db.TSR.Team==you.group_id).select()
     return dict(rows=tsrs)
+
+def download():
+    return response.download(request, db)
