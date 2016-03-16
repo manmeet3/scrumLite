@@ -1,8 +1,11 @@
 {{extend 'layout.html'}}
 <h1>Manage Team</h1>
 {{=form}}
+<br>
+<br>
 {{for row in rows:}}
-<p> {{=A('Remove', _href=URL('team', 'removemember', args=row.id))}}
- First: {{=row.first_name}} Last: {{=row.last_name}}</p>
+<p> {{=A('Remove', _href=URL('team', 'removemember', vars=dict(id=row.id)))}}
+Name: {{=row.first_name}} {{=row.last_name}}
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Email: {{=row.email}}</p>
 <br>
 {{pass}}

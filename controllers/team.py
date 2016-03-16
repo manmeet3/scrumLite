@@ -123,6 +123,7 @@ def removemember():
         response.flash = db.auth_user[id].first_name+db.auth_user[id].first_name+'Has been removed from team:'+team.team_name
     else:
         response.flash='Cant Remove Owner'
+    redirect(URL('team', 'manageteam', args=auth.user_id))
 
 def backlog():
   if auth.user_groups.keys():
