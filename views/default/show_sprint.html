@@ -34,7 +34,6 @@
     });
 </script>
 
-
 </head>
 <h4> Sprint Info: </h4>
   <p> <b>Name</b>: {{=A(sprint.sprint_goal, _href=URL('sprint', 'show_sprint', args=sprint.id))}}</p>
@@ -51,13 +50,10 @@
           <div class="panel-body">
             <!--Product Backlogs-->
             <div class="list-group">
-            {{if backlogs != None:}}
+            {{if len(backlogs) != 0:}}
             {{for story in backlogs:}}
               <a href="#" class="list-group-item" data-toggle="modal" data-target="#example1">
-
             {{=story.user_story}}
-            {{pass}}
-            {{pass}}
           </a>
               <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id="example1">
                 <div class="modal-dialog modal-sm">
@@ -76,13 +72,13 @@
                   </div>
                 </div>
               </div>
-
+            {{pass}}
+            {{pass}}
             </div>
 
           </div>
         </div>
       </div>
-
 
 <!--Scrumboard-->
       <div class="col-md-9">
