@@ -3,9 +3,11 @@
 <p> You don't belong to a team </p>
 {{else:}}
 <h1><center>{{=team.team_name}}</center></h1>
+    {{if images:}}
+        <img width="200px" src="{{=URL('download', args=images.image)}}" />
+    {{pass}}
 {{for row in rows:}}
 <p>{{if team.product_owner==row.id:}} <h3><u>Product Owner</u></h3>{{pass}}{{if team.team_leader==row.id:}} <h4><u>Team Leader</u></h4>{{pass}}<b>Name</b>: {{=row.first_name}} {{=row.last_name}} </p>
-<p> <b>Email</b>: {{=row.email}} </p>
 <br>
 {{pass}}
 {{pass}}
